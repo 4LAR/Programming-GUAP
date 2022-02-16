@@ -26,6 +26,8 @@ double read_double(){
 
 // основной код
 int main() {
+	// смена кодировки
+  system("chcp 65001");
 
   // ввод X
   printf("X = ");
@@ -41,10 +43,10 @@ int main() {
       (sqrt(x + 1) + sqrt(y + 1) >= 1) && (0 >= x >= -1) && (0 >= y >= -1) &&
       (sqrt(-x + 1) + sqrt(y + 1) >= 1) && (1 >= x >= 0) && (0 >= y >= -1)
     ) {
-    printf("OK");
+    printf("Точка находится в области");
 
   } else {
-    printf("BRUH");
+    printf("Точка находится вне области");
 
   }
 

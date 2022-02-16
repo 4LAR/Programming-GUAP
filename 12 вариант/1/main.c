@@ -5,7 +5,7 @@
   должны задаваться пользователем в градусах.
 */
 
-#include <stdio.h>  
+#include <stdio.h>
 #include <stdlib.h>
 #include <locale.h> // Для смены языка
 #include <math.h>   // Математические функции и константы
@@ -33,9 +33,11 @@ double read_double(){
 
 // основной код
 int main() {
+  // смена кодировки
+  system("chcp 65001");
 
   // ввод угла в градусах
-  printf("Enter deg: ");
+  printf("Введите угол (в градусах): ");
   double a = read_double();
 
   // перевод градусов в радианы
