@@ -5,14 +5,24 @@
   как 16-ричное число и выводит значения отдельных еѐ составных частей как десятичные числа.
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <locale.h> // Для смены языка
-#include <math.h>   // Математические функции и константы
+#include <iostream>
+#include "lib.h"
+#include "add.h"
+
+using namespace std;
 
 int main() {
   // смена кодировки
   system("chcp 65001");
+
+  unsigned int x;
+
+  draw_line(20);
+
+  cout << "Введите команду сложения (16-ричное число от 0 до 0xFFFF): ";
+  scanf("%x", &x);
+
+  decode(x);
 
   return 0;
 }
