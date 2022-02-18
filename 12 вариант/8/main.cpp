@@ -6,51 +6,80 @@
 #include <fstream>
 #include <cstdlib>
 #include <cctype>
+#include "lib.h"
 
 using namespace std;
 
-void sentence(istream& in) {
-  bool state = false;
-  char c;
-
-  while ((c = in.get()) && isspace(c));
-  if (c == '-')
-    state = true;
-  else
-    state = false;
-
-  if (state) {
-    while ((c = in.get()) && isspace(c));
-      cout << c;
-    while ((c = in.get()) && state) {
-      cout << c;
-      if (c == '.' || c == '!' || c == '?')
-        state = false;
-    }
-    cout << endl;
-  }
-}
-
 int main() {
-
+  // смена кодировки
   system("chcp 65001");
 
-  string file_name;
+  string input_file_name;
+  string output_file_name;
 
-  cout << "file name: ";
-  cin >> file_name;
+  draw_line(20);
 
-  ifstream in;
-  in.open(file_name.c_str(), ios::in);
-  if (!in.good()) {
-      cout << "Couldn't read file.\n";
-      exit(1);
+  // ввод имён файлов
+  cout << "Имя входного файла: ";
+  cin >> input_file_name;
+
+  cout << "Имя выходного файла: ";
+  cin >> output_file_name;
+
+  draw_line(20);
+
+  ifstream input_file;
+  ofstream output_file;
+
+  // открываем файлы
+  input_file.open(input_file_name.c_str());
+  output_file.open(output_file_name.c_str());
+
+  // обработка ошибок
+  if (!input_file.good()) {
+    cout << "Невозможно прочитать файл.\n";
+    exit(1);
+  }
+  if (!output_file.good()) {
+    cout << "Невозможно создать или записать файл.\n";
+    exit(1);
   }
 
-  while (in)
-      sentence(in);
+  char c;
+  bool space = false;
+  bool state = false;
+  while (input_file) {
+    c = input_file.get();
 
-  in.close();
+    if (!space) { // проверка на пробел перед тире
+      if (isspace(c))
+        space = true;
+      else
+        space = false;
+    } else if (!state) { // проверка на тире после пробела
+      if (c == '-')
+        state = true;
+      else
+        state = false;
+    } else { // записываем предложение в файл
+      cout << c;
+      output_file << c;
+
+      if (c == '.' || c == '?' || c == '!') { // проверка на конец предложения
+        state = false;
+        space = false;
+
+        cout << endl;
+        output_file << endl;
+      }
+    }
+  }
+
+  draw_line(20);
+
+  // закрываем файлы
+  input_file.close();
+  output_file.close();
 
   return 0;
 }
