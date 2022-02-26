@@ -23,13 +23,22 @@ double ctg(double rad) {
 // Функция для проверки ввода
 double read_double(){
 	double x;
-	fflush(stdin);
-	if (scanf("%lf", &x) != 1){
-		printf("ERROR\n");
-		exit(0);
-	}
-	return x;
+
+  while ( (scanf("%lf",&x) ) != 1 ) {
+      printf("Неверное введенное значение, попробуйте еще: ");
+      while(getchar() != '\n');
+  }
+  return x;
 }
+
+double z_1(double a){
+  return ( sin(4 * a) / (1 + cos(4 * a)) ) * ( cos(2 * a) / (1 + cos(2 * a)) );
+}
+
+double z_2(double a){
+  return ctg( (3/2) * M_PI - a );
+}
+
 
 // основной код
 int main() {
@@ -44,12 +53,18 @@ int main() {
   a = grad_to_rad(a);
 
   // первое выражение
-  double z1 = ( sin(4 * a) / (1 + cos(4 * a)) ) * ( cos(2 * a) / (1 + cos(2 * a)) );
+  double z1 = z_1(a);
   printf("Z1 = %f\n", z1);
 
   // второе выражение
-  double z2 = ctg( (3/2) * M_PI - a );
+  double z2 = z_1(a);
   printf("Z2 = %f\n", z2);
+
+  if (z1 == z1) {
+    printf("Ответы равны\n");
+  } else {
+    printf("Ответы не равны\n");
+  }
 
   return 0;
 }
