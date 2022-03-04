@@ -14,7 +14,11 @@ int random_int(int a, int b) {
 }
 
 int get_N(int r, int n) {
-	return r % n + 1;
+  int out = r % (n + 1);
+  if (out < 1)
+    return out + 1;
+  else
+    return out;
 }
 
 double read_double(){

@@ -17,6 +17,20 @@ int mod_rad(int i, int x, int type) {
   }
 }
 
+void show_oper(int type) {
+  switch (type) {
+    case(1):
+      cout << "+" << endl;
+      break;
+    case(2):
+      cout << "-" << endl;
+      break;
+    case(3):
+      cout << "*" << endl;
+      break;
+  }
+}
+
 void zad_2() {
   int r = random_int(1, 999);
 
@@ -42,29 +56,32 @@ void zad_2() {
 
   //cout << "Введите A: ";
   //int a = read_int();
-
   int x = 1;
+  show_oper(v1);
   switch (v2) {
     case(1):
-      for (i = 1; x < r; i++){
+      cout << "for" << endl;
+      for (i = 1; abs(x) <= abs(r); i++){
         x = mod_rad(i, x, v1);
 
       }
 
       break;
     case(2):
+      cout << "while" << endl;
       i = 1;
-      while (x < r) {
+      while (abs(x) <= abs(r)) {
         x = mod_rad(i, x, v1);
         i++;
       }
       break;
     case(3):
+      cout << "do while" << endl;
       i = 1;
       do {
-        x = mod_rad(x, r, v1);
+        x = mod_rad(i, x, v1);
         i++;
-      } while(x < r);
+      } while(abs(x) <= abs(r));
       break;
   }
   cout << "R = " << r << endl;

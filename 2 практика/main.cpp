@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <ctime>
 
 #include "lib.h"
 #include "zad_1.h"
@@ -9,6 +10,7 @@ using namespace std;
 
 
 int main() {
+  srand(time(0));
   system("chcp 65001");
 
   zad_1();
