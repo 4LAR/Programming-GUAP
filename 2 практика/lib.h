@@ -9,6 +9,13 @@ void draw_line(int size) {
   cout << endl;
 }
 
+int random_int(int a, int b) {
+	return a + rand() % b;
+}
+
+int get_N(int r, int n) {
+	return r % n + 1;
+}
 
 double read_double(){
 	double x;

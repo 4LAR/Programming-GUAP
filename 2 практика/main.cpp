@@ -12,7 +12,7 @@ int main() {
   system("chcp 65001");
 
   zad_1();
-  
+
   draw_line(20);
   zad_2();
 

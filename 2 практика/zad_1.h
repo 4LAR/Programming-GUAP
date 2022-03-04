@@ -19,6 +19,7 @@ double zad_1_loop(int type, int i, int s) {
 }
 
 void zad_1() {
+  int r = random_int(1, 999);
   cout << "Задание 1" << endl;
   draw_line(20);
   int v1 = 0;
@@ -29,13 +30,13 @@ void zad_1() {
       break;
   }
 
-  int v2 = 0;
-  while (true){
+  int v2 = get_N(r, 2);//0;
+  /*while (true){
     cout << "Введите номер (целое число от 1 до 2): ";
     v2 = read_int();
     if (3 > v2 > 0)
       break;
-  }
+  }*/
 
   cout << "Введите A: ";
   int a = read_int();
