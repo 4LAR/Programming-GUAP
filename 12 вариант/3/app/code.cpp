@@ -22,13 +22,13 @@ int main() {
   draw_line(20);
 
   cout << "Тип операндов (0-байты, 1-слова): ";
-  scanf("%d", &d);
+  d = read_int();
 
   cout << "Регистр - 1 операнд: ";
-  scanf("%d", &a);
+  a = read_int();
 
   cout << "Регистр - 2 операнд: ";
-  scanf("%d", &b);
+  b = read_int();
 
   draw_line(20);
 
