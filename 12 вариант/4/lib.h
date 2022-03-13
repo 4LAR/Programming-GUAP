@@ -8,3 +8,13 @@ void draw_line(int size) {
     cout << '-';
   cout << endl;
 }
+
+double read_double(){
+	double x;
+
+  while ( (scanf("%lf",&x) ) != 1 ) {
+      printf("Неверное введенное значение, попробуйте еще: ");
+      while(getchar() != '\n');
+  }
+  return x;
+}

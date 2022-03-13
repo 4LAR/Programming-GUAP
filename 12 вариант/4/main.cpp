@@ -28,24 +28,24 @@ int main() {
   draw_line(20);
 
   cout << "a = ";
-  scanf("%lf", &a);
+  a = read_double();
 
   cout << "b = ";
-  scanf("%lf", &b);
+  b = read_double();
 
   cout << "c = ";
-  scanf("%lf", &c);
+  c = read_double();
 
   draw_line(20);
 
   cout << "xMin = ";
-  scanf("%lf", &xMin);
+  xMin = read_double();
 
   cout << "xMax = ";
-  scanf("%lf", &xMax);
+  xMax = read_double();
 
   cout << "dx = ";
-  scanf("%lf", &dx);
+  dx = read_double();
 
   draw_line(20);
 
@@ -53,12 +53,12 @@ int main() {
   cout << "| " << setw(7) << "X | " << setw(11) << "Y |\n";
   draw_line(20);
   for (double x = xMin; x < xMax + dx; x += dx) {
-    if ( (x < 3) && (b != 0) ) {
-      y = a * pow(x, 2) - b * x + c;
-    } else if ( (x > 3) && (b == 0) ) {
+    if ( (x < 0.6) && ((b + c) != 0) ) {
+      y = a * pow(x, 3) + pow(b, 2) + c;
+    } else if ( (x > 0.6) && ((b + c) == 0) ) {
       y = (x - a) / (x - c);
     } else {
-      y = x / c;
+      y = (x / c) + (x / a);
     }
     cout << "| " << setw(4) << x << " | " << setw(8) << y << " |\n";
   }
