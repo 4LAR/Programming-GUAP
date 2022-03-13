@@ -14,3 +14,22 @@ void draw_float_array(float *arr, int size) {
     cout << arr[i] << "\t";
   cout << endl;
 }
+
+double read_double(){
+	double x;
+
+  while ( (scanf("%lf",&x) ) != 1 ) {
+      printf("Неверное введенное значение, попробуйте еще: ");
+      while(getchar() != '\n');
+  }
+  return x;
+}
+
+int read_int(){
+	int x;
+  while ( (scanf("%d",&x) ) != 1 ) {
+      printf("Неверное введенное значение, попробуйте еще: ");
+      while(getchar() != '\n');
+  }
+  return x;
+}
