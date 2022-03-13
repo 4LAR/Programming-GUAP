@@ -16,12 +16,11 @@
 // Функция для проверки ввода
 double read_double(){
 	double x;
-	fflush(stdin);
-	if (scanf("%lf", &x) != 1){
-		printf("ERROR\n");
-		exit(0);
-	}
-	return x;
+  while ( (scanf("%lf",&x) ) != 1 ) {
+      printf("Неверное введенное значение, попробуйте еще: ");
+      while(getchar() != '\n');
+  }
+  return x;
 }
 
 // основной код
@@ -43,10 +42,10 @@ int main() {
       (sqrt(x + 1) + sqrt(y + 1) >= 1) && (0 >= x >= -1) && (0 >= y >= -1) &&
       (sqrt(-x + 1) + sqrt(y + 1) >= 1) && (1 >= x >= 0) && (0 >= y >= -1)
     ) {
-    printf("Точка находится в области");
+    printf("Точка находится в области\n");
 
   } else {
-    printf("Точка находится вне области");
+    printf("Точка находится вне области\n");
 
   }
 
