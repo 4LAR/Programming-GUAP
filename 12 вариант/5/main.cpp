@@ -16,8 +16,8 @@
 #include <iostream>
 #include <cmath>
 #include "lib.h"
-
-const int size = 10;
+#define size 10
+//const int size = 10;
 
 using namespace std;
 

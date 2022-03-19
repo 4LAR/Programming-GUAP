@@ -42,7 +42,14 @@ int main() {
   xMin = read_double();
 
   cout << "xMax = ";
-  xMax = read_double();
+  xMax = abs(read_double());
+
+  //if (xMin > xMax) {
+  //  double j = xMax;
+
+  //  xMax = xMin;
+  //  xMin = j;
+  //}
 
   cout << "dx = ";
   dx = read_double();
@@ -52,7 +59,7 @@ int main() {
   double y = 0;
   cout << "| " << setw(7) << "X | " << setw(11) << "Y |\n";
   draw_line(20);
-  for (double x = xMin; x < xMax + dx; x += dx) {
+  for (double x = (xMin < xMax)? (xMin): (xMax); ((xMin < xMax)? (x < xMax + dx): (x < xMin + dx)); x += dx) {
     if ( (x < 0.6) && ((b + c) != 0) ) {
       y = a * pow(x, 3) + pow(b, 2) + c;
     } else if ( (x > 0.6) && ((b + c) == 0) ) {
