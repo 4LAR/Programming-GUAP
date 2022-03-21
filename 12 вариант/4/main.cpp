@@ -38,28 +38,32 @@ int main() {
 
   draw_line(20);
 
-  cout << "xMin = ";
-  xMin = read_double();
+  while (true) {
+    cout << "xMin = ";
+    xMin = read_double();
 
-  cout << "xMax = ";
-  xMax = abs(read_double());
+    cout << "xMax = ";
+    xMax = read_double();
 
-  //if (xMin > xMax) {
-  //  double j = xMax;
+    if (xMin == xMax){
+      cout << "Диапазон числа одинаковый" << endl;
+      draw_line(20);
+    } else break;
 
-  //  xMax = xMin;
-  //  xMin = j;
-  //}
+  }
 
   cout << "dx = ";
-  dx = read_double();
+  dx = abs(read_double());
 
   draw_line(20);
 
   double y = 0;
   cout << "| " << setw(7) << "X | " << setw(11) << "Y |\n";
   draw_line(20);
-  for (double x = (xMin < xMax)? (xMin): (xMax); ((xMin < xMax)? (x < xMax + dx): (x < xMin + dx)); x += dx) {
+
+  double x = xMin;
+  while (((xMin < xMax)? (x < xMax + dx): (x > xMax - dx))) {
+
     if ( (x < 0.6) && ((b + c) != 0) ) {
       y = a * pow(x, 3) + pow(b, 2) + c;
     } else if ( (x > 0.6) && ((b + c) == 0) ) {
@@ -67,7 +71,10 @@ int main() {
     } else {
       y = (x / c) + (x / a);
     }
-    cout << "| " << setw(4) << x << " | " << setw(8) << y << " |\n";
+    cout << "| " << setw(4) << x << " | " << setw(8) << (isinf(y)? 0: (isnan(y)? 0: y)) << " |\n";
+
+    x += (xMin < xMax)? (dx): (-dx);
+
   }
 
   draw_line(20);
