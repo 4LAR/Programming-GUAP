@@ -6,9 +6,16 @@
 using namespace std;
 
 double read_double() {
-    // будущая строка
+    // строка введённая пользователем
     char *char_str;
     int len;
+
+    // очищенная строка (без пробелов)
+    char *clear_char_str;
+    int len_clear;
+
+    // счётсчик для динамического массива
+    int capacity;
 
     // словарь
     char symb[SYMB_LEN_DOUBLE] = "1234567890";
@@ -32,9 +39,27 @@ double read_double() {
         // читаем строку
         char_str = get_string(&len);
 
-        // проходимся по каждой бекве строки
+        capacity = 1;
+        clear_char_str = (char*) malloc(sizeof(char));
+
+        // очистка строки от пробелов
+        len_clear = 0;
         for (i = 0; i < len; i++) {
-            switch (char_str[i]) {
+            if (char_str[i] != ' ') {
+                clear_char_str[len_clear++] = char_str[i];
+                capacity *= 2;
+                clear_char_str = (char*) realloc(clear_char_str, capacity * sizeof(char));
+            }
+        }
+
+        // проверка на знак минуса
+        if (char_str[0] == '-') {
+            minus = true;
+        }
+
+        // проходимся по каждому символу строки
+        for (i = ((minus)? 1: 0); i < len_clear; i++) {
+            switch (clear_char_str[i]) {
                 // проверка на точку
                 case('.'):
                     if (dot) 
@@ -47,12 +72,7 @@ double read_double() {
 
                 // проверка на знак минуса
                 case('-'):
-                    if (minus)
-                        ok = false;
-                    else {
-                        ok = true;
-                        minus = true;
-                    }
+                    ok = false;
                     break;
 
                 // проверка на остальные символы
@@ -62,7 +82,7 @@ double read_double() {
                     for (j = 0; j < SYMB_LEN_DOUBLE; j++) {
 
                         // стравниваем символ со словарём
-                        if (char_str[i] == symb[j]){
+                        if (clear_char_str[i] == symb[j]){
                             // если нашли символ в словаре, 
                             // то останавливаем цикл со словарём
                             ok = true;
@@ -87,5 +107,5 @@ double read_double() {
     }
 
     // переводим и возвращаем значение
-    return atof(char_str);
+    return atof(clear_char_str);
 }
