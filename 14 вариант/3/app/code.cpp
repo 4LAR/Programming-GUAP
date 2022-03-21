@@ -23,6 +23,8 @@ int main() {
 
   cout << "Секунды: ";
   s = read_int();
+  s = s/2;
+  cout << "Секунды(делённые на 2): " << s << endl;
 
   cout << "Минуты: ";
   m = read_int();

@@ -26,6 +26,7 @@ void decode(unsigned short x) {
 
   draw_line(20);
   cout << dec << "Секунды: " << s << endl;
+  cout << dec << "Секунды (Помноженное на 2): " << s * 2<< endl;
   cout << dec << "Минуты: " << m << endl;
   cout << dec << "Часы: " << h << endl;
   draw_line(20);
