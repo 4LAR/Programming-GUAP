@@ -52,8 +52,15 @@ int main() {
 
   }
 
-  cout << "dx = ";
-  dx = abs(read_double());
+  while (true) {
+    cout << "dx = ";
+    dx = abs(read_double());
+
+    if (((xMin < xMax)? (xMax - xMin): (xMin - xMax)) < dx) {
+      cout << "Шаг слишком маленький" << endl;
+    } else break;
+  }
+
 
   draw_line(20);
 

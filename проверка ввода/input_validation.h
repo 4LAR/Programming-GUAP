@@ -1,4 +1,4 @@
- 
+
 #include <iostream>
 
 #define SYMB_LEN_DOUBLE 11
@@ -24,7 +24,7 @@ double read_double() {
 
     // флаг состояния
     bool ok = false;
-    
+
     // флаг на существование точки
     bool dot = false;
 
@@ -46,7 +46,12 @@ double read_double() {
         len_clear = 0;
         for (i = 0; i < len; i++) {
             if (char_str[i] != ' ') {
-                clear_char_str[len_clear++] = char_str[i];
+                // замента запятой на точку
+                if (char_str[i] == ',')
+                  clear_char_str[len_clear++] = '.';
+                else
+                  clear_char_str[len_clear++] = char_str[i];
+                  
                 capacity *= 2;
                 clear_char_str = (char*) realloc(clear_char_str, capacity * sizeof(char));
             }
@@ -62,7 +67,7 @@ double read_double() {
             switch (clear_char_str[i]) {
                 // проверка на точку
                 case('.'):
-                    if (dot) 
+                    if (dot)
                         ok = false;
                     else {
                         ok = true;
@@ -83,7 +88,7 @@ double read_double() {
 
                         // стравниваем символ со словарём
                         if (clear_char_str[i] == symb[j]){
-                            // если нашли символ в словаре, 
+                            // если нашли символ в словаре,
                             // то останавливаем цикл со словарём
                             ok = true;
                             break;
@@ -92,7 +97,7 @@ double read_double() {
 
                     break;
             }
-            
+
             // если мы не нашли символ, пишем ошибку
             if (!ok) {
                 cout << "Вы ввели не число.\n";

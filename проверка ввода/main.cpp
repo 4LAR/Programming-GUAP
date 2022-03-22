@@ -10,8 +10,11 @@ using namespace std;
 
 int main() {
 
-    cout << "Введите число (double): ";
-    cout << read_double() << endl;
+  // смена кодировки
+  system("chcp 65001");
 
-    return 0;
+  cout << "Введите число (double): ";
+  cout << read_double() << endl;
+
+  return 0;
 }
