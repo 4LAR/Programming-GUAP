@@ -1,3 +1,6 @@
+/*
+    
+*/
 
 #include <iostream>
 
@@ -5,7 +8,13 @@
 
 using namespace std;
 
-double read_double() {
+double read_value(
+        const char *promt = "", 
+        bool check_dot = true, 
+        bool check_minus = true, 
+        bool check_space = true
+    ) {
+    
     // строка введённая пользователем
     char *char_str;
     int len;
@@ -25,6 +34,10 @@ double read_double() {
     // флаг состояния
     bool ok = false;
 
+    // флаги ошибок
+    bool error_dot = false;
+    bool error_minus = false;
+
     // флаг на существование точки
     bool dot = false;
 
@@ -36,29 +49,39 @@ double read_double() {
         dot = false;
         minus = false;
 
+        error_dot = false;
+        error_minus = false;
+
         // читаем строку
+        cout << promt;
         char_str = get_string(&len);
 
         capacity = 1;
         clear_char_str = (char*) malloc(sizeof(char));
 
         // очистка строки от пробелов
-        len_clear = 0;
-        for (i = 0; i < len; i++) {
-            if (char_str[i] != ' ') {
-                // замента запятой на точку
-                if (char_str[i] == ',')
-                  clear_char_str[len_clear++] = '.';
-                else
-                  clear_char_str[len_clear++] = char_str[i];
-                  
-                capacity *= 2;
-                clear_char_str = (char*) realloc(clear_char_str, capacity * sizeof(char));
+        if (check_space){
+            len_clear = 0;
+            for (i = 0; i < len; i++) {
+                if (char_str[i] != ' ') {
+                    // замента запятой на точку
+                    if (char_str[i] == ',')
+                    clear_char_str[len_clear++] = '.';
+                    else
+                    clear_char_str[len_clear++] = char_str[i];
+                    
+                    capacity *= 2;
+                    clear_char_str = (char*) realloc(clear_char_str, capacity * sizeof(char));
+                }
             }
+        } else {
+            len_clear = len;
+            clear_char_str = char_str;
         }
+        
 
         // проверка на знак минуса
-        if (char_str[0] == '-') {
+        if (char_str[0] == '-' && check_minus) {
             minus = true;
         }
 
@@ -67,17 +90,25 @@ double read_double() {
             switch (clear_char_str[i]) {
                 // проверка на точку
                 case('.'):
-                    if (dot)
-                        ok = false;
+                    if (check_dot)
+                        if (dot) {
+                            ok = false;
+                            error_dot = true;
+                        } else {
+                            ok = true;
+                            dot = true;
+                        }
                     else {
-                        ok = true;
-                        dot = true;
+                        ok = false;
+                        error_dot = true;
                     }
+
                     break;
 
                 // проверка на знак минуса
                 case('-'):
                     ok = false;
+                    error_minus = true;
                     break;
 
                 // проверка на остальные символы
@@ -100,7 +131,28 @@ double read_double() {
 
             // если мы не нашли символ, пишем ошибку
             if (!ok) {
-                cout << "Вы ввели не число.\n";
+                cout << " [ Ошибка ввода ]: ";
+
+                // ошибки связанные с точками
+                if (error_dot && !check_dot) {
+                    cout << "Число не должно содержать точки.";
+                } else if (error_dot) {
+                    cout << "Слишком много точек.";
+                } 
+
+                // ошибки связанные со знаком минус
+                if (error_minus && !check_minus) {
+                    cout << "Число не может быть отрицательным.";
+                } else if (error_minus) {
+                    cout << "Число не может содержать несколько знаков минус.";
+                }
+
+                // остальные ошибки
+                if (!error_dot && !error_minus) {
+                    cout << "Число не может содержать в себе посторонних символов.";
+                }
+
+                cout << endl;
                 break;
             }
         }
