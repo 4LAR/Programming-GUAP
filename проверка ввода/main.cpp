@@ -15,7 +15,7 @@ int main() {
   
   // read_value(promt, check_dot, check_minus, check_space)
   cout << read_value("Введите число (double): ", true, true, true) << endl;
-  cout << read_value("Введите число (int): ", false, true, true) << endl;
+  //cout << read_value("Введите число (int): ", false, true, true) << endl;
 
   return 0;
 }
