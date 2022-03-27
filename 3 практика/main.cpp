@@ -14,17 +14,7 @@ using namespace std;
 int main() {
   system("chcp 65001");
 
-  draw_line(20);
-
-  triangle(10);
-
-  draw_line(20);
-
-  square(10, 10);
-
-  draw_line(20);
-
-  arrow(3, 6);
-
+  menu();
+  
   return 0;
 }
