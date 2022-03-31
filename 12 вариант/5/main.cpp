@@ -14,25 +14,30 @@
 */
 
 #include <iostream>
-#include <cmath>
-#include "lib.h"
-#define size 10
-//const int size = 10;
-
 using namespace std;
+
+#include "libs/lib.h"
+#include <cmath>
+
+// проверка ввода
+#include "libs/simple_char.h"
+#include "libs/input_validation.h"
 
 int main() {
 	// смена кодировки
   system("chcp 65001");
 
-  float arr[size];
-
   draw_line(20);
 
   // ввод элементов массива
+
+  int size = read_value("Введите размер массива: ", false, false, false);
+  double *arr = (double*) malloc(size * sizeof(double));
+
   for (int i = 0; i < size; i++){
     cout << "array [" << i << "] = ";
-    scanf("%f", &arr[i]);
+    arr[i] = read_value("", false, false, false);
+    //scanf("%f", &arr[i]);
   }
 
   draw_line(20);
