@@ -36,8 +36,7 @@ int main() {
 
   for (int i = 0; i < size; i++){
     cout << "array [" << i << "] = ";
-    arr[i] = read_value("", false, false, false);
-    //scanf("%f", &arr[i]);
+    arr[i] = read_value("", true, true, false);
   }
 
   draw_line(20);
@@ -74,28 +73,57 @@ int main() {
 
   draw_line(20);
 
-  //
-  int a, b;
-
+  // ввод диапазона
+  int a, b, k;
   cout << "Введите диапазон [a, b]\n";
+  while (true) {
+    a = read_value("A = ", false, false, false);
+    b = read_value("B = ", false, false, false);
 
-  cout << "A = ";
-  scanf("%d", &a);
+    // меняем местами числа, если пользователь их перепутал
+    if (a > b) {
+      k = a;
+      a = b;
+      b = k;
+    }
 
-  cout << "B = ";
-  scanf("%d", &b);
+    // если числа одинаковые, то вводим заново
+    if (a == b) {
+      cout << "A и B не могут быть одинаковыми." << endl;
+      draw_line(20);
 
+    }else if (a >= size || b >= size) {
+      cout << "A и B не могут быть больше массива." << endl;
+      draw_line(20);
+
+    }
+     else {
+      // если всё ок выходим из цикла
+      break;
+    }
+
+  }
+
+  // пересобираем массив
+  double *new_arr = (double*) malloc(size * sizeof(double));
+  int j = 0;
   for (int i = a; i < b + 1; i++){
-    cout << arr[i] << "\t";
+    new_arr[i] = arr[j++];
   }
 
   for (int i = 0; i < size; i++) {
     if (i < a || i > b)
-      cout << arr[i] << "\t";
+      new_arr[i] = arr[j++];
   }
-  cout << endl;
 
+  // выводим новый массив
   draw_line(20);
+  draw_float_array(new_arr, size);
+  draw_line(20);
+
+  // удаление массивов
+  delete(arr);
+  delete(new_arr);
 
 	return 0;
 }
