@@ -38,3 +38,9 @@ int read_int(){
   }
   return x;
 }
+
+void draw_float_array(double *arr, int size) {
+  for (int i = 0; i < size; i++)
+    cout << arr[i] << "\t";
+  cout << endl;
+}

@@ -10,31 +10,27 @@
 */
 
 #include <iostream>
-#include <cmath>
-#include "lib.h"
-
-const int size_x = 3;
-const int size_y = 3;
-
 using namespace std;
 
-// функция вывода массива
-void read_arr(double arr[size_y][size_x]) {
-  for (int y = 0; y < size_y; y++){
-    for (int x = 0; x < size_x; x++){
-      cout << "arr [" << y << "][" << x << "] = ";
-      scanf("%lf", &arr[y][x]);
-    }
-  }
-}
+#include "libs/lib.h"
+#include <cmath>
 
-// функция вывода массива
-void draw_array(double arr[size_y][size_x]) {
-  for (int y = 0; y < size_y; y++){
-    for (int x = 0; x < size_x; x++){
-      cout << arr[y][x] << "\t";
+// проверка ввода
+#include "libs/simple_char.h"
+#include "libs/input_validation.h"
+
+// работа с массивами
+#include "libs/array.h"
+
+int read_size_arr(const char *promt = "") {
+  int size;
+  while (true) {
+    size = read_value(promt, false, false, false);
+    if (size > 0) {
+      break;
+    } else {
+      cout << "Размер должен быть больше 1." << endl;
     }
-    cout << endl;
   }
 }
 
@@ -42,14 +38,11 @@ int main() {
 	// смена кодировки
   system("chcp 65001");
 
-  draw_line(20);
+  // ввод размеров массива
+  int size_x = read_size_arr("Ширина массива: ");
+  int size_y = read_size_arr("Высота массива: ");
 
-  double arr[size_y][size_x];
-
-  read_arr(arr); // вводим элементы массива
-  draw_line(20);
-  draw_array(arr); // выводим массив
-  draw_line(20);
+  // создаём новый массив
 
   // уплотняем матрицу
 
