@@ -30,8 +30,17 @@ int main() {
   draw_line(20);
 
   // ввод элементов массива
+  int size;
+  while (true) {
+    size = read_value("Введите размер массива: ", false, false, false);
 
-  int size = read_value("Введите размер массива: ", false, false, false);
+    if (size > 1) {
+      break;
+    } else {
+      cout << "Массив в данном задании не может быть меньше 2 элементов." << endl;
+    }
+  }
+  
   double *arr = (double*) malloc(size * sizeof(double));
 
   for (int i = 0; i < size; i++){
