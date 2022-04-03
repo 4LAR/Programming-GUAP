@@ -10,7 +10,7 @@ void draw_line(int size) {
 }
 
 int random_int(int a, int b) {
-	return a + rand() % b;
+	return rand() % b + a;
 }
 
 int get_N(int r, int n) {
