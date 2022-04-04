@@ -5,11 +5,11 @@
 
   Вариант 12
     Уплотнить заданную матрицу, удаляя из неѐ строки и столбцы, заполненные нулями.
-  Найти номер первой из строк, содержащих хотя бы один положительный элемент.
+    Найти номер первой из строк, содержащих хотя бы один положительный элемент.
 
 */
 
-#define RANDOM_NUMS true
+#define RANDOM_NUMS false
 
 #include <iostream>
 using namespace std;
@@ -42,11 +42,15 @@ int main() {
 	// смена кодировки
   system("chcp 65001");
 
+  // очистка терминала
+  clear_scr();
+
   // рандом
   srand(time(NULL));
 
   int x, y;
   int size_x, size_y;
+
   // ввод размеров массива
   while (true) {
     size_x = read_size_arr("Ширина массива: ");
@@ -78,6 +82,7 @@ int main() {
   draw_float_double_array(arr, size_x, size_y);
   draw_line(20);
 
+  // Найти номер первой из строк, содержащих хотя бы один положительный элемент.
   // строка с положительным элементом
   bool find = false;
   for (y = 0; y < size_y; y++) {
@@ -97,8 +102,44 @@ int main() {
 
   draw_line(20);
 
-  // уплотняем матрицу
+  // Уплотнить заданную матрицу, удаляя из неѐ строки и столбцы, заполненные нулями.
+  // уплотняем матрицу удаляя строки
+  double **new_arr = (double**)malloc(sizeof(double*));
+  int size_y_new_arr = 0;
+  bool ok = false;
+  for (y = 0; y < size_y; y++) {
+    ok = false;
+    for (x = 0; x < size_x; x++) {
+      if (arr[y][x] != 0) {
+        ok = true;
+        break;
+      }
+    }
+    if (ok) {
+      new_arr = (double**) realloc(new_arr, (size_y_new_arr++) * sizeof(double*));
+      new_arr[size_y_new_arr-1] = (double*)malloc(size_x * sizeof(double));
 
+      for (x = 0; x < size_x; x++) {
+        new_arr[size_y_new_arr-1] = arr[y][x];
+      }
+      cout << endl;
+    }
+  }
+  //draw_float_double_array(new_arr, size_x, size_y_new_arr); // для отладки
+  new_arr = (double**) realloc(new_arr, (size_y_new_arr) * sizeof(double*));
+  
+  for (x = 0; x < size_X; x++) {
+    ok = false;
+    for (y = 0; y < size_y_new_arr; y++) {
+     if (new_arr[y][x] != 0) {
+       ok = true;
+       break;
+     } 
+    }
+    if (ok) {
+      f//or (y = )
+    }
+  }
 
   // очистка памяти
   for(y = 0; y < size_y; y++) {
