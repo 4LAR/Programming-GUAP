@@ -13,7 +13,6 @@ using namespace std;
 #include "libs/lib.h"
 #include <cmath>
 #include <time.h>
-#include <Windows.h>
 
 // проверка ввода
 #include "libs/simple_char.h"

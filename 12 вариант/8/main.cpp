@@ -1,27 +1,47 @@
 /*
 
 */
-
 #include <iostream>
+using namespace std;
+
+#include "libs/lib.h"
+#include <cmath>
+#include <time.h>
 #include <fstream>
 #include <cstdlib>
 #include <cctype>
-#include "lib.h"
 
-using namespace std;
+// проверка ввода
+#include "libs/simple_char.h"
+#include "libs/input_validation.h"
+
+char *get_file_name(const char *promt = "") {
+  int len;
+  char *input_file_name;
+  while (true) {
+    input_file_name = get_string(&len);
+    if (len > 0) {
+      break;
+    }
+  }
+
+  return input_file_name;
+}
 
 int main() {
   // смена кодировки
   system("chcp 65001");
 
-  string input_file_name;
-  string output_file_name;
+  //string input_file_name;
+
 
   draw_line(20);
 
   // ввод имён файлов
-  cout << "Имя входного файла: ";
-  cin >> input_file_name;
+  //cout << "Имя входного файла: ";
+  int input_file_name_len, output_file_name;
+  char *input_file_name = get_file_name();
+  char *output_file_name = get_string(&len);
 
   cout << "Имя выходного файла: ";
   cin >> output_file_name;
@@ -32,7 +52,7 @@ int main() {
   ofstream output_file;
 
   // открываем файлы
-  input_file.open(input_file_name.c_str());
+  input_file.open(input_file_name);
   output_file.open(output_file_name.c_str());
 
   // обработка ошибок
