@@ -104,7 +104,7 @@ int main() {
 
   // Уплотнить заданную матрицу, удаляя из неѐ строки и столбцы, заполненные нулями.
   // уплотняем матрицу удаляя строки
-  double **new_arr = (double**)malloc(sizeof(double*));
+  double **new_arr_y = (double**)malloc(sizeof(double*));
   int size_y_new_arr = 0;
   bool ok = false;
   for (y = 0; y < size_y; y++) {
@@ -116,36 +116,55 @@ int main() {
       }
     }
     if (ok) {
-      new_arr = (double**) realloc(new_arr, (size_y_new_arr++) * sizeof(double*));
-      new_arr[size_y_new_arr-1] = (double*)malloc(size_x * sizeof(double));
+      new_arr_y = (double**) realloc(new_arr_y, (++size_y_new_arr) * sizeof(double*));
+      new_arr_y[size_y_new_arr-1] = (double*)malloc(size_x * sizeof(double));
 
-      for (x = 0; x < size_x; x++) {
-        new_arr[size_y_new_arr-1] = arr[y][x];
+      for (int j = 0; j < size_x; j++) {
+        new_arr_y[size_y_new_arr-1][j] = arr[y][j];
       }
-      cout << endl;
     }
   }
-  //draw_float_double_array(new_arr, size_x, size_y_new_arr); // для отладки
-  new_arr = (double**) realloc(new_arr, (size_y_new_arr) * sizeof(double*));
   
-  for (x = 0; x < size_X; x++) {
+  // для отладки
+  //draw_float_double_array(new_arr_y, size_x, size_y_new_arr); 
+  //draw_line(20);
+
+  double **new_arr_x = (double**)malloc(size_y_new_arr * sizeof(double*));
+  int size_x_new_arr = 0;
+  for (x = 0; x < size_x; x++) {
     ok = false;
     for (y = 0; y < size_y_new_arr; y++) {
-     if (new_arr[y][x] != 0) {
-       ok = true;
-       break;
-     } 
+      if (new_arr_y[y][x] != 0) {
+        ok = true;
+      break;
+      } 
     }
     if (ok) {
-      f//or (y = )
+      size_x_new_arr++;
+      for (int j = 0; j < size_y_new_arr; j++) {
+        new_arr_x[j] = (double*) realloc(new_arr_x[j], (size_x_new_arr) * sizeof(double));
+        new_arr_x[j][size_x_new_arr-1] = new_arr_y[j][x];
+      }
     }
   }
 
+  draw_float_double_array(new_arr_x, size_x_new_arr, size_y_new_arr);
+  
   // очистка памяти
   for(y = 0; y < size_y; y++) {
       free(arr[y]);
   }
   free(arr);
 
+  for(y = 0; y < size_y_new_arr; y++) {
+      free(new_arr_y[y]);
+  }
+  free(new_arr_y);
+
+  for(y = 0; y < size_y_new_arr; y++) {
+      free(new_arr_x[y]);
+  }
+  free(new_arr_x);
+  
 	return 0;
 }
