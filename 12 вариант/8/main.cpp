@@ -1,5 +1,7 @@
 /*
-
+    Написать программу, которая считывает текст из файла и записывает в другой файл
+  предложения, начинающиеся с тире, перед которым могут находиться только пробельные
+  символы.
 */
 #include <iostream>
 using namespace std;
@@ -15,58 +17,35 @@ using namespace std;
 #include "libs/simple_char.h"
 #include "libs/input_validation.h"
 
-char *get_file_name(const char *promt = "") {
-  int len;
-  char *input_file_name;
-  while (true) {
-    input_file_name = get_string(&len);
-    if (len > 0) {
-      break;
-    }
-  }
-
-  return input_file_name;
-}
+// набор функций для этой лабы
+#include "file.h"
 
 int main() {
   // смена кодировки
   system("chcp 65001");
 
-  //string input_file_name;
+  // очистка терминала
+  clear_scr();
 
-
-  draw_line(20);
-
-  // ввод имён файлов
-  //cout << "Имя входного файла: ";
-  int input_file_name_len, output_file_name;
-  char *input_file_name = get_file_name();
-  char *output_file_name = get_string(&len);
-
-  cout << "Имя выходного файла: ";
-  cin >> output_file_name;
-
-  draw_line(20);
+  char *input_file_name;
+  char *output_file_name;
 
   ifstream input_file;
   ofstream output_file;
 
+  input_file_name = get_file_name("Имя входного файла: ", "Невозможно прочитать файл. Возможно его не существует.");
+  output_file_name = get_file_name("Имя выходного файла: ", "Невозможно записать или создать файл.");
+
   // открываем файлы
   input_file.open(input_file_name);
-  output_file.open(output_file_name.c_str());
+  output_file.open(output_file_name);
 
-  // обработка ошибок
-  if (!input_file.good()) {
-    cout << "Невозможно прочитать файл.\n";
-    exit(1);
-  }
-  if (!output_file.good()) {
-    cout << "Невозможно создать или записать файл.\n";
-    exit(1);
-  }
-
+  draw_line(20);
+  cout << "Отладочная информация." << endl;
+  draw_line(20);
+  
   char c;
-  bool space = false;
+  bool space = true;
   bool state = false;
   while (input_file) {
     c = input_file.get();
@@ -96,6 +75,8 @@ int main() {
   }
 
   draw_line(20);
+
+  cout << "В файл " << output_file_name << " был успешно записан результат." << endl;
 
   // закрываем файлы
   input_file.close();
