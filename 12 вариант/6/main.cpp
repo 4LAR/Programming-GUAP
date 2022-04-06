@@ -136,7 +136,7 @@ int main() {
     for (y = 0; y < size_y_new_arr; y++) {
       if (new_arr_y[y][x] != 0) {
         ok = true;
-      break;
+        break;
       } 
     }
     if (ok) {
