@@ -40,7 +40,7 @@ int main() {
       cout << "Массив в данном задании не может быть меньше 2 элементов." << endl;
     }
   }
-  
+
   double *arr = (double*) malloc(size * sizeof(double));
 
   for (int i = 0; i < size; i++){
