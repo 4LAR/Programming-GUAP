@@ -18,12 +18,14 @@ using namespace std;
 #include "libs/simple_char.h"
 #include "libs/input_validation.h"
 
+#include "more_char.h"
+
 int main() {
 	// смена кодировки
   system("chcp 65001");
 
   // очистка терминала
-  clear_scr();
+  //clear_scr();
 
   int len;
   char *char_str;
@@ -57,33 +59,7 @@ int main() {
 
   draw_line(20);
 
-  int j = 1;
-  int i = 0;
-  int capacity = 1;
-  // основной код
-  while (len < len_new) {
-    // если встречаем пробел или мы на первом символе
-    if (char_str[i] == ' ' || i == 0) {
-      len++;
-
-      capacity *= 2;
-
-      char_str = (char*) realloc(char_str, len * sizeof(char));
-      for (int k = len; k > i; k--) {
-        char_str[k] = char_str[k-1];
-      }
-      char_str[i] = ' ';
-
-      i += j;
-    }
-
-    // счётсчики
-    i++;
-    if (i >= len) {
-      i = 0;
-      j++;
-    }
-  }
+  char_str = add_space_char(char_str, &len, len_new);
 
   // выводим новую строку
   cout << char_str << endl;
