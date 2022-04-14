@@ -44,7 +44,7 @@ int main() {
   system("chcp 65001");
 
   // очистка терминала
-  //clear_scr();
+  clear_scr();
 
   // рандом
   srand(time(NULL));
