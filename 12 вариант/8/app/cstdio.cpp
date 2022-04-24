@@ -9,7 +9,6 @@ using namespace std;
 #include "libs/lib.h"
 #include <cmath>
 #include <time.h>
-#include <fstream>
 #include <cstdlib>
 #include <cctype>
 
@@ -18,7 +17,7 @@ using namespace std;
 #include "libs/input_validation.h"
 
 // набор функций для этой лабы
-#include "file.h"
+#include "cstdio_files.h"
 
 int main() {
   // смена кодировки

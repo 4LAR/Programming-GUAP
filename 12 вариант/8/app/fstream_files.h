@@ -5,6 +5,7 @@ using namespace std;
 #include <cmath>
 #include <time.h>
 #include <fstream>
+#include <cstdio>
 #include <cstdlib>
 #include <cctype>
 
