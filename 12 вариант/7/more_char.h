@@ -13,7 +13,7 @@ char *add_space_char(char *char_str, int *len, int len_new) {
 
       capacity *= 2;
 
-      char_str = (char*) realloc(char_str, (*len) * sizeof(char));
+      char_str = (char*) realloc(char_str, (*len+1) * sizeof(char));
       for (int k = (*len); k > i; k--) {
         char_str[k] = char_str[k-1];
       }
