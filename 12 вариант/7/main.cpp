@@ -52,7 +52,7 @@ int main() {
   while (true) {
     len_new = read_value("Введите длинну новой строки: ", false, false, false);
 
-    if (len_new <= len) {
+    if (len_new < len) {
       cout << "Длинна новой строки должна быть больше старой строки (" << len << ")." << endl;
     } else break;
   }
