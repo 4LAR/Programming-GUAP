@@ -21,9 +21,9 @@ int minimum(double *array, int n);
 double sum(double *array, int n, bool *q);
 void transform(double *array, int n, double *array2);
 
-int main()
-{
-	setlocale(LC_ALL, "Rus");
+int main() {
+	//setlocale(LC_ALL, "Rus");
+	system("chcp 65001");
 
 	int n;
 
@@ -41,26 +41,22 @@ int main()
 	double* array = new double[n];
 	double* array2 = new double[n];
 
-	for (int i = 0; i < n; i++)
-	{
+	for (int i = 0; i < n; i++) {
 		array[i] = check(i);
 	}
 	sum(array, n, &q);
 	cout << "\n\nНомер первого минимального элемента массива: " << minimum(array, n);
-	if (q)
-	{
+	if (q) {
 		cout << "\n\nCумма элементов массива, расположенных между \nпервым и вторым отрицательными элементами: " << sum(array, n, &q);
 	}
-	else
-	{
+	else {
 		cout << "\n\nCумма элементов массива, расположенных между \nпервым и вторым отрицательными элементами: нет элементов";
 	}
 		transform(array, n, array2);
-	
+
 	cout << "\n\nПреобразованный массив: ";
 
-	for (int i = 0; i < n; i++)
-	{
+	for (int i = 0; i < n; i++) {
 		cout << array2[i] << '\t';
 	}
 
@@ -79,13 +75,11 @@ int main()
 	return 0;
 }
 
-double check(int i)
-{
+double check(int i) {
 	double num;
 	cout << "Arr[" << i << "] = "; cin >> num;
 
-	while (cin.fail())
-	{
+	while (cin.fail()) {
 		cin.clear();
 		cin.ignore(INT_MAX, '\n');
 		cout << "Ой, кажется вы ошиблись. Введите число ещё раз." << endl;
@@ -94,51 +88,41 @@ double check(int i)
 	return num;
 }
 
-int minimum(double *array, int n)
-{
+int minimum(double *array, int n){
 	int p = 0;
-	for (int i = 0; i < n; i++)
-	{
+	for (int i = 0; i < n; i++) {
 		if (array[p] > array[i]) p = i;
 	}
 	return p;
 }
 
-double sum(double *array, int n, bool *q)
-{
+double sum(double *array, int n, bool *q) {
 	int min = 0, p, max = 0;
 	double s = 0;
-	for (int i = 0; i < n; i++)
-	{
+	for (int i = 0; i < n; i++)	{
 		if (array[i] < 0) { min = i; break; }
 	}
 	p = min + 2;
-	for (p; p < n; p++)
-	{
+	for (p; p < n; p++) {
 		if (array[p] < 0) { *q = true; max = p; break; }
 	}
-	for (int i = min + 1; i < max; i++)
-	{
+	for (int i = min + 1; i < max; i++) {
 		s += array[i];
 	}
 	return s;
 }
 
-void transform(double* array, int n, double* array2)
-{
+void transform(double* array, int n, double* array2){
 	int i2 = 0;
 
-	for (int i = 0; i < n; i++)
-	{
+	for (int i = 0; i < n; i++) {
 		if (abs(array[i]) <= 1) {
 			array2[i2] = array[i];
 			i2++;
 		}
 	}
-	for (int i = 0; i < n; i++)
-	{
-		if (abs(array[i]) > 1) 
-		{
+	for (int i = 0; i < n; i++) {
+		if (abs(array[i]) > 1) {
 			array2[i2] = array[i];
 			i2++;
 		}
