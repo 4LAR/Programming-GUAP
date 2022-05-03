@@ -24,14 +24,19 @@ double **rotate(double **arr, int size, bool forward) {
   int b;
   for (int i = 0; i < size / 2; i++)
     for (int j = i; j < size - 1 - i; j++) {
-      if (forward) {
+      if (!forward) {
         b = arr[i][j];
         arr[i][j] = arr[j][size - 1 - i];
         arr[j][size - 1 - i] = arr[size - 1 - i][size - 1 - j];
         arr[size - 1 - i][size - 1 - j] = arr[size - 1 - j][i];
         arr[size - 1 - j][i] = b;
       } else {
-        
+        b = arr[i][j];
+        arr[i][j] = arr[size - 1 - j][i];
+        arr[size - 1 - j][i] = arr[size - 1 - i][size - 1 - j];
+        arr[size - 1 - i][size - 1 - j] = arr[j][size - 1 - i];
+
+        arr[j][size - 1 - i] = b;
       }
 
     }
