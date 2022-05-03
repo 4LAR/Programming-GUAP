@@ -58,6 +58,7 @@ int main() {
   cout << "Сколько раз провернуть массив: ";
   int rotate_count = read_int();
 
+  // вот это поворот
   for (int i = 0; i < abs(rotate_count); i++) {
     arr = rotate(arr, size, (rotate_count > 0));
   }
