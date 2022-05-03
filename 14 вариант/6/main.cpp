@@ -37,7 +37,7 @@ int main() {
     cout << "Введите размер массива (N): ";
     size = read_int();
 
-    if (size < 2) {
+    if (size < 1) {
       cout << "Массив не может содержать 0 элементов." << endl;
     } else break;
   }
