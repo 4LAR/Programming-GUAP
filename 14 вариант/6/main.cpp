@@ -53,17 +53,14 @@ int main() {
 
   draw_line(20);
   draw_float_double_array(arr, size, size);
-  draw_line(20);  
+  draw_line(20);
 
-  int n = size;
-  for (int i = 0; i < n / 2; i++)
-    for (int j = i; j < n - 1 - i; j++) {
-      b = arr[i][j];
-      arr[i][j] = arr[j][n - 1 - i];
-      arr[j][n - 1 - i] = arr[n - 1 - i][n - 1 - j];
-      arr[n - 1 - i][n - 1 - j] = arr[n - 1 - j][i];
-      arr[n - 1 - j][i] = b;
-    }
+  cout << "Сколько раз провернуть массив: ";
+  int rotate_count = read_int();
+
+  for (int i = 0; i < rotate_count; i++) {
+    arr = rotate(arr, size, (rotate_count > 0));
+  }
 
   draw_line(20);
   draw_float_double_array(arr, size, size);
