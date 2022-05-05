@@ -19,5 +19,7 @@ int main() {
 
   piramid(5);
 
+  pifagor()
+
   return 0;
 }
