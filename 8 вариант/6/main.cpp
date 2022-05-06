@@ -3,9 +3,12 @@
   можно использовать как динамические, так и нединамические массивы. Размерность последних
   задаѐтся именованной константой
 
-  Вариант 12
-    Уплотнить заданную матрицу, удаляя из неѐ строки и столбцы, заполненные нулями.
-    Найти номер первой из строк, содержащих хотя бы один положительный элемент.
+  Вариант 8
+    Характеристикой столбца целочисленной матрицы назовѐм сумму модулей его
+    отрицательных нечѐтных элементов. Переставляя столбцы заданной матрицы, расположить их в
+    соответствии с ростом характеристик.
+  Найти сумму элементов в тех столбцах, которые содержат хотя бы один отрицательный
+  элемент.
 
 */
 
@@ -18,13 +21,9 @@ using namespace std;
 #include <cmath>
 #include <time.h>
 
-// проверка ввода
-#include "libs/simple_char.h"
-#include "libs/input_validation.h"
-
 // работа с массивами
 #include "libs/array.h"
-#include "clear_arr.h"
+#include "arr.h"
 
 int read_size_arr(const char *promt = "") {
   int size;
@@ -45,7 +44,7 @@ int main() {
   system("chcp 65001");
 
   // очистка терминала
-  clear_scr();
+  //clear_scr();
 
   // рандом
   srand(time(NULL));
@@ -73,34 +72,51 @@ int main() {
 
   // ввод значений массива
   arr = read_double_arr(arr, size_x, size_y, RANDOM_NUMS);
+  draw_line(20);
+  cout << "Сумма элементов в тех столбцах, которые содержат хотя бы один отрицательный элемент: " << get_summ(arr, size_x, size_y) << endl;
 
+  // получение характеристики
+  double *info = get_info_arr(arr, size_x, size_y);
+
+  // вывод массива и иформации о нём
+  draw_float_array(info, size_x);
   draw_line(20);
   draw_float_double_array(arr, size_x, size_y);
   draw_line(20);
 
-  // Найти номер первой из строк, содержащих хотя бы один положительный элемент.
-  get_index(arr, size_x, size_y);
+  double temp;
+
+  // Сортировка массива пузырьком
+  for (int i = 0; i < size_x - 1; i++) {
+    for (int j = 0; j < size_x - i - 1; j++) {
+      if (info[j] > info[j + 1]) {
+        // меняем элементы местами
+        temp = info[j];
+        info[j] = info[j + 1];
+        info[j + 1] = temp;
+
+        // меняем столбцы местами
+        for (int y = 0; y < size_y; y++) {
+          temp = arr[y][j];
+          arr[y][j] = arr[y][j + 1];
+          arr[y][j + 1] = temp;
+        }
+      }
+    }
+  }
 
   draw_line(20);
-
-  // Уплотнить заданную матрицу, удаляя из неѐ строки и столбцы, заполненные нулями.
-
-  int size_y_new_arr;
-  // уплотняем по высоте
-  arr = clear_height_double_arr(arr, size_x, size_y, &size_y_new_arr);
-
-  int size_x_new_arr;
-  // уплотняем по ширине
-  arr = clear_width_double_arr(arr, size_x, size_y_new_arr, &size_x_new_arr);
-
-  // выводим новый массив
-  draw_float_double_array(arr, size_x_new_arr, size_y_new_arr);
+  draw_float_array(info, size_x);
+  draw_line(20);
+  draw_float_double_array(arr, size_x, size_y);
+  draw_line(20);
 
   // очистка памяти
   for(y = 0; y < size_y; y++) {
       free(arr[y]);
   }
   free(arr);
+  free(info);
 
 	return 0;
 }
