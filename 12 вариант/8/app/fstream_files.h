@@ -66,7 +66,7 @@ void check_words(char *input_file_name, char *output_file_name, bool data = fals
       else
         space = false;
     } else if (!state) { // проверка на тире после пробела
-      if (c == '-')
+      if (c == '-' && space)
         state = true;
       else
         state = false;
