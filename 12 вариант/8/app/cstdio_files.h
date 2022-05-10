@@ -66,11 +66,14 @@ void check_words(char *input_file_name, char *output_file_name, bool data = fals
       else
         space = false;
     } else if (!state) { // проверка на тире после пробела
-      if (c == '-')
+      if (c == '-') {
         state = true;
-      else
+        fprintf(output_file, "%c", c);
+      } else {
+        space = false;
         state = false;
-    } else { // записываем предложение в файл
+      }
+    } else if (state && space) { // записываем предложение в файл
       if (data) cout << c;
       fprintf(output_file, "%c", c);
 
