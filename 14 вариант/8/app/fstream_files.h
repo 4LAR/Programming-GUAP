@@ -114,16 +114,19 @@ void check_words(char *input_file_name, char *output_file_name, bool data = fals
 
   while (input_file) {
     c = input_file.get();
-
-    symb = check_num(c);
-    if (symb != -1) {
-      if (data) cout << get_symbol(symb);
-      output_file << get_symbol(symb);
+    if (c == '.' || c == '?' || c == '!') {
+      if (data) cout << endl;
+      output_file << "\n";
     } else {
-      if (data) cout << c;
-      output_file << c;
+      symb = check_num(c);
+      if (symb != -1) {
+        if (data) cout << get_symbol(symb);
+        output_file << get_symbol(symb);
+      } else {
+        if (data) cout << c;
+        output_file << c;
+      }
     }
-
   }
 
   input_file.close();

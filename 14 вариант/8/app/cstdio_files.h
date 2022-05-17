@@ -110,14 +110,18 @@ void check_words(char *input_file_name, char *output_file_name, bool data = fals
 
   while (!feof(input_file)) {
     fscanf(input_file, "%c", &c);
-
-    symb = check_num(c);
-    if (symb != -1) {
-      if (data) cout << get_symbol(symb);
-      fprintf(output_file, "%s", get_symbol(symb));
+    if (c == '.' || c == '?' || c == '!') {
+      if (data) cout << endl;
+      fprintf(output_file, "\n");
     } else {
-      if (data) cout << c;
-      fprintf(output_file, "%c", c);
+      symb = check_num(c);
+      if (symb != -1) {
+        if (data) cout << get_symbol(symb);
+        fprintf(output_file, "%s", get_symbol(symb));
+      } else {
+        if (data) cout << c;
+        fprintf(output_file, "%c", c);
+      }
     }
 
   }
