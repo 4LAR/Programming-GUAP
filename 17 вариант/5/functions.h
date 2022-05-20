@@ -26,9 +26,33 @@ int sum_els_from_last_zero(double *arr, int size) {
   }
 
   if (id < 0) return -1;
-  
+
   for (int i = id; i < size; i++) summ += arr[i];
 
   return summ;
 
+}
+
+// проебразование массива (для последнего задания)
+double *get_new_arr(double *arr, int size) {
+  // создаём новый массив
+  double *new_arr = (double*) malloc(size * sizeof(double));
+  int j = 0;
+
+  // целая часть которых не превышает 1
+  for (int i = 0; i < size; i++) {
+    if ((int)arr[i] <= 1) {
+      new_arr[j++] = arr[i];
+    }
+  }
+
+  // все остальные
+  for (int i = 0; i < size; i++) {
+    if ((int)arr[i] > 1) {
+      new_arr[j++] = arr[i];
+    }
+  }
+
+  // возвращаем массив
+  return new_arr;
 }
