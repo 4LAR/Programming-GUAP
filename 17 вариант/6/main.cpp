@@ -3,10 +3,12 @@
   можно использовать как динамические, так и нединамические массивы. Размерность последних
   задаѐтся именованной константой
 
-  Вариант 12
-    Уплотнить заданную матрицу, удаляя из неѐ строки и столбцы, заполненные нулями.
-    Найти номер первой из строк, содержащих хотя бы один положительный элемент.
-
+  Вариант 17
+    -Путѐм перестановки элементов квадратной вещественной матрицы добиться того, чтобы еѐ
+    максимальный элемент находился в левом верхнем углу, следующий по величине – в позиции
+    (2,2), следующий по величине – в позиции (3,3) и т.д., заполнить, таким образом, всю главную
+    диагональ.
+    -Найти номер первой их строк, не содержащих ни одного положительного элемента.
 */
 
 #define RANDOM_NUMS false
@@ -18,22 +20,20 @@ using namespace std;
 #include <cmath>
 #include <time.h>
 
-// проверка ввода
-#include "libs/simple_char.h"
-#include "libs/input_validation.h"
-
 // работа с массивами
 #include "libs/array.h"
 #include "clear_arr.h"
 
+// функция для ввода размера матрицы (с проверкой)
 int read_size_arr(const char *promt = "") {
   int size;
   while (true) {
-    size = read_value(promt, false, false, false);
+    cout << promt;
+    size = read_int();
     if (size > 0) {
       break;
     } else {
-      cout << "Размер должен быть больше 1." << endl;
+      cout << "Размер должен быть больше 0." << endl;
     }
   }
   return size;
@@ -44,57 +44,48 @@ int main() {
   system("chcp 65001");
 
   // очистка терминала
-  clear_scr();
+  //clear_scr();
 
   // рандом
   srand(time(NULL));
 
   int x, y;
-  int size_x, size_y;
+  int size;
 
-  // ввод размеров массива
-  while (true) {
-    size_x = read_size_arr("Ширина массива: ");
-    size_y = read_size_arr("Высота массива: ");
-
-    if (size_x < 1 || size_y < 1) {
-      cout << "Массив не может содержать 0 элементов." << endl;
-    } else break;
-  }
+  // ввод размера массива
+  size = read_size_arr("Размер квадратной матрицы: ");
 
   // создаём новый массив
-  double **arr = (double**)malloc(size_y * sizeof(double*));
-  for(int i = 0; i < size_y; i++) {
-      arr[i] = (double*)malloc(size_x * sizeof(double));
+  double **arr = (double**)malloc(size * sizeof(double*));
+  for(int i = 0; i < size; i++) {
+      arr[i] = (double*)malloc(size * sizeof(double));
   }
 
   // ввод значений массива
-  arr = read_double_arr(arr, size_x, size_y, RANDOM_NUMS);
+  arr = read_double_arr(arr, size, size, RANDOM_NUMS);
 
+  // выводим массив
   draw_line(20);
-  draw_float_double_array(arr, size_x, size_y);
-  draw_line(20);
-
-  // Найти номер первой из строк, содержащих хотя бы один положительный элемент.
-  get_index(arr, size_x, size_y);
-
+  draw_float_double_array(arr, size, size);
   draw_line(20);
 
-  // Уплотнить заданную матрицу, удаляя из неѐ строки и столбцы, заполненные нулями.
+  // нахождение строки состоящией из отрицательных элементов
+  int row = get_row(arr, size);
+  if (row == -1)
+    cout << "В массиве нет строк которые бы состояли только из отрицательных чисел." << endl;
+  else
+    cout << "Номер первой из строк, не содержащий ни одного положительного элемента: " << (row + 1) << endl;
 
-  int size_y_new_arr;
-  // уплотняем по высоте
-  arr = clear_height_double_arr(arr, size_x, size_y, &size_y_new_arr);
-
-  int size_x_new_arr;
-  // уплотняем по ширине
-  arr = clear_width_double_arr(arr, size_x, size_y_new_arr, &size_x_new_arr);
+  // переставляем элементы
+  arr = replace_diag(arr, size);
 
   // выводим новый массив
-  draw_float_double_array(arr, size_x_new_arr, size_y_new_arr);
+  draw_line(20);
+  draw_float_double_array(arr, size, size);
+  draw_line(20);
 
   // очистка памяти
-  for(y = 0; y < size_y; y++) {
+  for(y = 0; y < size; y++) {
       free(arr[y]);
   }
   free(arr);
