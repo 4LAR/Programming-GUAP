@@ -3,7 +3,7 @@
   определена в Вашем индивидуальном задании
 
   Вариант 17
-    Функция находит в строке первый символ, который не входить в другую заданную строку
+    Функция находит в строке первый символ, который не входит в другую заданную строку
 
 */
 
@@ -19,6 +19,7 @@ using namespace std;
 
 #include "more_char.h"
 
+// функция для ввода строки и проверки её
 char *check_char(int *len, const char *promt = "") {
   (*len) = 0;
   char *char_str;
@@ -29,7 +30,19 @@ char *check_char(int *len, const char *promt = "") {
     char_str = get_string(&(*len));
 
     if ((*len) > 0) {
-      break;
+      // проверка на пробелы (строка не должна состоять из пробелов)
+      bool space_check = false;
+      for (int i = 0; i < (*len); i++)
+        if (!isspace(char_str[i])) {
+          space_check = true;
+          break;
+        }
+
+      if (space_check)
+        break;
+      else
+        cout << "Строка не может состоять из пробелов." << endl;
+
     } else {
       cout << "Вы ввели пустую строку." << endl;
     }
@@ -45,10 +58,26 @@ int main() {
   // очистка терминала
   //clear_scr();
 
+  // здесь будет храниться длинна вводимых строк
   int len_1, len_2;
+
+  // вводим строки
   char *char_str_1 = check_char(&len_1, "Введите первую строку: ");
   char *char_str_2 = check_char(&len_2, "Введите вторую строку: ");
 
+  draw_line(20);
+
+  //
+  int find_index = str_find(char_str_1, len_1, char_str_2, len_2);
+
+  if (find_index == -1) {
+    cout << "Все символы входят во вторую строку." << endl;
+  } else {
+    cout << "Первый символ который мы не нашли: " << char_str_1[find_index] << endl;
+    cout << "Его индекс в первой строке: " << find_index << endl;
+  }
+
+  // очищаем память
   free(char_str_1);
   free(char_str_2);
 
