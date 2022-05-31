@@ -1,0 +1,11 @@
+What is 3D Printing?(1) 
+3D printing or additive manufacturing is a process of making three dimensional solid 
+objects from a digital file.(1) 
+The creation of a 3D printed object is achieved using additive processes.(1)  In an additive 
+process an object is created by laying down successive layers of material until the 
+object is created.(0)  Each of these layers can be seen as a thinly sliced cross-section of the 
+object.(0) 
+3D printing is the opposite of subtractive manufacturing which is cutting out / hollowing 
+out a piece of metal or plastic with for instance a milling machine.(1) 
+3D printing enables you to produce complex shapes using less material than traditional 
+manufacturing methodss
