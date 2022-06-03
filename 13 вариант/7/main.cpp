@@ -71,7 +71,7 @@ int main() {
   int find_index = str_find(char_str_1, len_1, char_str_2, len_2);
 
   if (find_index == -1) {
-    cout << "Все символы входят во вторую строку." << endl;
+    cout << "Не найдены повторяющиеся символы." << endl;
   } else {
     cout << "Первый символ который мы нашли: " << char_str_1[find_index] << endl;
     cout << "Его индекс в первой строке: " << find_index << endl;
