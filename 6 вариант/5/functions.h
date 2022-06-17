@@ -24,7 +24,7 @@ int get_positive_el(double *arr, int size, bool last=false) {
   int id = -1;
 
   // цикл по всему массиву
-  for (int i = 1; i < size; i++) {
+  for (int i = 0; i < size; i++) {
     if (arr[i] > 0) {
       // если мы возвращаем первый элемент, то возвращаем индификатор здесь
       if (!last)
