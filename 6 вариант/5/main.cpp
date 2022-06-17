@@ -64,12 +64,13 @@ int main() {
   // получаем индификаторы первого и полижительного элемента
   int first_id = get_positive_el(arr, size);
   int last_id = get_positive_el(arr, size, true);
+
   int summ = 0;
 
   // условия для проверка (между числами должны находится ещё числа)
   if (first_id != -1 && last_id != -1) {
     if (first_id != last_id &&  first_id + 1 != last_id) {
-      for (int i = first_id + 1; i < last_id; i++) {
+      for (int i = first_id; i < last_id; i++) {
         summ += arr[i];
       }
       cout << "Сумма элементов массива между первым и последним элементами массива: " << summ << endl;
