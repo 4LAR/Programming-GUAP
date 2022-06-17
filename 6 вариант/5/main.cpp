@@ -54,6 +54,7 @@ int main() {
   draw_float_array(arr, size); // выводим массив
   draw_line(20);
 
+  // нахождение минимального элемента
   int min_el_id = get_min_el(arr, size);
   cout << "Минимальный элемент массива: " << arr[min_el_id] << endl;
   cout << "Индификатор минимального элемена массива: " << min_el_id << endl;
