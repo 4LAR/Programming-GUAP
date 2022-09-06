@@ -9,9 +9,9 @@ void draw_float_array(double *arr, int size) {
   cout << endl;
 }
 
-void draw_int_array(int *arr, int size) {
+void draw_int_array(int *arr, int size, const char *tab = "\t") {
   for (int i = 0; i < size; i++)
-    cout << arr[i] << "\t";
+    cout << arr[i] << tab;
   cout << endl;
 }
 

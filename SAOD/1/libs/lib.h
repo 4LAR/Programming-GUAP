@@ -1,30 +1,27 @@
 #include <iostream>
 #include <cmath>
+#include <ctime>
 
 using namespace std;
 
+// очистка терминала
 void clear_scr() {
   cout << "\e[1;1H\e[2J";
 }
 
-void draw_line(int size) {
+// рисует линию в терминале
+void draw_line(int size = 20) {
   for (int i = 0; i < size; i++)
     cout << '-';
   cout << endl;
 }
 
+// генерирует случайное число в диапазоне от A до B
 int random_int(int a, int b) {
-	return rand() % b + a;
+  return a + (rand() % ( b - a + 1 ) );
 }
 
-int get_N(int r, int n) {
-  int out = r % (n + 1);
-  if (out < 1)
-    return out + 1;
-  else
-    return out;
-}
-
+// (говно) Ввод вещественного числа с проверкой
 double read_double(){
 	double x;
   while ( (scanf("%lf",&x) ) != 1 ) {
@@ -34,6 +31,7 @@ double read_double(){
   return x;
 }
 
+// (говно) Ввод целого числа с проверкой
 int read_int(){
 	int x;
   while ( (scanf("%d",&x) ) != 1 ) {
