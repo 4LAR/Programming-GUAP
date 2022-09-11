@@ -182,7 +182,7 @@ void loadObj(char *fname)
     glNewList(elephant, GL_COMPILE);
     {
         glPushMatrix();
-        glBegin(gl_POLYGONS);
+        glBegin(GL_POINTS);
         while(!(feof(fp)))
         {
             read=fscanf(fp,"%c %f %f %f",&ch,&x,&y,&z);
