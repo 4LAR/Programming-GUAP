@@ -49,7 +49,9 @@ int main() {
 
   // ввод размера массива
   while (true) {
-    size = read_value("Размер массива: ", true, true, false);
+    //size = read_value("Размер массива: ", true, true, false);
+    cout << "Размер массива: ";
+    scanf("%d", &size);
 
     if (size > 0)
       break;
@@ -93,7 +95,9 @@ int main() {
     draw_line(40);
 
     // ввод пункта меню
-    num = read_value(" >> ", true, true, false);
+    //num = read_value(" >> ", true, true, false);
+    cout << " >> ";
+    scanf("%d", &num);
 
     switch (num) {
       // Перегенерировать массив
@@ -107,7 +111,7 @@ int main() {
         sum = get_sum_pos(arr, size);
         if (sum > 0) {
           cout << "Сумма положительных элементов: " << sum << endl;
-        } else 
+        } else
           cout << "В массиве нет положительных элементов." << endl;
         draw_line(40);
         break;
@@ -115,11 +119,15 @@ int main() {
       // Подсчитать количество элементов с положительными значениями.
       case (3):
         clear_scr();
-        count = get_count_pos(arr, size);
-        if (sum > 0) {
-          cout << "Количество положительных элементов: " << count << endl;
-        } else 
-          cout << "В массиве нет положительных элементов." << endl;
+
+        count = 0;
+
+        for (int i = 0; i < size; i++) {
+          if (arr[i] > 0) count++;
+        }
+
+        get_count_pos(count);
+
         draw_line(40);
         break;
 
