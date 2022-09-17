@@ -36,14 +36,17 @@ void draw_func(list *tmp, const char *promt = "") {
   cout << promt;
   bool first = true;
   while (tmp != NULL) {
-    //cout << number_list -> n << "|" << number_list -> a << endl;
-    if (!first)
-      cout << " + ";
-    else first = false;
+    if (tmp -> a != 0) {
+      if (!first)
+        cout << " + ";
+      else first = false;
 
-    cout << tmp -> a;
-    
-    if (tmp -> n != 0) cout << "x^" << tmp -> n;
+
+      cout << tmp -> a;
+
+      if (tmp -> n != 0) cout << "x^" << tmp -> n;
+
+    }
 
     tmp = tmp -> next;
   }
@@ -72,8 +75,8 @@ list *merge_func(list *a, list *b) {
   }
 
   while (a != NULL) {
-    if (b != NULL) {
-      
+    if (b != NULL && ((b -> n) == (a -> n))) {
+
       if (tmp == NULL) {
         tmp = create(a -> n, (a -> a) + (b -> a));
       } else {
