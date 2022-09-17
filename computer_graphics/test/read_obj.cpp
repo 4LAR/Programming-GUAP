@@ -237,7 +237,7 @@ void CenterAndScale( Vec* pts, size_t stride, size_t count, const typename Vec::
 
 int main( int argc, char **argv )
 {
-    ifstream ifile( "monkey.obj" );
+    ifstream ifile( "anime.obj" );
     model = LoadOBJ( ifile );
     CenterAndScale( &model[0].position, sizeof( Vertex ), model.size(), 7 );
 
