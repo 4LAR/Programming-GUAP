@@ -39,13 +39,16 @@ int main() {
   stopwatch -> stop();
   sleep(2);
 
-  stopwatch -> show("3: ");
-  stopwatch -> start();
+  StopWatch *stopwatch2 = stopwatch;
+  delete stopwatch;
+
+  stopwatch2 -> show("3: ");
+  stopwatch2 -> start();
   sleep(1);
 
-  stopwatch -> show("4: ");
+  stopwatch2 -> show("4: ");
 
-  delete stopwatch;
+  delete stopwatch2;
 
 	return 0;
 }
