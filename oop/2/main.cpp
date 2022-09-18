@@ -31,6 +31,20 @@ int main() {
 
   StopWatch *stopwatch = new StopWatch();
 
+  stopwatch -> show("1: ");
+  stopwatch -> start();
+  sleep(2);
+
+  stopwatch -> show("2: ");
+  stopwatch -> stop();
+  sleep(2);
+
+  stopwatch -> show("3: ");
+  stopwatch -> start();
+  sleep(1);
+
+  stopwatch -> show("4: ");
+
   delete stopwatch;
 
 	return 0;
