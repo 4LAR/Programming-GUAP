@@ -83,5 +83,5 @@ void StopWatch::stop() {
 // вывод значений таймера (оставшейся время)
 void StopWatch::show(const char *promt) {
   if (run) time(&stop_time);
-  cout << promt << difftime(stop_time, start_time) + delta_sec << endl;
+  cout << promt << difftime(stop_time, start_time) + delta_sec << "сек." << endl;
 }

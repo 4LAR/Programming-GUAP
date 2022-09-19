@@ -28,27 +28,43 @@ using namespace std;
 int main() {
 	// смена кодировки
   system("chcp 65001");
+  draw_line();
 
-  StopWatch *stopwatch = new StopWatch();
+  StopWatch sw_default;
+  StopWatch sw_params(10);
+  StopWatch sw_copy_default = sw_default;
 
-  stopwatch -> show("1: ");
-  stopwatch -> start();
+  draw_line();
+
+  cout << "Вывод времени без запуска." << endl;
+  sw_default.show("Без параметров: ");
+  sw_params.show("С параметрами: ");
+  sw_copy_default.show("Скопированный: ");
+  draw_line();
+
+  sw_default.start();
+  sw_params.start();
+  sw_copy_default.start();
+
   sleep(2);
 
-  stopwatch -> show("2: ");
-  stopwatch -> stop();
-  sleep(2);
+  cout << "Спустя 2 секунды работающих таймеров." << endl;
+  sw_default.show("Без параметров: ");
+  sw_params.show("С параметрами: ");
+  sw_copy_default.show("Скопированный: ");
+  draw_line();
 
-  //StopWatch *stopwatch2 = stopwatch;
-  //delete stopwatch;
+  sw_default.stop();
+  sw_params.stop();
+  sw_copy_default.stop();
 
-  stopwatch -> show("3: ");
-  stopwatch -> start();
-  sleep(1);
+  sleep(4);
 
-  stopwatch -> show("4: ");
-
-  delete stopwatch;
+  cout << "Спустя 4 секунды остановленных таймеров." << endl;
+  sw_default.show("Без параметров: ");
+  sw_params.show("С параметрами: ");
+  sw_copy_default.show("Скопированный: ");
+  draw_line();
 
 	return 0;
 }
