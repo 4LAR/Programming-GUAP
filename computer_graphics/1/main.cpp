@@ -6,16 +6,15 @@
 
 #include "read_texture.h"
 
-char title[] = "Каловые массы 3D";
+char title[] = "BOX 3D";
 
 GLfloat angle_y = 0.0f;
 GLfloat angle_x = 0.0f;
 GLfloat pos_x = 0.0f;
 GLfloat pos_y = 0.0f;
 GLfloat zoom = -7.0f;
-GLuint texture_132;
+GLuint texture;
 int refreshMills = 15;
-
 
 void display() {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -27,46 +26,47 @@ void display() {
   glRotatef(angle_y, 1.0f, 0.0f, 0.0f);
 
   glEnable(GL_TEXTURE_2D);
+  glEnable(GL_LIGHT0);
   glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 
-  glBindTexture (GL_TEXTURE_2D, texture_132);
+  glBindTexture (GL_TEXTURE_2D, texture);
 
   glBegin(GL_QUADS);
 
-    glTexCoord2f(0.0, 0.0); glVertex3f( 1.0f, 1.0f, -1.0f);
-    glTexCoord2f(0.0, 1.0); glVertex3f(-1.0f, 1.0f, -1.0f);
-    glTexCoord2f(1.0, 1.0); glVertex3f(-1.0f, 1.0f,  1.0f);
-    glTexCoord2f(1.0, 0.0); glVertex3f( 1.0f, 1.0f,  1.0f);
+    glTexCoord2f(0.0f, 0.0f); glVertex3f( 1.0f, 1.0f, -1.0f);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f, 1.0f, -1.0f);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(-1.0f, 1.0f,  1.0f);
+    glTexCoord2f(1.0f, 0.0f); glVertex3f( 1.0f, 1.0f,  1.0f);
 
 
-    glTexCoord2f(0.0, 0.0); glVertex3f( 1.0f, -1.0f,  1.0f);
-    glTexCoord2f(0.0, 1.0); glVertex3f(-1.0f, -1.0f,  1.0f);
-    glTexCoord2f(1.0, 1.0); glVertex3f(-1.0f, -1.0f, -1.0f);
-    glTexCoord2f(1.0, 0.0); glVertex3f( 1.0f, -1.0f, -1.0f);
+    glTexCoord2f(0.0f, 0.0f); glVertex3f( 1.0f, -1.0f,  1.0f);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f, -1.0f,  1.0f);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
+    glTexCoord2f(1.0f, 0.0f); glVertex3f( 1.0f, -1.0f, -1.0f);
 
 
-    glTexCoord2f(0.0, 0.0); glVertex3f( 1.0f,  1.0f, 1.0f);
-    glTexCoord2f(0.0, 1.0); glVertex3f(-1.0f,  1.0f, 1.0f);
-    glTexCoord2f(1.0, 1.0); glVertex3f(-1.0f, -1.0f, 1.0f);
-    glTexCoord2f(1.0, 0.0); glVertex3f( 1.0f, -1.0f, 1.0f);
+    glTexCoord2f(0.0f, 0.0f); glVertex3f( 1.0f,  1.0f, 1.0f);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f,  1.0f, 1.0f);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(-1.0f, -1.0f, 1.0f);
+    glTexCoord2f(1.0f, 0.0f); glVertex3f( 1.0f, -1.0f, 1.0f);
 
 
-    glTexCoord2f(0.0, 0.0); glVertex3f( 1.0f, -1.0f, -1.0f);
-    glTexCoord2f(0.0, 1.0); glVertex3f(-1.0f, -1.0f, -1.0f);
-    glTexCoord2f(1.0, 1.0); glVertex3f(-1.0f,  1.0f, -1.0f);
-    glTexCoord2f(1.0, 0.0); glVertex3f( 1.0f,  1.0f, -1.0f);
+    glTexCoord2f(0.0f, 0.0f); glVertex3f( 1.0f, -1.0f, -1.0f);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(-1.0f,  1.0f, -1.0f);
+    glTexCoord2f(1.0f, 0.0f); glVertex3f( 1.0f,  1.0f, -1.0f);
 
 
-    glTexCoord2f(0.0, 0.0); glVertex3f(-1.0f,  1.0f,  1.0f);
-    glTexCoord2f(0.0, 1.0); glVertex3f(-1.0f,  1.0f, -1.0f);
-    glTexCoord2f(1.0, 1.0); glVertex3f(-1.0f, -1.0f, -1.0f);
-    glTexCoord2f(1.0, 0.0); glVertex3f(-1.0f, -1.0f,  1.0f);
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f,  1.0f,  1.0f);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f,  1.0f, -1.0f);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(-1.0f, -1.0f,  1.0f);
 
 
-    glTexCoord2f(0.0, 0.0); glVertex3f(1.0f,  1.0f, -1.0f);
-    glTexCoord2f(0.0, 1.0); glVertex3f(1.0f,  1.0f,  1.0f);
-    glTexCoord2f(1.0, 1.0); glVertex3f(1.0f, -1.0f,  1.0f);
-    glTexCoord2f(1.0, 0.0); glVertex3f(1.0f, -1.0f, -1.0f);
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(1.0f,  1.0f, -1.0f);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(1.0f,  1.0f,  1.0f);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(1.0f, -1.0f,  1.0f);
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(1.0f, -1.0f, -1.0f);
   glEnd();
 
   glFlush();
@@ -131,11 +131,11 @@ void process_Normal_Keys(unsigned char key, int x, int y) {
 
     // pos_y
     case ('r'):
-        pos_y -= 0.1;
+        pos_y += 0.1;
         break;
 
     case ('f'):
-        pos_y += 0.1;
+        pos_y -= 0.1;
         break;
 
     }
@@ -164,17 +164,22 @@ void timer(int value) {
 
 int main(int argc, char** argv) {
   glutInit(&argc, argv);
-  glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGB|GLUT_DEPTH); // врубаем "двойной буфер"
+  glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
   glutInitWindowSize(640, 480); // размеры окна
   glutInitWindowPosition(50, 50); // позиция окна на экране
   glutCreateWindow(title); // создаём окно
 
-  texture_132 = LoadTexture( "box_image.bmp" , 540, 540);
+  initGL();
+  //texture = LoadTexture_test( "box_image.bmp" , 540, 540);
+  //texture = LoadTexture_test( "box_image0.bmp" , 316, 316);
+  texture = LoadTexture( "box_image1.bmp" , 316, 316);
+  //texture = LoadTexture( "Crate.bmp" , 256, 256);
+  //texture = LoadTexture_test( "anime.bmp" , 640, 832);
+
 
   glutDisplayFunc(display);
   glutReshapeFunc(reshape);
 
-  initGL();
 
   glutTimerFunc(0, timer, 0);
   glutKeyboardFunc(process_Normal_Keys);
