@@ -35,7 +35,7 @@ int main() {
 
   // сравнение
   cout << (rectangle_1 > rectangle_2) << endl;
-  cout << (rectangle_2 > rectangle_1) << endl;
+  cout << (rectangle_1 < rectangle_2) << endl;
   cout << (rectangle_2 == rectangle_1) << endl;
 
   // пересечение

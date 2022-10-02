@@ -1,6 +1,6 @@
 
 #include <iostream>
-using namespace std; 
+using namespace std;
 
 class Rectangle {
 public:
@@ -11,8 +11,8 @@ public:
   double get_area();
   void info();
 
-  bool operator > (const Rectangle& rectangle_2);
-  bool operator < (const Rectangle& rectangle_2);
+  friend bool operator > (const Rectangle& rectangle_1, const Rectangle& rectangle_2);
+  friend bool operator < (const Rectangle& rectangle_1, const Rectangle& rectangle_2);
   bool operator == (const Rectangle& rectangle_2);
 
   bool operator * (const Rectangle& rectangle);
@@ -25,7 +25,7 @@ private:
 // конструктор по умолчанию
 Rectangle::Rectangle() {
   x = 0;
-  y = 0; 
+  y = 0;
   width = 10;
   height = 10;
 }
@@ -39,7 +39,7 @@ Rectangle::Rectangle(double X, double Y, double Width, double Height) {
 }
 
 Rectangle::~Rectangle() {
-  cout << "Деструктор." << endl; 
+  cout << "Деструктор." << endl;
 }
 
 double Rectangle::get_area() {
@@ -56,52 +56,47 @@ void Rectangle::info() {
 
 // сравнение
 bool operator > (Rectangle& rectangle_1, Rectangle& rectangle_2) {
-  return rectangle_1.get_area() > rectangle_2.get_area(); 
+  return rectangle_1.get_area() > rectangle_2.get_area();
 }
 
 bool operator < (Rectangle& rectangle_1, Rectangle& rectangle_2) {
-  return rectangle_1.get_area() < rectangle_2.get_area(); 
+  return rectangle_1.get_area() < rectangle_2.get_area();
 }
 
 bool operator == (Rectangle& rectangle_1, Rectangle& rectangle_2) {
-  return rectangle_1.get_area() == rectangle_2.get_area(); 
+  return rectangle_1.get_area() == rectangle_2.get_area();
 }
 
 // пересечение
 bool Rectangle::operator * (const Rectangle& rectangle) {
+  return(
+    (
+      (
+        ( (this->x)>=(rectangle.x) && (this->x)<=(rectangle.x + rectangle.width) )||( (this->x + this->width)>=(rectangle.x) && (this->x + this->width)<=(rectangle.x + rectangle.width)  )
+      ) && (
+        ( (this->y)>=(rectangle.y) && (this->y)<=(rectangle.y + rectangle.height) )||( (this->y + this->height)>=(rectangle.y) && (this->y + this->height)<=(rectangle.y + rectangle.height) )
+      )
+    )||(
+      (
+        ( (rectangle.x)>=(this->x) && (rectangle.x)<=(this->x + this->width) )||( (rectangle.x + rectangle.width)>=(this->x) && (rectangle.x + rectangle.width)<=(this->x + this->width)  )
+      ) && (
+        ( (rectangle.y)>=(this->y) && (rectangle.y)<=(this->y + this->height) )||( (rectangle.y + rectangle.height)>=(this->y) && (rectangle.y + rectangle.height)<=(this->y + this->height) )
+      )
+    )
+  )||(
+    (
+      (
+        ( (this->x)>=(rectangle.x) && (this->x)<=(rectangle.x + rectangle.width) )||( (this->x + this->width)>=(rectangle.x) && (this->x + this->width)<=(rectangle.x + rectangle.width)  )
+      ) && (
+        ( (rectangle.y)>=(this->y) && (rectangle.y)<=(this->y + this->height) )||( (rectangle.y + rectangle.height)>=(this->y) && (rectangle.y + rectangle.height)<=(this->y + this->height) )
+      )
+    )||(
+      (
+        ( (rectangle.x)>=(this->x) && (rectangle.x)<=(this->x + this->width) )||( (rectangle.x + rectangle.width)>=(this->x) && (rectangle.x + rectangle.width)<=(this->x + this->width)  )
+      ) && (
+        ( (this->y)>=(rectangle.y) && (this->y)<=(rectangle.y + rectangle.height) )||( (this->y + this->height)>=(rectangle.y) && (this->y + this->height)<=(rectangle.y + rectangle.height) )
+      )
+    )
+  );
 
-  // double x1 = this->x;
-  // double x2 = this->x + this->width;
-  // double x3 = rectangle.x;
-  // double x4 = rectangle.x + rectangle.width;
-
-  // double y1 = this->y;
-  // double y2 = this->y + this->height;
-  // double y3 = rectangle.y;
-  // double y4 = rectangle.y + rectangle.height;
-
-  // double left = std::max(x1, x3);
-  // double top = std::min(y2, y4);
-  // double right = std::min(x2, x4);
-  // double bottom = std::max(y1, y3);
-
-  ////////////////////////////////////////
-
-  // double left = max(this->x + this->height, rectangle.x + rectangle.height);
-  // double top = min(this->y + this->width, rectangle.y + rectangle.width);
-  // double right = min(this->x + this->width, rectangle.x + rectangle.width);
-  // double bottom = max(this->y + this->height, rectangle.y + rectangle.height);
-
-  // double width_buf = right - left;
-  // double height_buf = top - bottom;
-
-  // cout << "Площадь пересечения: " << width * height << endl;
-
-  // if (width < 0 || height < 0)
-  //   return false;
-
-  // return true;
-
-  ////////////////////////////////////////
-  
 }
