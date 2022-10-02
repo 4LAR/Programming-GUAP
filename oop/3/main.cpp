@@ -24,23 +24,58 @@ int main() {
   system("chcp 65001");
   draw_line();
 
-  //Rectangle rectangle_1;
-  Rectangle rectangle_1(0, 0, 3, 3);
-  Rectangle rectangle_2(4, 1, 4, 3);
 
+  Rectangle rectangle_1(
+    0,
+    0,
+    3,
+    3
+  );
+
+  Rectangle rectangle_2(
+    4,
+    1,
+    4,
+    3
+  );
+
+  draw_line();
   cout << "Площадь 1 прямоугольника: " << rectangle_1.get_area() << endl;
   cout << "Площадь 2 прямоугольника: " << rectangle_2.get_area() << endl;
 
   //cout << rectangle_1.get_area() << endl;
 
   // сравнение
-  cout << (rectangle_1 > rectangle_2) << endl;
-  cout << (rectangle_1 < rectangle_2) << endl;
-  cout << (rectangle_2 == rectangle_1) << endl;
+  draw_line();
+  cout << "(rectangle_1 > rectangle_2)" << endl;
+  if (rectangle_1 > rectangle_2)
+    cout << "1 прямоугольник больше чем 2." << endl;
+  else
+    cout << "2 прямоугольник больше чем 1." << endl;
+
+  draw_line();
+  cout << "(rectangle_1 < rectangle_2)" << endl;
+  if (rectangle_1 > rectangle_2)
+    cout << "2 прямоугольник меньше чем 1." << endl;
+  else
+    cout << "1 прямоугольник меньше чем 2." << endl;
+
+  draw_line();
+  cout << "(rectangle_2 == rectangle_1)" << endl;
+  if (rectangle_2 == rectangle_1)
+    cout << "1 и 2 прямоугольники равны по площади." << endl;
+  else
+    cout << "1 и 2 прямоугольники не равны по площади." << endl;
 
   // пересечение
   draw_line();
-  cout << (rectangle_1 * rectangle_2) << endl;
+  cout << "(rectangle_1 * rectangle_2)" << endl;
+  if (rectangle_1 * rectangle_2)
+    cout << "1 и 2 прямоугольники пересекаются" << endl;
+  else
+    cout << "1 и 2 прямоугольники не пересекаются" << endl;
+
+  draw_line();
 
 	return 0;
 }
