@@ -24,20 +24,21 @@ int main() {
   system("chcp 65001");
   draw_line();
 
+  double x, y, width, height;
 
-  Rectangle rectangle_1(
-    0,
-    0,
-    3,
-    3
-  );
+  x = read_value("1 Прямоугольник (X): ", true, true, false);
+  y = read_value("1 Прямоугольник (Y): ", true, true, false);
+  width = read_value("1 Прямоугольник (Width): ", true, true, false);
+  height = read_value("1 Прямоугольник (Height): ", true, true, false);
 
-  Rectangle rectangle_2(
-    4,
-    1,
-    4,
-    3
-  );
+  Rectangle rectangle_1(x, y, width, height);
+
+  x = read_value("2 Прямоугольник (X): ", true, true, false);
+  y = read_value("2 Прямоугольник (Y): ", true, true, false);
+  width = read_value("2 Прямоугольник (Width): ", true, true, false);
+  height = read_value("2 Прямоугольник (Height): ", true, true, false);
+
+  Rectangle rectangle_2(x, y, width, height);
 
   draw_line();
   cout << "Площадь 1 прямоугольника: " << rectangle_1.get_area() << endl;
