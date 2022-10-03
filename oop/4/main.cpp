@@ -21,13 +21,15 @@ using namespace std;
 #include "libs/simple_char.h"
 #include "libs/input_validation.h"
 
-#include "Employee.h"
+#include "Intern.h"
 
 int main() {
 	// смена кодировки
   system("chcp 65001");
-  Employee test_employee((char*)"Столяров Никита Сергеевич", 2021);
-  test_employee.show_info();
+  //Employee test_employee((char*)"Столяров Никита Сергеевич", 2021);
+  //test_employee.show_info();
+  Intern intern("123", "321", 123);
+  //intern.show_info();
 
 
 

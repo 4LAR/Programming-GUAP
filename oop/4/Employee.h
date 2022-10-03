@@ -23,6 +23,7 @@ Employee::Employee(char* Full_name, int Year_of_admission) {
 
 // вывод информации
 void Employee::show_info() {
-  cout << "ФИО: " << full_name << end;
+  //cout << "ФИО: " << full_name << end;
+  printf("ФИО: %s\n", full_name);
   cout << "Год поступления на работу: " << year_of_admission << endl;
 }
