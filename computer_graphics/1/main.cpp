@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include <GL/glut.h> // opengl
+#include "SOIL/SOIL.h"
 #include <cstdio>
 
 #include "read_texture.h"
@@ -28,7 +29,7 @@ void display() {
   glEnable(GL_TEXTURE_2D);
   glEnable(GL_LIGHT0);
   glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
-
+  
   glBindTexture (GL_TEXTURE_2D, texture);
 
   glBegin(GL_QUADS);
@@ -144,16 +145,16 @@ void process_Normal_Keys(unsigned char key, int x, int y) {
 
 void reshape(GLsizei width, GLsizei height) {
 
-   if (height == 0) height = 1;
-   GLfloat aspect = (GLfloat)width / (GLfloat)height;
+  if (height == 0) height = 1;
+  GLfloat aspect = (GLfloat)width / (GLfloat)height;
 
 
-   glViewport(0, 0, width, height);
+  glViewport(0, 0, width, height);
 
-   glMatrixMode(GL_PROJECTION);
-   glLoadIdentity();
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
 
-   gluPerspective(45.0f, aspect, 0.1f, 100.0f);
+  gluPerspective(45.0f, aspect, 0.1f, 100.0f);
 }
 
 void timer(int value) {
@@ -172,9 +173,14 @@ int main(int argc, char** argv) {
   initGL();
   //texture = LoadTexture_test( "box_image.bmp" , 540, 540);
   //texture = LoadTexture_test( "box_image0.bmp" , 316, 316);
-  texture = LoadTexture( "box_image1.bmp" , 316, 316);
+  //texture = LoadTexture( "box_image1.bmp" , 316, 316);
   //texture = LoadTexture( "Crate.bmp" , 256, 256);
   //texture = LoadTexture_test( "anime.bmp" , 640, 832);
+
+  texture = SOIL_load_OGL_texture("crate.png", 
+              SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+
+  //glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, texture); 
 
 
   glutDisplayFunc(display);
