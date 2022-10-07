@@ -2,7 +2,7 @@
 using namespace std;
 #include <cmath>
 
-#include <GL/glut.h>
+#include <GL/freeglut.h>
 
 /* параметры материала шара */
 
@@ -50,7 +50,7 @@ void Display(void)
 
   glLoadIdentity();
 
-  gluLookAt(   x, y,     z,
+  gluLookAt(x, y, z,
 		  x+lx, 1.0f,  z+lz,
 		  0.0f, 1.0f,  0.0f );
 
@@ -120,6 +120,16 @@ void process_Normal_Keys(unsigned char key, int x, int y) {
       x -= lx * fraction;
       z -= lz * fraction;
       break;
+
+
+    case ('a'):
+      y += fraction;
+      break;
+
+    case ('d'):
+      y -= fraction;
+      break;
+
     }
 
 }
@@ -140,6 +150,38 @@ void processSpecialKeys(int key, int xx, int yy) {
 	}
 }
 
+float deltaAngle = 0.0f;
+int xOrigin = -1;
+
+void mouseMove(int x, int y) {
+
+	// this will only be true when the left button is down
+	if (xOrigin >= 0) {
+
+		// update deltaAngle
+		deltaAngle = (x - xOrigin) * 0.001f;
+
+		// update camera's direction
+		lx = sin(angle + deltaAngle);
+		lz = -cos(angle + deltaAngle);
+	}
+}
+
+void mouseButton(int button, int state, int x, int y) {
+
+	// only start motion if the left button is pressed
+	if (button == GLUT_LEFT_BUTTON) {
+
+		// when the button is released
+		if (state == GLUT_UP) {
+			angle += deltaAngle;
+			xOrigin = -1;
+		}
+		else  {// state = GLUT_DOWN
+			xOrigin = x;
+		}
+	}
+}
 
 void timer(int value) {
    glutPostRedisplay();
@@ -165,6 +207,9 @@ int main(int argc, char ** argv) {
 
   glutSpecialFunc(processSpecialKeys);
   glutKeyboardFunc(process_Normal_Keys);
+
+  glutMouseFunc(mouseButton);
+	glutMotionFunc(mouseMove);
 
   glutMainLoop();
 
