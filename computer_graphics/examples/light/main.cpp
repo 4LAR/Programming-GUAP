@@ -1,28 +1,39 @@
-#include <stdlib.h>
+#include <iostream>
+using namespace std;
+#include <cmath>
 
 #include <GL/glut.h>
 
 /* параметры материала шара */
 
+// угол поворота камеры
+float angle=0.0;
+// координаты вектора направления движения камеры
+float lx=0.0f,lz=-1.0f;
+// XZ позиция камеры
+float x=0.0f,z=5.0f, y=1.0f;
+
+int refreshMills = 15;
+
 float mat_dif[] = {
-  0.9 f,
-  0.2 f,
-  0.0 f
+  0.9f,
+  0.2f,
+  0.0f
 };
 
 float mat_spec[] = {
-  0.8 f,
-  0.8 f,
-  0.9 f
+  0.8f,
+  0.8f,
+  0.9f
 };
 
 float mat_amb[] = {
-  0.2 f,
-  0.0 f,
-  0.2 f
+  0.2f,
+  0.0f,
+  0.2f
 };
 
-float mat_shininess = 0.1 f * 128;
+float mat_shininess = 0.1f * 128;
 
 /* параметры источника света */
 
@@ -36,6 +47,12 @@ GLfloat light_position[] = {
 void Display(void)
 
 {
+
+  glLoadIdentity();
+
+  gluLookAt(   x, y,     z,
+		  x+lx, 1.0f,  z+lz,
+		  0.0f, 1.0f,  0.0f );
 
   glClearColor(0, 0.3, 0.3, 1);
 
@@ -85,28 +102,48 @@ void Reshape(int w, int h)
 
   glViewport(0, 0, (GLsizei) w, (GLsizei) h);
 
-  gluLookAt(0.0 f, 0.0 f, 7.0 f, /* положение камеры */
+}
 
-    0.0 f, 0.0 f, 0.0 f, /* центр сцены */
+float fraction = 1.0f;
+float fraction_angle = 0.1f;
 
-    0.0 f, 1.0 f, 0.0 f); /* положит. направление оси y */
+void process_Normal_Keys(unsigned char key, int x, int y) {
+
+    switch (key) {
+
+    case ('w'):
+      x += lx * fraction;
+      z += lz * fraction;
+      break;
+
+    case ('s'):
+      x -= lx * fraction;
+      z -= lz * fraction;
+      break;
+    }
 
 }
 
-#pragma argsused
+void processSpecialKeys(int key, int xx, int yy) {
 
-void Keyboard(unsigned char key, int x, int y)
+	switch (key) {
+		case GLUT_KEY_LEFT :
+			angle -= fraction_angle;
+			lx = sin(angle);
+			lz = -cos(angle);
+			break;
+		case GLUT_KEY_RIGHT :
+			angle += fraction_angle;
+			lx = sin(angle);
+			lz = -cos(angle);
+			break;
+	}
+}
 
-{
 
-  switch (key)
-
-  {
-  case 27:
-    exit(0);
-    break;
-  }
-
+void timer(int value) {
+   glutPostRedisplay();
+   glutTimerFunc(refreshMills, timer, 0);
 }
 
 int main(int argc, char ** argv) {
@@ -124,7 +161,10 @@ int main(int argc, char ** argv) {
 
   glutDisplayFunc(Display);
 
-  glutKeyboardFunc(Keyboard);
+  glutTimerFunc(0, timer, 0);
+
+  glutSpecialFunc(processSpecialKeys);
+  glutKeyboardFunc(process_Normal_Keys);
 
   glutMainLoop();
 
