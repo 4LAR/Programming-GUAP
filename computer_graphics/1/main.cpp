@@ -30,24 +30,24 @@ void display() {
   glEnable(GL_TEXTURE_2D);
   glEnable(GL_LIGHT0);
   glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
-  
+
   glBindTexture (GL_TEXTURE_2D, texture);
 
   glBegin(GL_TRIANGLES);
       glTexCoord2f(0.0f, 1.0f); glVertex3f( 0.0f, 1.0f, 0.0f);
       glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, 1.0f);
       glTexCoord2f(0.25f, 0.0f); glVertex3f(1.0f, -1.0f, 1.0f);
- 
+
       // Right
       glTexCoord2f(0.0f, 1.0f); glVertex3f(0.0f, 1.0f, 0.0f);
       glTexCoord2f(0.75f, 0.0f); glVertex3f(1.0f, -1.0f, 1.0f);
       glTexCoord2f(1, 0.0f);  glVertex3f(1.0f, -1.0f, -1.0f);
- 
+
       // Back
       glTexCoord2f(0.0f, 1.0f); glVertex3f(0.0f, 1.0f, 0.0f);
       glTexCoord2f(0.5f, 0.0f); glVertex3f(1.0f, -1.0f, -1.0f);
       glTexCoord2f(0.75f, 0.0f);  glVertex3f(-1.0f, -1.0f, -1.0f);
- 
+
       // Left
       glTexCoord2f(0.0f, 1.0f);  glVertex3f( 0.0f, 1.0f, 0.0f);
       glTexCoord2f(0.25f, 0.0f);  glVertex3f(-1.0f,-1.0f,-1.0f);
@@ -208,7 +208,7 @@ int main(int argc, char** argv) {
   texture = SOIL_load_OGL_texture("abeme.bmp", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
   texture2 = SOIL_load_OGL_texture("box_image.bmp", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 
-  //glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, texture); 
+  //glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, texture);
 
 
   glutDisplayFunc(display);
