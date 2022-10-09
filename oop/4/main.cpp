@@ -21,17 +21,35 @@ using namespace std;
 #include "libs/simple_char.h"
 #include "libs/input_validation.h"
 
+#include "libs/time.h"
+
+#include "Employee.h"
 #include "Intern.h"
+#include "Leading_worker.h"
+#include "Director.h"
 
 int main() {
 	// смена кодировки
   system("chcp 65001");
+
   //Employee test_employee((char*)"Столяров Никита Сергеевич", 2021);
   //test_employee.show_info();
-  Intern intern("123", "321", 123);
-  //intern.show_info();
 
+  // Стажер
+  Intern intern((char*)"test1", 2021, 13000, (char*)"Дэбил", 100, 1000);
+  intern.info();
 
+  draw_line();
+
+  // Руководящий работник
+  Leading_worker leading_worker((char*)"test2", 2021, 20000, (char*)"Завод для дэбилов", 10);
+  leading_worker.info();
+
+  draw_line();
+
+  // Директор
+  Director director((char*)"test3", 2021, 999999, 2, 100);
+  director.info();
 
 	return 0;
 }

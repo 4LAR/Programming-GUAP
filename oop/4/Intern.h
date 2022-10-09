@@ -1,22 +1,29 @@
 
-#include "Employee.h"
+#include <iostream>
+using namespace std;
 
+// Стажер
 class Intern: public Employee {
 public:
-  // Intern(): Employee((char*)"Столяров Никита Сергеевич", 2021) {
-  //
-  // }
+  Intern(char* full_name, int Year_of_admission, double Salary, char* Job_title, int Duration, double Diligence_bonus);
+  void info();
 
-  Intern(char* Job_title, char* Duration, double Diligence_bonus);
-
-private:
-  char* job_title;
-  char* duration;
-  double diligence_bonus;
+protected:
+  char* job_title; // Должность
+  int duration; // Продолжительность испытательного строка
+  double diligence_bonus; // Надбавка за прилежность
 };
 
-Intern::Intern(char* Job_title, char* Duration, double Diligence_bonus) {
+Intern::Intern(char* full_name, int Year_of_admission, double Salary, char* Job_title, int Duration, double Diligence_bonus) :Employee(full_name, Year_of_admission, Salary) {
   job_title = Job_title;
   duration = Duration;
   diligence_bonus = Diligence_bonus;
+}
+
+void Intern::info() {
+  cout << "Стажер" << endl;
+  show_info();
+  printf("Должность: %s\n", job_title);
+  cout << "Продолжительность испытательного строка: " << duration << " дней" << endl;
+  cout << "Надбавка за прилежность: " << diligence_bonus << " руб" << endl;
 }
