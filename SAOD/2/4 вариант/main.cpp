@@ -103,12 +103,9 @@ list *delete_element(list *tmp, int id) {
 
 list *append_element(list *tmp, int n, int a) {
   list *old = tmp;
-  while (tmp != NULL) {
-    if (tmp -> n == n) {
-      tmp -> a = tmp -> a + a;
-      return old;
-    }
-    tmp = tmp -> next;
+  if (tmp == NULL) {
+    tmp = create(n, a);
+    return tmp;
   }
 
   add_element_end(n, a, old);
@@ -123,16 +120,19 @@ int main() {
   list *r_list = NULL;
   list *p_list = NULL;
 
-  int n_q = read_value("Введите размер многочлена Q: ", true, true, false);
-  int n_r = read_value("Введите размер многочлена R: ", true, true, false);
+  //int n_q = read_value("Введите размер многочлена Q: ", true, true, false);
+  //int n_r = read_value("Введите размер многочлена R: ", true, true, false);
 
-  q_list = get_func(n_q, q_list, "A");
-  r_list = get_func(n_r, r_list, "B");
+  //q_list = get_func(n_q, q_list, "A");
+  //r_list = get_func(n_r, r_list, "B");
 
   int menu_i;
 
   int id;
   int a;
+
+  int x1 = 0;
+  int x2 = 0;
 
   while (true) {
     draw_line();
@@ -149,11 +149,11 @@ int main() {
 
       case (1):
         draw_table(q_list);
-        id = read_value("x: ", true, true, false);
+        //id = read_value("x: ", true, true, false);
         a = read_value("a: ", true, true, false);
-        if (a != 0)
-          q_list = append_element(q_list, id, a);
-
+        if (a != 0){
+          q_list = append_element(q_list, x1++, a);
+        }
         break;
 
       case (2):
@@ -164,10 +164,11 @@ int main() {
 
       case (3):
         draw_table(r_list);
-        id = read_value("x: ", true, true, false);
+        //id = read_value("x: ", true, true, false);
         a = read_value("a: ", true, true, false);
-        if (a != 0)
-          r_list = append_element(r_list, id, a);
+        if (a != 0){
+          r_list = append_element(r_list, x2++, a);
+        }
 
         break;
 
