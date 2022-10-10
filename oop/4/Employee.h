@@ -2,6 +2,10 @@
 #include <iostream>
 using namespace std;
 
+namespace global {
+  extern int count_count_subordinates;
+}
+
 class Employee {
 public:
   Employee(char* full_name, int Year_of_admission, double Salary);
@@ -32,6 +36,7 @@ void Employee::show_info() {
   printf("ФИО: %s\n", full_name);
   cout << "Год поступления на работу: " << year_of_admission << endl;
   cout << "Оклад: " << salary << " руб" << endl;
+  cout << "Стаж работы: " << get_experience() << " лет" << endl;
 }
 
 int Employee::get_experience() {

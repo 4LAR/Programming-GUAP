@@ -28,6 +28,10 @@ using namespace std;
 #include "Leading_worker.h"
 #include "Director.h"
 
+namespace global {
+  int count_count_subordinates = 0;
+}
+
 int main() {
 	// смена кодировки
   system("chcp 65001");
@@ -38,7 +42,6 @@ int main() {
   // Стажер
   Intern intern((char*)"test1", 2013, 13000, (char*)"Дэбил", 100, 1000);
   intern.info();
-  printf("Money: %.2lf \n", intern.calculate_money());
 
   draw_line();
 
@@ -49,7 +52,7 @@ int main() {
   draw_line();
 
   // Директор
-  Director director((char*)"test3", 2002, 999999, 2, 100);
+  Director director((char*)"test3", 2002, 30000, 2, 100);
   director.info();
 
 	return 0;

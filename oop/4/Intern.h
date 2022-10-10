@@ -27,6 +27,7 @@ void Intern::info() {
   printf("Должность: %s\n", job_title);
   cout << "Продолжительность испытательного строка: " << duration << " дней" << endl;
   cout << "Надбавка за прилежность: " << diligence_bonus << " руб" << endl;
+  printf("Саммарное зп: %.2lf руб\n", calculate_money());
 }
 
 double Intern::calculate_money() {
