@@ -7,6 +7,7 @@ class Intern: public Employee {
 public:
   Intern(char* full_name, int Year_of_admission, double Salary, char* Job_title, int Duration, double Diligence_bonus);
   void info();
+  double calculate_money();
 
 protected:
   char* job_title; // Должность
@@ -26,4 +27,8 @@ void Intern::info() {
   printf("Должность: %s\n", job_title);
   cout << "Продолжительность испытательного строка: " << duration << " дней" << endl;
   cout << "Надбавка за прилежность: " << diligence_bonus << " руб" << endl;
+}
+
+double Intern::calculate_money() {
+  return calculate_salary() + diligence_bonus;
 }

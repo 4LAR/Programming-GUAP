@@ -36,19 +36,20 @@ int main() {
   //test_employee.show_info();
 
   // Стажер
-  Intern intern((char*)"test1", 2021, 13000, (char*)"Дэбил", 100, 1000);
+  Intern intern((char*)"test1", 2013, 13000, (char*)"Дэбил", 100, 1000);
   intern.info();
+  printf("Money: %.2lf \n", intern.calculate_money());
 
   draw_line();
 
   // Руководящий работник
-  Leading_worker leading_worker((char*)"test2", 2021, 20000, (char*)"Завод для дэбилов", 10);
+  Leading_worker leading_worker((char*)"test2", 2020, 20000, (char*)"Завод для дэбилов", 10);
   leading_worker.info();
 
   draw_line();
 
   // Директор
-  Director director((char*)"test3", 2021, 999999, 2, 100);
+  Director director((char*)"test3", 2002, 999999, 2, 100);
   director.info();
 
 	return 0;

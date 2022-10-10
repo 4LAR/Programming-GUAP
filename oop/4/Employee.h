@@ -7,6 +7,8 @@ public:
   Employee(char* full_name, int Year_of_admission, double Salary);
 
   void show_info();
+  double calculate_salary();
+  int get_experience();
 
 protected:
   char* full_name;       // ФИО
@@ -30,4 +32,13 @@ void Employee::show_info() {
   printf("ФИО: %s\n", full_name);
   cout << "Год поступления на работу: " << year_of_admission << endl;
   cout << "Оклад: " << salary << " руб" << endl;
+}
+
+int Employee::get_experience() {
+  return (get_now_year() - year_of_admission);
+}
+
+// рассчёт зарплаты
+double Employee::calculate_salary() {
+  return (get_experience() * 12) * salary;
 }
