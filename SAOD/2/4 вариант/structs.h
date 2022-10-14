@@ -55,7 +55,7 @@ void draw_func(list *tmp, const char *promt = "") {
     return;
   }
 
-  int i = get_length_list(tmp);
+  int i = get_length_list(tmp) - 1;
 
   while (tmp != NULL) {
     if (tmp -> a != 0) {
@@ -66,7 +66,7 @@ void draw_func(list *tmp, const char *promt = "") {
 
       cout << tmp -> a;
 
-      if (i != 0) cout << "x^" << i++;
+      if (i != 0) cout << "x^" << i--;
 
     }
 
@@ -96,25 +96,31 @@ list *merge_func(list *a, list *b) {
     b = buf;
   }
 
+  int n_a = get_size_list(a) - 1;
+  int n_b = get_size_list(b) - 1;
+
   while (a != NULL) {
-    if (b != NULL && ((b -> n) == (a -> n))) {
+    if (b != NULL && ((n_b) == (n_a))) {
 
       if (tmp == NULL) {
-        tmp = create(a -> n, (a -> a) + (b -> a));
+        tmp = create(n_a, (a -> a) + (b -> a));
       } else {
-        add_element_end(a -> n, (a -> a) + (b -> a), tmp);
+        add_element_end(n_a, (a -> a) + (b -> a), tmp);
       }
+      n_b--;
       b = b -> next;
 
     } else {
 
       if (tmp == NULL) {
-        tmp = create(a -> n, a -> a);
+        tmp = create(n_a, a -> a);
       } else {
-        add_element_end(a -> n, a -> a, tmp);
+        add_element_end(n_a, a -> a, tmp);
       }
     }
 
+
+    n_a--;
     a = a -> next;
   }
 
