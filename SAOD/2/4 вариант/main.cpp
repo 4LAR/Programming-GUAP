@@ -34,15 +34,6 @@ list *get_func(int n, list *tmp, const char *promt = "") {
   return tmp;
 }
 
-int get_length_list(list *tmp) {
-  int length = 0;
-  while (tmp != NULL) {
-    length++;
-    tmp = tmp -> next;
-  }
-  return length;
-}
-
 void draw_table(list *tmp) {
   // int length_A = get_length_list(list_a);
   // int length_B = get_length_list(list_b);

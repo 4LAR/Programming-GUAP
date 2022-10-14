@@ -31,6 +31,15 @@ void add_element_end(int n, int a, list *head) {
 
 }
 
+int get_length_list(list *tmp) {
+  int length = 0;
+  while (tmp != NULL) {
+    length++;
+    tmp = tmp -> next;
+  }
+  return length;
+}
+
 void draw_list(list *number_list) {
   while (number_list != NULL){
     cout << number_list -> n << "|" << number_list -> a << endl;
@@ -41,6 +50,13 @@ void draw_list(list *number_list) {
 void draw_func(list *tmp, const char *promt = "") {
   cout << promt;
   bool first = true;
+  if (tmp == NULL) {
+    cout << "NULL" << endl;
+    return;
+  }
+
+  int i = get_length_list(tmp);
+
   while (tmp != NULL) {
     if (tmp -> a != 0) {
       if (!first)
@@ -50,7 +66,7 @@ void draw_func(list *tmp, const char *promt = "") {
 
       cout << tmp -> a;
 
-      if (tmp -> n != 0) cout << "x^" << tmp -> n;
+      if (i != 0) cout << "x^" << i++;
 
     }
 
