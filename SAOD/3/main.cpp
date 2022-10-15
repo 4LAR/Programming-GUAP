@@ -19,17 +19,19 @@ using namespace std;
 #include "libs/input_validation.h"
 
 #include "structs.h"
+#include "generator.h"
+#include "processor.h"
+
+#define size_TaskList 10
 
 int main() {
 	// смена кодировки
   system("chcp 65001");
 
-  Task test = {1, 2, 3, 4};
+  Task *stack = (Task*)malloc(size_TaskList * sizeof(Task));
+  Task *queue = None;
 
-  TaskList test_list = create(test);
-
-  for (int i = 0; i < 10; i++)
-    cout << add_element_end(test, test_list) << endl;
+  processorLoop(stack, queue);
 
 	return 0;
 }
