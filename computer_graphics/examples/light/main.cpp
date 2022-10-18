@@ -12,14 +12,14 @@ float angle_y=0.0;
 // координаты вектора направления движения камеры
 float lx=0.0f, ly=0.0f, lz=-1.0f;
 // XZ позиция камеры
-float x=0.0f, y=1.0f, z=5.0f;
+float x=1.0f, y=1.0f, z=5.0f;
 
-int refreshMills = 15;
+int refreshMills = 0;
 
 float mat_dif[] = {
   0.9f,
-  0.2f,
-  0.0f
+  0.9f,
+  0.9f
 };
 
 float mat_spec[] = {
@@ -69,13 +69,55 @@ void Display(void) {
   glMaterialfv(GL_FRONT, GL_SPECULAR, mat_spec);
   glMaterialf(GL_FRONT, GL_SHININESS, mat_shininess);
 
-  glutSolidSphere(2.0, 32, 32);
+  glTranslatef(0.0f, -2.0f, 0.0f);
 
-  glTranslatef(-10.0f, 0.0f, 10.0f);
-  glutSolidSphere(2.0, 32, 32);
+  // glBegin(GL_QUADS);
 
-  glTranslatef(10.0f, 0.0f, 10.0f);
-  glutSolidSphere(2.0, 32, 32);
+  //   glVertex3f( 1.0f, 1.0f, -1.0f);
+  //   glVertex3f(-1.0f, 1.0f,  1.0f);
+  //   glVertex3f( 1.0f, 1.0f,  1.0f);
+  //   glVertex3f(-1.0f, 1.0f, -1.0f);
+
+
+  //   glVertex3f( 1.0f, -1.0f,  1.0f);
+  //   glVertex3f(-1.0f, -1.0f,  1.0f);
+  //   glVertex3f(-1.0f, -1.0f, -1.0f);
+  //   glVertex3f( 1.0f, -1.0f, -1.0f);
+
+
+  //   glVertex3f( 1.0f,  1.0f, 1.0f);
+  //   glVertex3f(-1.0f,  1.0f, 1.0f);
+  //   glVertex3f(-1.0f, -1.0f, 1.0f);
+  //   glVertex3f( 1.0f, -1.0f, 1.0f);
+
+
+  //   glVertex3f( 1.0f, -1.0f, -1.0f);
+  //   glVertex3f(-1.0f, -1.0f, -1.0f);
+  //   glVertex3f(-1.0f,  1.0f, -1.0f);
+  //   glVertex3f( 1.0f,  1.0f, -1.0f);
+
+
+  //   glVertex3f(-1.0f,  1.0f,  1.0f);
+  //   glVertex3f(-1.0f,  1.0f, -1.0f);
+  //   glVertex3f(-1.0f, -1.0f, -1.0f);
+  //   glVertex3f(-1.0f, -1.0f,  1.0f);
+
+
+  //   glVertex3f(1.0f,  1.0f, -1.0f);
+  //   glVertex3f(1.0f,  1.0f,  1.0f);
+  //   glVertex3f(1.0f, -1.0f,  1.0f);
+  //   glVertex3f(1.0f, -1.0f, -1.0f);
+  // glEnd();
+
+   //glutSolidSphere(2.0, 5, 5);
+   //glutSolidCube(2.0);
+   glutSolidTeapot(2);
+
+  // glTranslatef(-10.0f, 0.0f, 10.0f);
+  // glutSolidSphere(2.0, 32, 32);
+
+  // glTranslatef(10.0f, 0.0f, 10.0f);
+  // glutSolidSphere(2.0, 32, 32);
 
   glFlush();
 
@@ -91,28 +133,34 @@ void Reshape(int w, int h) {
 
 }
 
-float fraction = 1.0f;
+float fraction = -1.0f;
 float fraction_angle = 0.1f;
 
-void process_Normal_Keys(unsigned char key, int x, int y) {
+void process_Normal_Keys(unsigned char key, int x1, int y1) {
     switch (key) {
     case ('w'):
-      x += lx * fraction;
-      z += lz * fraction;
+      z += fraction;
       break;
 
     case ('s'):
-      x -= lx * fraction;
-      z -= lz * fraction;
+      z -= fraction;
       break;
 
 
     case ('a'):
-      y += fraction;
+      x += fraction;
       break;
 
     case ('d'):
+      x -= fraction;
+      break;
+
+    case ('r'):
       y -= fraction;
+      break;
+
+    case ('f'):
+      y += fraction;
       break;
 
     }
@@ -143,51 +191,6 @@ void processSpecialKeys(int key, int xx, int yy) {
 	}
 }
 
-float deltaAngle_x = 0.0f;
-float deltaAngle_y = 0.0f;
-double xOrigin = -1;
-double yOrigin = -1;
-
-void mouseMove(int x, int y) {
-	// this will only be true when the left button is down
-
-	if (xOrigin >= 0) {
-		// update deltaAngle
-    deltaAngle_x = (x - xOrigin) * 0.005f;
-
-		// update camera's direction
-		lx = sin(angle_x + deltaAngle_x);
-    lz = -cos(angle_x + deltaAngle_x);
-	}
-  if (yOrigin >= 0) {
-    deltaAngle_y = (y - yOrigin) * 0.005f;
-    ly = -sin(angle_y + deltaAngle_y);
-
-  }
-
-}
-
-void mouseButton(int button, int state, int x, int y) {
-
-	// only start motion if the left button is pressed
-	if (button == GLUT_LEFT_BUTTON) {
-		// when the button is released
-		if (state != GLUT_UP) {
-      angle_x += deltaAngle_x;
-      angle_y -= deltaAngle_y;
-      //
-      xOrigin = -1;
-			yOrigin = -1;
-      // xOrigin = x;
-			// yOrigin = y;
-		}
-		else  {// state = GLUT_DOWN
-      xOrigin += x;
-			yOrigin += y;
-		}
-	}
-}
-
 void timer(int value) {
    glutPostRedisplay();
    glutTimerFunc(refreshMills, timer, 0);
@@ -206,9 +209,9 @@ int main(int argc, char ** argv) {
   glutSpecialFunc(processSpecialKeys);
   glutKeyboardFunc(process_Normal_Keys);
 
-  glutMouseFunc(mouseButton);
-  glutPassiveMotionFunc(mouseMove);
-	glutMotionFunc(mouseMove);
+  //glutMouseFunc(mouseButton);
+  //glutPassiveMotionFunc(mouseMove);
+	//glutMotionFunc(mouseMove);
 
   glutMainLoop();
 
