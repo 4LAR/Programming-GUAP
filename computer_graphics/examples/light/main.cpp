@@ -4,11 +4,14 @@ using namespace std;
 
 #include <GL/freeglut.h>
 
+#define W_WIDTH 1280
+#define W_HEIGHT 720
+
 /* параметры материала шара */
 
 // угол поворота камеры
-float angle_x=0.0;
-float angle_y=0.0;
+double angle_x=0.0;
+double angle_y=0.0;
 // координаты вектора направления движения камеры
 float lx=0.0f, ly=0.0f, lz=-1.0f;
 // XZ позиция камеры
@@ -136,31 +139,35 @@ void Reshape(int w, int h) {
 float fraction = -1.0f;
 float fraction_angle = 0.1f;
 
-void process_Normal_Keys(unsigned char key, int x1, int y1) {
+bool use_mouse = true;
+
+void process_Normal_Keys(unsigned char key, int xx, int yy) {
     switch (key) {
     case ('w'):
-      z += fraction;
+      z -= lz * fraction;
+      x -= lx * fraction;
+      y -= ly * fraction;
       break;
 
     case ('s'):
-      z -= fraction;
+      z += lz * fraction;
+      x += lx * fraction;
+      y += ly * fraction;
       break;
 
-
     case ('a'):
-      x += fraction;
+      z += lx * fraction;
+      x -= lz * fraction;
       break;
 
     case ('d'):
-      x -= fraction;
+      z -= lx * fraction;
+      x += lz * fraction;
       break;
 
-    case ('r'):
-      y -= fraction;
-      break;
-
-    case ('f'):
-      y += fraction;
+    // включить (выключить курсор)
+    case ('g'):
+      use_mouse = !use_mouse;
       break;
 
     }
@@ -191,6 +198,23 @@ void processSpecialKeys(int key, int xx, int yy) {
 	}
 }
 
+double sensivity = 0.001;
+
+void mouseMove(int xx, int yy) {
+  if (use_mouse) {
+    angle_x -= (W_WIDTH/2 - xx) * sensivity;
+    angle_y += (W_HEIGHT/2 - yy) * sensivity;
+  	lx = sin(angle_x);
+  	lz = -cos(angle_x);
+    ly = sin(angle_y);
+    glutWarpPointer(
+      W_WIDTH / 2,
+      W_HEIGHT / 2
+    );
+  }
+}
+
+
 void timer(int value) {
    glutPostRedisplay();
    glutTimerFunc(refreshMills, timer, 0);
@@ -200,14 +224,18 @@ int main(int argc, char ** argv) {
   glutInit( & argc, argv);
   glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH);
   glutInitWindowPosition(150, 50);
-  glutInitWindowSize(500, 500);
+  glutInitWindowSize(W_WIDTH, W_HEIGHT);
   glutCreateWindow("light");
   glutReshapeFunc(Reshape);
   glutDisplayFunc(Display);
-  glutTimerFunc(0, timer, 0);
+
 
   glutSpecialFunc(processSpecialKeys);
   glutKeyboardFunc(process_Normal_Keys);
+
+  glutPassiveMotionFunc(mouseMove);
+
+  glutTimerFunc(0, timer, 0);
 
   //glutMouseFunc(mouseButton);
   //glutPassiveMotionFunc(mouseMove);
