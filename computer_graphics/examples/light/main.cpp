@@ -1,5 +1,4 @@
 #include <iostream>
-using namespace std;
 #include <cmath>
 
 #include <GL/freeglut.h>
@@ -17,7 +16,17 @@ float lx=0.0f, ly=0.0f, lz=-1.0f;
 // XZ позиция камеры
 float x=1.0f, y=1.0f, z=5.0f;
 
-int refreshMills = 0;
+int refreshMills = 60;
+
+float fraction = -1.0f;
+float fraction_angle = 0.1f;
+
+bool use_mouse = true;
+
+bool forward = false;
+bool back = false;
+bool left = false;
+bool right = false;
 
 float mat_dif[] = {
   0.9f,
@@ -47,83 +56,9 @@ GLfloat light_position[] = {
   0.0
 };
 
-void Display(void) {
-
-  glLoadIdentity();
-
-  gluLookAt(x, y, z,
-		  x+lx, y+ly,  z+lz,
-		  0.0f, 1.0f,  0.0f );
-
-  glClearColor(0, 0.3, 0.3, 1);
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  glEnable(GL_DEPTH_TEST);
-
-  /* устанавливаем параметры источника света */
-  glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-
-  /* включаем освещение и источник света */
-  glEnable(GL_LIGHTING);
-  glEnable(GL_LIGHT0);
-
-  /* задаем материал и отображаем шар */
-  glMaterialfv(GL_FRONT, GL_AMBIENT, mat_amb);
-  glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_dif);
-  glMaterialfv(GL_FRONT, GL_SPECULAR, mat_spec);
-  glMaterialf(GL_FRONT, GL_SHININESS, mat_shininess);
-
-  glTranslatef(0.0f, -2.0f, 0.0f);
-
-  // glBegin(GL_QUADS);
-
-  //   glVertex3f( 1.0f, 1.0f, -1.0f);
-  //   glVertex3f(-1.0f, 1.0f,  1.0f);
-  //   glVertex3f( 1.0f, 1.0f,  1.0f);
-  //   glVertex3f(-1.0f, 1.0f, -1.0f);
-
-
-  //   glVertex3f( 1.0f, -1.0f,  1.0f);
-  //   glVertex3f(-1.0f, -1.0f,  1.0f);
-  //   glVertex3f(-1.0f, -1.0f, -1.0f);
-  //   glVertex3f( 1.0f, -1.0f, -1.0f);
-
-
-  //   glVertex3f( 1.0f,  1.0f, 1.0f);
-  //   glVertex3f(-1.0f,  1.0f, 1.0f);
-  //   glVertex3f(-1.0f, -1.0f, 1.0f);
-  //   glVertex3f( 1.0f, -1.0f, 1.0f);
-
-
-  //   glVertex3f( 1.0f, -1.0f, -1.0f);
-  //   glVertex3f(-1.0f, -1.0f, -1.0f);
-  //   glVertex3f(-1.0f,  1.0f, -1.0f);
-  //   glVertex3f( 1.0f,  1.0f, -1.0f);
-
-
-  //   glVertex3f(-1.0f,  1.0f,  1.0f);
-  //   glVertex3f(-1.0f,  1.0f, -1.0f);
-  //   glVertex3f(-1.0f, -1.0f, -1.0f);
-  //   glVertex3f(-1.0f, -1.0f,  1.0f);
-
-
-  //   glVertex3f(1.0f,  1.0f, -1.0f);
-  //   glVertex3f(1.0f,  1.0f,  1.0f);
-  //   glVertex3f(1.0f, -1.0f,  1.0f);
-  //   glVertex3f(1.0f, -1.0f, -1.0f);
-  // glEnd();
-
-   //glutSolidSphere(2.0, 5, 5);
-   //glutSolidCube(2.0);
-   glutSolidTeapot(2);
-
-  // glTranslatef(-10.0f, 0.0f, 10.0f);
-  // glutSolidSphere(2.0, 32, 32);
-
-  // glTranslatef(10.0f, 0.0f, 10.0f);
-  // glutSolidSphere(2.0, 32, 32);
-
-  glFlush();
-
+void drawText(float x, float y, std::string text) {
+    glRasterPos2f(x, y);
+    glutBitmapString(GLUT_BITMAP_8_BY_13, (const unsigned char*)text.c_str());
 }
 
 void Reshape(int w, int h) {
@@ -136,66 +71,82 @@ void Reshape(int w, int h) {
 
 }
 
-float fraction = -1.0f;
-float fraction_angle = 0.1f;
+void move() {
+  if (forward) {
+    z -= lz * fraction;
+    x -= lx * fraction;
+    y -= ly * fraction;
+  }
 
-bool use_mouse = true;
+  if (back) {
+    z += lz * fraction;
+    x += lx * fraction;
+    y += ly * fraction;
+  }
 
-void process_Normal_Keys(unsigned char key, int xx, int yy) {
-    switch (key) {
-    case ('w'):
-      z -= lz * fraction;
-      x -= lx * fraction;
-      y -= ly * fraction;
-      break;
+  if (left) {
+    z += lx * fraction;
+    x -= lz * fraction;
+  }
 
-    case ('s'):
-      z += lz * fraction;
-      x += lx * fraction;
-      y += ly * fraction;
-      break;
-
-    case ('a'):
-      z += lx * fraction;
-      x -= lz * fraction;
-      break;
-
-    case ('d'):
-      z -= lx * fraction;
-      x += lz * fraction;
-      break;
-
-    // включить (выключить курсор)
-    case ('g'):
-      use_mouse = !use_mouse;
-      break;
-
-    }
+  if (right) {
+    z -= lx * fraction;
+    x += lz * fraction;
+  }
 
 }
 
-void processSpecialKeys(int key, int xx, int yy) {
-	switch (key) {
-		case GLUT_KEY_LEFT :
-			angle_x -= fraction_angle;
-			lx = sin(angle_x);
-			lz = -cos(angle_x);
-			break;
-		case GLUT_KEY_RIGHT :
-			angle_x += fraction_angle;
-			lx = sin(angle_x);
-			lz = -cos(angle_x);
-			break;
+void keyUp(unsigned char key, int xx, int yy) {
+  switch (key) {
+  case ('w'):
+    forward = false;
+    break;
 
-    case GLUT_KEY_UP :
-			angle_y += fraction_angle;
-			ly = sin(angle_y);
-			break;
-		case GLUT_KEY_DOWN :
-			angle_y -= fraction_angle;
-			ly = sin(angle_y);
-			break;
-	}
+  case ('s'):
+    back = false;
+    break;
+
+  case ('a'):
+    left = false;
+    break;
+
+  case ('d'):
+    right = false;
+    break;
+
+  // включить (выключить курсор)
+  case ('g'):
+    use_mouse = !use_mouse;
+    break;
+
+  // выход
+  case 27:
+     //glutDestroyWindow ( Win.id );
+     exit (0);
+     break;
+
+  }
+}
+
+void keyDown(unsigned char key, int xx, int yy) {
+  switch (key) {
+  case ('w'):
+    forward = true;
+    break;
+
+  case ('s'):
+    back = true;
+    break;
+
+  case ('a'):
+    left = true;
+    break;
+
+  case ('d'):
+    right = true;
+    break;
+
+  }
 }
 
 double sensivity = 0.001;
@@ -214,10 +165,55 @@ void mouseMove(int xx, int yy) {
   }
 }
 
+void Display(void) {
+
+  move();
+
+  glLoadIdentity();
+
+  gluLookAt(x, y, z,
+		  x+lx, y+ly,  z+lz,
+		  0.0f, 1.0f,  0.0f );
+
+  glClearColor(0, 0.3, 0.3, 1);
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+  drawText(0, 0, "hello world");
+
+  glEnable(GL_DEPTH_TEST);
+
+  /* устанавливаем параметры источника света */
+  glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+
+  /* включаем освещение и источник света */
+  glEnable(GL_LIGHTING);
+  glEnable(GL_LIGHT0);
+
+  /* задаем материал и отображаем шар */
+  glMaterialfv(GL_FRONT, GL_AMBIENT, mat_amb);
+  glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_dif);
+  glMaterialfv(GL_FRONT, GL_SPECULAR, mat_spec);
+  glMaterialf(GL_FRONT, GL_SHININESS, mat_shininess);
+
+  glTranslatef(0.0f, -2.0f, 0.0f);
+
+  //glutSolidSphere(2.0, 5, 5);
+  //glutSolidCube(2.0);
+  glutSolidTeapot(2);
+
+  glTranslatef(-10.0f, 0.0f, 10.0f);
+  glutSolidCube(2.0);
+
+  glTranslatef(10.0f, 0.0f, 10.0f);
+  glutSolidSphere(2.0, 32, 32);
+
+  glFlush();
+
+}
 
 void timer(int value) {
    glutPostRedisplay();
-   glutTimerFunc(refreshMills, timer, 0);
+   glutTimerFunc(1000/refreshMills, timer, 0);
 }
 
 int main(int argc, char ** argv) {
@@ -229,9 +225,13 @@ int main(int argc, char ** argv) {
   glutReshapeFunc(Reshape);
   glutDisplayFunc(Display);
 
+  glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);
 
-  glutSpecialFunc(processSpecialKeys);
-  glutKeyboardFunc(process_Normal_Keys);
+  //glutSpecialFunc(processSpecialKeys);
+  //glutKeyboardFunc(process_Normal_Keys);
+
+  glutKeyboardFunc(keyDown);
+  glutKeyboardUpFunc(keyUp);
 
   glutPassiveMotionFunc(mouseMove);
 
