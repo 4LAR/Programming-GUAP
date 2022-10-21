@@ -8,6 +8,7 @@
 
 */
 
+#define AUTO true
 
 #include <iostream>
 using namespace std;
@@ -27,7 +28,7 @@ using namespace std;
 
 // размер статического стека
 #define size_TaskList 10
-
+#define count_generator_tasks 30
 
 int main() {
 	// смена кодировки
@@ -35,41 +36,22 @@ int main() {
 
   srand(time(NULL));
 
-  /*
-    Стек - последный вошёл, первый вышел
-  */
-  Task *stack = (Task*)malloc(size_TaskList * sizeof(Task));
-  
-  Task *buf;
-  for (int i = 0; i < size_TaskList; i++) {
-    buf = generate_task();
-    stack[i].priority = buf->priority;
-    stack[i].taskTime = buf->taskTime;
-    stack[i].durationTime = buf->durationTime;
-  }
+  /* Стек - последный вошёл, первый вышел */
+  Stack *stack = new Stack(size_TaskList);
 
-  /*
-    Очередь - первый вошёл, первый вышел
-  */
-  Task *queue = NULL;
-  int queue_size = 0;
+  /* Очередь - первый вошёл, первый вышел */
+  Stack *queue = new Stack(-1);
 
-  draw_stack(queue, queue_size);
-  draw_line();
-  queue = append(queue, buf, &queue_size);
-  queue = append(queue, buf, &queue_size);
-  queue = append(queue, buf, &queue_size);
-  draw_stack(queue, queue_size);
-  draw_line();
+  /* Генератор */
+  Generator *generator = new Generator(count_generator_tasks, AUTO);
 
-  draw_stack(stack, size_TaskList);
-  draw_line();
+  /* Процессоры */
+  Processors processors(stack, size_TaskList, queue, generator);
+  processors.loop();
 
-
-
-
-  // симулятор процессора
-  //processorLoop(stack, queue);
+  delete stack;
+  delete queue;
+  delete generator;
 
 	return 0;
 }
