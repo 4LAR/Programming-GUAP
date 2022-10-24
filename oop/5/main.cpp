@@ -26,7 +26,11 @@ int main() {
 	// смена кодировки
   system("chcp 65001");
 
+  D3 d3();
+  D3 d4();
 
+  d3.show_d3();
+  d4.show_d4();
 
 	return 0;
 }
