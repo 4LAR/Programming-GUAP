@@ -1,6 +1,6 @@
 
 #include <iostream>
-#include <conio.h>
+//#include <conio.h>
 using namespace std;
 
 // класс реализующий работу 2х процессоров и их логику
@@ -37,7 +37,8 @@ Processors::Processors(Stack *stack1, int size_stack1, Stack* queue1, Generator*
   generator = generator1;
 
   Task buf;
-  int count = (size_stack < generator -> get_size())? size_stack: generator -> get_size();
+  // int count = (size_stack < generator -> get_size())? size_stack: generator -> get_size();
+  int count = generator -> get_size();
   for (int i = 0; i < count; i++) {
     buf = generator -> get();
     stack -> append(
@@ -61,7 +62,7 @@ void Processors::loop() {
     // 27 escape
     // 8 backspace
     // 32 space
-    c = getch();
+    c = getchar(); //getch();
     if (c == 8) run = false;
   }
 }
@@ -71,17 +72,17 @@ void Processors::tick() {
   tick_num++;
   cout << tick_num << " такт" << endl;
 
-  if ((stack -> get_size() < size_stack) && (generator -> get_size() > 0)) {
-    Task buf;
-    buf = generator -> get();
-    stack -> append(
-      buf.priority,
-      buf.taskTime,
-      buf.durationTime
-    );
-  }
+  // if ((stack -> get_size() < size_stack) && (generator -> get_size() > 0)) {
+  //   Task buf;
+  //   buf = generator -> get();
+  //   stack -> append(
+  //     buf.priority,
+  //     buf.taskTime,
+  //     buf.durationTime
+  //   );
+  // }
 
-  if (durationTime1 <= 0) {
+  if (durationTime1 <= 0 && queue -> get_size() < size_stack) {
     if (run1)
       queue -> append(
         buf1.priority,
@@ -95,6 +96,8 @@ void Processors::tick() {
     } else {
       buf1 = {0, 0, 0};
     }
+  } else if (queue -> get_size() >= size_stack){
+    cout << "Очередь переполнена" << endl;
   }
 
   if (durationTime2 <= 0) {
@@ -117,7 +120,7 @@ void Processors::tick() {
   // работа 2 процессора
   if ((durationTime2 > 0)) {
     run2 = true;
-    durationTime2 -= 1;
+    //durationTime2 -= 1;
   } else {
     run2 = false;
   }
@@ -130,6 +133,9 @@ void Processors::tick() {
 
   cout << "Процессор 2: ";
   draw_task(buf2, durationTime2);
+
+  cout << "Генератор:" << endl;
+  draw_stack(generator -> list -> get_all(), generator -> get_size());
 
   cout << "Стек:" << endl;
   draw_stack(stack -> get_all(), stack -> get_size());
