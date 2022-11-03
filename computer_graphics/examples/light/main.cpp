@@ -21,6 +21,8 @@ int refreshMills = 60;
 float fraction = -0.5f;
 float fraction_angle = 0.1f;
 
+float light_fraction = -0.5f;
+
 bool use_mouse = true;
 
 bool forward = false;
@@ -28,42 +30,46 @@ bool back = false;
 bool left = false;
 bool right = false;
 
-float mat_dif_Teapot[] = {0.2f, 0.2f, 0.2f};
+bool light_up = false;
+bool light_down = false;
+bool light_forward = false;
+bool light_back = false;
+bool light_left = false;
+bool light_right = false;
+
+float mat_dif_Teapot[] = {0.2f, 0.2f, 0.2f, 1.0f};
 float mat_spec_Teapot[] = {0.0f, 0.0f, 0.0f};
 float mat_amb_Teapot[] = {0.4f, 4.0f, 4.0f};
 float mat_shininess_Teapot = 0.1f * 128;
 
-float mat_dif_Cube[] = {0.0f, 0.0f, 0.0f};
+float mat_dif_Cube[] = {0.0f, 0.0f, 0.0f, 1.0f};
 float mat_spec_Cube[] = {0.9f, 0.9f, 0.9f};
 float mat_amb_Cube[] = {0.0f, 0.0f, 0.0f};
 float mat_shininess_Cube = 0.1f * 128;
 
-float mat_dif_Sphere[] = {0.0f, 0.0f, 0.0f};
+float mat_dif_Sphere[] = {0.0f, 0.0f, 0.0f, 1.0f};
 float mat_spec_Sphere[] = {0.9f, 0.9f, 0.9f};
 float mat_amb_Sphere[] = {0.0f, 0.0f, 0.0f};
 float mat_shininess_Sphere = 0.1f * 128;
 
-float mat_dif_Icosahedron[] = {0.9f, 0.9f, 9.9f};
+float mat_dif_Icosahedron[] = {0.9f, 0.9f, 9.9f, 1.0f};
 float mat_spec_Icosahedron[] = {0.9f, 0.9f, 0.9f};
 float mat_amb_Icosahedron[] = {0.9f, 0.9f, 0.9f};
 float mat_shininess_Icosahedron = 0.1f * 128;
 
+float mat_dif_center[] = {0.9f, 0.9f, 9.9f, 0.5};
+float mat_spec_center[] = {0.9f, 0.9f, 0.9f};
+float mat_amb_center[] = {0.9f, 0.9f, 0.9f};
+float mat_shininess_center = 0.1f * 128;
+
+float mat_dif_light[] = {0.0f, 0.0f, 0.0f, 1.0};
+
 /* параметры источника света */
 int index_light = 0;
-GLfloat light_position1[3][4] = {
-  {1.0, 1.0, 1.0, 1.0},
-  {5.0, 0.0, -5.0, 1.0},
-  {4.0, 10.0, 2.0, 1.0}
-};
-GLfloat light_position2[3][4] = {
+GLfloat light_position[3][4] = {
   {0.0, 0.0, 0.0, 1.0},
-  {12.0, 1.0, -5.0, 1.0},
-  {-9.0, 6.0, -2.0, 1.0}
-};
-GLfloat light_position3[3][4] = {
-  {-1.0, 1.0, -1.0, 1.0},
-  {-5.0, -5.0, 5.0, 1.0},
-  {-10.0, 10.0, -10.0, 1.0}
+  {0.0, 0.0, 0.0, 1.0},
+  {0.0, 0.0, 0.0, 1.0}
 };
 
 GLfloat ambientColor1[] = { 0.2, 0.2, 0.2, 1.0 };
@@ -103,6 +109,7 @@ void Reshape(int w, int h) {
 }
 
 void move() {
+  // camera
   if (forward) {
     z -= lz * fraction;
     x -= lx * fraction;
@@ -125,10 +132,36 @@ void move() {
     x += lz * fraction;
   }
 
+  // light
+  if (light_forward) {
+    light_position[index_light][0] += light_fraction;
+  }
+
+  if (light_back) {
+    light_position[index_light][0] -= light_fraction;
+  }
+
+  if (light_left) {
+    light_position[index_light][2] -= light_fraction;
+  }
+
+  if (light_right) {
+    light_position[index_light][2] += light_fraction;
+  }
+
+  if (light_up) {
+    light_position[index_light][1] -= light_fraction;
+  }
+
+  if (light_down) {
+    light_position[index_light][1] += light_fraction;
+  }
+
 }
 
 void keyUp(unsigned char key, int xx, int yy) {
   switch (key) {
+  // camera
   case ('w'):
     forward = false;
     break;
@@ -145,7 +178,32 @@ void keyUp(unsigned char key, int xx, int yy) {
     right = false;
     break;
 
-  //
+  // light
+  case ('u'):
+    light_forward = false;
+    break;
+
+  case ('j'):
+    light_back = false;
+    break;
+
+  case ('h'):
+    light_left = false;
+    break;
+
+  case ('k'):
+    light_right = false;
+    break;
+
+  case ('y'):
+    light_up = false;
+    break;
+
+  case ('i'):
+    light_down = false;
+    break;
+
+  // switch move light
   case ('t'):
     index_light += 1;
     if (index_light >= 3)
@@ -168,6 +226,8 @@ void keyUp(unsigned char key, int xx, int yy) {
 
 void keyDown(unsigned char key, int xx, int yy) {
   switch (key) {
+
+  // camera
   case ('w'):
     forward = true;
     break;
@@ -182,6 +242,32 @@ void keyDown(unsigned char key, int xx, int yy) {
 
   case ('d'):
     right = true;
+    break;
+
+
+  // light
+  case ('u'):
+    light_forward = true;
+    break;
+
+  case ('j'):
+    light_back = true;
+    break;
+
+  case ('h'):
+    light_left = true;
+    break;
+
+  case ('k'):
+    light_right = true;
+    break;
+
+  case ('y'):
+    light_up = true;
+    break;
+
+  case ('i'):
+    light_down = true;
     break;
 
   }
@@ -229,45 +315,38 @@ void Display(void) {
 
   glEnable(GL_DEPTH_TEST);
 
-  /* устанавливаем параметры источника света */
-  // light_position1[0] += 0.1f;
-  // light_position1[1] += 0.1f;
-  // light_position1[2] += 0.1f;
-  //
-  // light_position2[0] += 0.1f;
-  // light_position2[1] += 0.1f;
-  // light_position2[2] += 0.1f;
-  //
-  // light_position3[0] += 0.1f;
-  // light_position3[1] += 0.1f;
-  // light_position3[2] += 0.1f;
+  glEnable(GL_BLEND);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
   glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuseColor1);
   glLightfv(GL_LIGHT0, GL_AMBIENT, ambientColor1);
   glLightfv(GL_LIGHT0, GL_EMISSION, emis1);
 
-  glLightfv(GL_LIGHT0, GL_POSITION, light_position1[index_light]);
-  glTranslatef(light_position1[index_light][0], light_position1[index_light][1], light_position1[index_light][2]);
+  glLightfv(GL_LIGHT0, GL_POSITION, light_position[0]);
+  glTranslatef(light_position[0][0], light_position[0][1], light_position[0][2]);
+  glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_dif_light);
   glutSolidSphere(0.2, 32, 32);
-  glTranslatef(-light_position1[index_light][0], -light_position1[index_light][1], -light_position1[index_light][2]);
+  glTranslatef(-light_position[0][0], -light_position[0][1], -light_position[0][2]);
 
   glLightfv(GL_LIGHT1, GL_DIFFUSE, diffuseColor2);
   glLightfv(GL_LIGHT1, GL_AMBIENT, ambientColor2);
   glLightfv(GL_LIGHT0, GL_EMISSION, emis1);
 
-  glLightfv(GL_LIGHT1, GL_POSITION, light_position2[index_light]);
-  glTranslatef(light_position2[index_light][0], light_position2[index_light][1], light_position2[index_light][2]);
+  glLightfv(GL_LIGHT1, GL_POSITION, light_position[1]);
+  glTranslatef(light_position[1][0], light_position[1][1], light_position[1][2]);
+  glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_dif_light);
   glutSolidSphere(0.2, 32, 32);
-  glTranslatef(-light_position2[index_light][0], -light_position2[index_light][1], -light_position2[index_light][2]);
+  glTranslatef(-light_position[1][0], -light_position[1][1], -light_position[1][2]);
 
   glLightfv(GL_LIGHT2, GL_DIFFUSE, diffuseColor3);
   glLightfv(GL_LIGHT2, GL_AMBIENT, ambientColor3);
   glLightfv(GL_LIGHT0, GL_EMISSION, emis1);
 
-  glLightfv(GL_LIGHT2, GL_POSITION, light_position3[index_light]);
-  glTranslatef(light_position3[index_light][0], light_position3[index_light][1], light_position3[index_light][2]);
+  glLightfv(GL_LIGHT2, GL_POSITION, light_position[2]);
+  glTranslatef(light_position[2][0], light_position[2][1], light_position[2][2]);
+  glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_dif_light);
   glutSolidSphere(0.2, 32, 32);
-  glTranslatef(-light_position3[index_light][0], -light_position3[index_light][1], -light_position3[index_light][2]);
+  glTranslatef(-light_position[2][0], -light_position[2][1], -light_position[2][2]);
 
   /* включаем освещение и источник света */
   glEnable(GL_LIGHTING);
@@ -307,6 +386,13 @@ void Display(void) {
   glTranslatef(10.0f, 0.0f, -10.0f);
   glutSolidCylinder(2.0, 4, 32, 32);
 
+  glMaterialfv(GL_FRONT, GL_AMBIENT, mat_amb_center);
+  glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_dif_center);
+  glMaterialfv(GL_FRONT, GL_SPECULAR, mat_spec_center);
+  glMaterialf(GL_FRONT, GL_SHININESS, mat_shininess_center);
+  glTranslatef(-10.0f, 0.0f, 0.0f);
+  glutSolidDodecahedron();
+
   glFlush();
 
 }
@@ -318,7 +404,7 @@ void timer(int value) {
 
 int main(int argc, char ** argv) {
   glutInit( & argc, argv);
-  glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH);
+  glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH);
   glutInitWindowPosition(150, 50);
   glutInitWindowSize(W_WIDTH, W_HEIGHT);
   glutCreateWindow("light");
