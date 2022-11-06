@@ -3,7 +3,7 @@
 using namespace std;
 
 /*************************/
-class D1: protected B1 {
+class D1: virtual protected B1 {
 public:
   D1(int x, int y);
   ~D1();
@@ -29,7 +29,7 @@ void D1::show_D1() {
 }
 
 /*************************/
-class D2: public B1 {
+class D2: virtual public B1 {
 public:
   D2(int x, int y);
   ~D2();
@@ -55,7 +55,7 @@ void D2::show_D2() {
 }
 
 /*************************/
-class D3: protected D2, protected B1 {
+class D3: virtual protected D2, virtual protected B2 {
 public:
   D3(int x, int y, int z, int i);
   ~D3();
@@ -66,7 +66,7 @@ public:
 
 };
 
-D3::D3(int x, int y, int z, int i): D2(y, z), B1(i) {
+D3::D3(int x, int y, int z, int i): D2(y, z), B2(i), B1(z) {
   d3 = x;
 }
 
@@ -77,7 +77,7 @@ D3::~D3() {
 void D3::show_D3() {
   cout << "D3 = " << d3 << endl;
   show_D2();
-  show_B1();
+  show_B2();
 
 }
 
@@ -93,16 +93,16 @@ public:
 
 };
 
-D4::D4(int x, int y, int z, int i, int j, int k, int o): D1(y, z), D3(i, j, k, o) {
+D4::D4(int x, int y, int z, int i, int j, int k, int o): D1(y, z), D3(i, j, k, o), B1(y), B2(o), D2(j, y) {
   d4 = x;
 }
 
 D4::~D4() {
   cout << "Деструктор D4" << endl;
-  show_D1();
-  show_D3();
 }
 
 void D4::show_D4() {
   cout << "D4 = " << d4 << endl;
+  show_D1();
+  show_D3();
 }
