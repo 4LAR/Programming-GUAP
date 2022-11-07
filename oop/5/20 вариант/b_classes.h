@@ -6,8 +6,10 @@ using namespace std;
 class B1 {
 public:
   B1(int x);
+  B1();
   ~B1();
   void show_B1();
+  void set_B1(int);
 
 public:
   int b1;
@@ -18,12 +20,22 @@ B1::B1(int x) {
   b1 = x;
 }
 
+B1::B1() {
+  b1 = 0;
+  cout << "Конструктор по умолчанию B1" << endl;
+}
+
+
 B1::~B1() {
   cout << "Деструктор B1" << endl;
 }
 
 void B1::show_B1() {
   cout << "B1 = " << b1 << endl;
+}
+
+void B1::set_B1(int x) {
+  b1 = x;
 }
 
 /*************************/
@@ -40,6 +52,7 @@ public:
 
 B2::B2(int x) {
   b2 = x;
+  cout << "Конструктор с аргументами B2" << endl;
 }
 
 B2::~B2() {

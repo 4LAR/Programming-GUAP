@@ -16,6 +16,8 @@ public:
 
 D1::D1(int x, int y): B1(y) {
   d1 = x;
+  set_B1(y);
+  cout << "Конструктор с аргументами D1" << endl;
 }
 
 D1::~D1() {
@@ -42,6 +44,7 @@ public:
 
 D2::D2(int x, int y): B1(y) {
   d2 = x;
+  cout << "Конструктор с аргументами D2" << endl;
 }
 
 D2::~D2() {
@@ -55,7 +58,7 @@ void D2::show_D2() {
 }
 
 /*************************/
-class D3: virtual protected D2, virtual protected B2 {
+class D3: protected D2, protected B2 {
 public:
   D3(int x, int y, int z, int i);
   ~D3();
@@ -66,8 +69,9 @@ public:
 
 };
 
-D3::D3(int x, int y, int z, int i): D2(y, z), B2(i), B1(z) {
+D3::D3(int x, int y, int z, int i): D2(y, z), B2(i) {
   d3 = x;
+  cout << "Конструктор с аргументами D3" << endl;
 }
 
 D3::~D3() {
@@ -93,8 +97,9 @@ public:
 
 };
 
-D4::D4(int x, int y, int z, int i, int j, int k, int o): D1(y, z), D3(i, j, k, o), B1(y), B2(o), D2(j, y) {
+D4::D4(int x, int y, int z, int i, int j, int k, int o): D1(y, z), D3(i, j, k, o) {
   d4 = x;
+  cout << "Конструктор с аргументами D4" << endl;
 }
 
 D4::~D4() {
