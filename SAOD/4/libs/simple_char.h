@@ -1,4 +1,4 @@
- 
+
 #include <iostream>
 
 char *get_string(int *len) {
@@ -23,4 +23,9 @@ int get_size_char(char* str) {
     while (str[size] != '\0') size++;
 
     return size;
+}
+
+void draw_char_array(char* str, int size) {
+  for (int i = 0; i < size; i++)
+    cout << str[i];
 }
