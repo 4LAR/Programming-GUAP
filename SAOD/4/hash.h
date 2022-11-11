@@ -39,19 +39,23 @@ private:
   hash_struct* hash_list;
 };
 
+// конструктор
 My_hash::My_hash(const char* Key_example, int Size_key, int Count_sigments = 2000) {
   key_example = Key_example;
-  // size_key = get_size_char((char*)key_example);
+
   size_key = Size_key;
   hash_list = (hash_struct*)malloc(sizeof(hash_struct));
 
   count_sigments = Count_sigments;
 }
 
+// деструктор
 My_hash::~My_hash() {
   free(hash_list);
 }
 
+
+// хеширование
 int My_hash::hash(char* key) {
   int value = 1;
   for (int i = 0; i < size_key; i++) {
@@ -60,6 +64,7 @@ int My_hash::hash(char* key) {
   return (value % count_sigments);
 }
 
+// генератор ключей
 char* My_hash::generate(bool random = true) {
   char* key = (char*) malloc(size_key * sizeof(char));
   int length;
@@ -88,6 +93,7 @@ char* My_hash::generate(bool random = true) {
   return key;
 }
 
+// проверка на правильность ключа (возвращает bool)
 bool My_hash::chek_key(char* key) {
   for (int i = 0; i < size_key; i++) {
     if (key_example[i] == 'i' && !(key[i] >= 48 && key[i] <= 57)) {return false;}
@@ -96,11 +102,11 @@ bool My_hash::chek_key(char* key) {
   return true;
 }
 
+// добавление ключа в список
 void My_hash::append_list(char* key) {
   hash_list = (hash_struct*)realloc(hash_list, (++size_list) * sizeof(hash_struct));
   hash_list[size_list -1].key = (char*) malloc(size_key * sizeof(char));
   hash_list[size_list -1].key = key;
-  // cout << hash_list[size_list -1].key << endl;
 
   int hash_bool = hash(key);
   while (true) {
@@ -113,6 +119,7 @@ void My_hash::append_list(char* key) {
 
 }
 
+// нахождение хеша в списке (возвращает bool)
 bool My_hash::find_by_hash(int hash) {
   for (int i = 0; i < size_list; i++) {
     if (hash == hash_list[i].hash) {
@@ -123,6 +130,7 @@ bool My_hash::find_by_hash(int hash) {
   return false;
 }
 
+// нахождение ключа в списке (возвращает bool)
 bool My_hash::find_by_key(char* key) {
   for (int i = 0; i < size_list; i++) {
     if (key == hash_list[i].key) {
@@ -133,20 +141,22 @@ bool My_hash::find_by_key(char* key) {
   return false;
 }
 
+// очистка списка
 void My_hash::clear_hash_list() {
   hash_list = (hash_struct*)malloc(sizeof(hash_struct));
   size_list = 0;
 }
 
+// вывод ключей, хеша и id
 void My_hash::draw_hash_list() {
   for (int i = 0; i < size_list; i++) {
     cout << i << " " << hash_list[i].hash << " ";
     draw_char_array(hash_list[i].key, size_key);
-    //cout << hash_list[i].key;
     cout << endl;
   }
 }
 
+// экспорт списка в файл
 void My_hash::export_to_file(char* file_name) {
   FILE *output_file;
 
@@ -156,7 +166,6 @@ void My_hash::export_to_file(char* file_name) {
     fprintf(output_file, "%d %d ", i, hash_list[i].hash);
     for (int j = 0; j < size_key; j++)
       fprintf(output_file, "%c", hash_list[i].key[j]);
-    //fprintf(output_file, "%s", hash_list[i].key);
     fprintf(output_file, "\n");
   }
 
