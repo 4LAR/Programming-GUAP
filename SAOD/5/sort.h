@@ -16,6 +16,8 @@ public:
   int pop(int);
   void draw(const char* promt);
 
+  int find_el(int);
+
 private:
   int* arr;
 
@@ -65,6 +67,13 @@ void Array::add(int x) {
   arr[size - 1] = x;
 
   if (auto_sort) sort_arr();
+}
+
+int Array::find_el(int x) {
+  for (int i = 0; i < size; i++) {
+    if (arr[i] == x) return i;
+  }
+  return -1;
 }
 
 // удаление элемента в массиве

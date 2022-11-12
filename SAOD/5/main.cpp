@@ -42,9 +42,10 @@ int menu() {
     cout << "2) удалить элемент из массива" << endl;
     cout << "3) вывести массив" << endl;
     cout << "4) сортировать массив" << endl;
+    cout << "5) Найти k-ое по порядку число среди элементов массива" << endl;
     cout << "0) Выход" << endl;
     id = read_value(" >>> ", false, false, false);
-    if (id >= 0 && id <= 4) {
+    if (id >= 0 && id <= 5) {
       return id;
     } else {
       cout << "Этого нет в меню" << endl;
@@ -86,6 +87,10 @@ int main() {
 
     case (4):
       array.sort_arr();
+      break;
+
+    case (5):
+      cout << "Найденый элемент: " << array.find_el(read_value("какой элемент найти: ", false, true, false)) << endl;
       break;
 
     }
