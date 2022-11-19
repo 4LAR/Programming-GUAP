@@ -70,10 +70,13 @@ void Array::add(int x) {
 }
 
 int Array::find_el(int x) {
-  for (int i = 0; i < size; i++) {
-    if (arr[i] == x) return i;
-  }
-  return -1;
+  // for (int i = 0; i < size; i++) {
+  //   if (arr[i] == x) return i;
+  // }
+  // return -1;
+  if (x > 0 && x < size)
+    return arr[x];
+  return 0;
 }
 
 // удаление элемента в массиве

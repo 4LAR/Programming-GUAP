@@ -58,7 +58,7 @@ int main() {
   system("chcp 65001");
   draw_line();
 
-  int size = read_value("Разсер массива: ", false, true, false);
+  int size = read_value("Разсер массива: ", false, false, false);
 
   Array array(size, true, true);
 
