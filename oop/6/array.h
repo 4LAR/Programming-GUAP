@@ -93,7 +93,7 @@ int Array::get_sum() {
   }
 
   if (!ok)
-    exception_func();
+    throw runtime_error ("В массиве нет положительных элементов.");
 
   int sum = 0;
 
@@ -112,6 +112,9 @@ int Array::get_sum() {
       posl_id = i;
       break;
     }
+
+  if (perv_id == posl_id)
+    throw runtime_error ("В массиве только 1 положительный элемент.");
 
   for (i = perv_id + 1; i < posl_id; i++)
     sum += arr[i];

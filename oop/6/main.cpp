@@ -50,7 +50,7 @@ int main() {
     cout << "Минимальный элемент массива: " << array.get_arr()[array.get_min()] << endl;
 
   } catch (MyException &ex) {
-    cout << "loh" << endl;
+    // cout << "Мы поймали " << ex.what() <<endl;
   }
 
   cout << "Сумма между первым положительным и последним: " << array.get_sum() << endl;
