@@ -3,6 +3,8 @@
 #include <iostream>
 using namespace std;
 
+#include <algorithm>
+
 #include <iomanip>
 #include <vector>
 
@@ -19,6 +21,7 @@ public:
   void generator(int);
   void show(const char* separator);
   void chenage_on_zero();
+  void devide_all();
   bool swap_els(int);
 
 private:
@@ -53,10 +56,20 @@ void Arr_vec::show(const char* separator = " ") {
 
 // замена эелементов массива (всё что меньше 10 заменить на 0)
 void Arr_vec::chenage_on_zero() {
-  for (int i = 0; i < my_vector.size(); i++) {
-    if (my_vector.at(i) < 10)
-      my_vector.at(i) = 0;
-  }
+  // for (int i = 0; i < my_vector.size(); i++) {
+  //   if (my_vector.at(i) < 10)
+  //     my_vector.at(i) = 0;
+  // }
+  replace_if(my_vector.begin(), my_vector.end(), [](int i) {return i < 10;}, 0);
+}
+
+// поделить все элементы массива на 2
+int xform(int i) {
+	return i / 2;
+}
+
+void Arr_vec::devide_all() {
+  transform(my_vector.begin() , my_vector.end(), my_vector.begin(), xform);
 }
 
 // зеркально обменять 2 первых элемента массива с 2 последними
