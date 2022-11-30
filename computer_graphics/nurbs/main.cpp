@@ -55,7 +55,7 @@ float mat_dif_light[] = {0.0f, 0.0f, 0.0f, 1.0};
 
 // model
 
-float vertices[] = {
+static float vertices[] = {
   1.0f, 1.0f, -1.0f,
   -1.0f, 1.0f, -1.0f,
   -1.0f, 1.0f,  1.0f,
@@ -193,15 +193,16 @@ void mouseMove(int xx, int yy) {
 
 void init_surface(void) {
     int u, v;
+    int m = 2; // 2
     for (u = 0; u < size_numb_y; u++) {
         for (v = 0; v < size_numb_x; v++) {
-            ctlpoints[u][v][0] = 2.0 * ((GLfloat)u - 1.5);
-            ctlpoints[u][v][1] = 2.0 * ((GLfloat)v - 1.5);
+            ctlpoints[u][v][0] = m * ((GLfloat)u - 1.5);
+            ctlpoints[u][v][1] = m * ((GLfloat)v - 1.5);
 
             if ((u == 1 || u == 2) && (v == 1 || v == 2))
-                ctlpoints[u][v][2] = 3.0;
-            else
-                ctlpoints[u][v][2] = -3.0;
+                ctlpoints[u][v][2] = 1.0;
+            // else
+            //     ctlpoints[u][v][2] = -1.0;
         }
     }
 }
@@ -233,9 +234,19 @@ void display(void) {
 
   gluEndSurface(theNurb);
 
+  glEnableClientState(GL_VERTEX_ARRAY);
+  for (int i = 1; i < 4; i++) {
+    glTranslatef(0.0f, 0.0f, i + 2);
+    glScalef(i, i, i);
+
+    glVertexPointer(3, GL_FLOAT, 0, &vertices);
+    // glDrawArrays(GL_QUADS, 0, sizeof(vertices) / sizeof(float));
+    glDrawArrays(GL_QUADS, 0, 24);
+  }
+  glDisableClientState(GL_VERTEX_ARRAY);
+
   glPopMatrix();
-  // glutSolidDodecahedron();
-  glVertexPointer(3, GL_FLOAT, 0, vertices);
+
   glFlush();
 }
 
@@ -302,11 +313,7 @@ int main(int argc, char** argv) {
 
   glutTimerFunc(0, timer, 0);
 
-
-
   glutMainLoop();
-
-
 
   return 0;
 }
