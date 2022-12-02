@@ -36,8 +36,13 @@ int main() {
   system("chcp 65001");
 
   Tree tree;
-  tree.append(10);
+  tree.append(11);
   tree.append(20);
+  tree.append(20);
+  tree.append(30);
+  tree.append(2);
+
+  tree.show();
 
   return 0;
 }
