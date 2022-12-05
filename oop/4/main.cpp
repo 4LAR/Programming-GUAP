@@ -40,13 +40,13 @@ int main() {
   //test_employee.show_info();
 
   // Стажер
-  Intern intern((char*)"test1", 2013, 13000, (char*)"Дэбил", 100, 1000);
+  Intern intern((char*)"test1", 2013, 13000, (char*)"тест", 100, 1000);
   intern.info();
 
   draw_line();
 
   // Руководящий работник
-  Leading_worker leading_worker((char*)"test2", 2020, 20000, (char*)"Завод для дэбилов", 10);
+  Leading_worker leading_worker((char*)"test2", 2020, 20000, (char*)"Завод", 10);
   leading_worker.info();
 
   draw_line();
