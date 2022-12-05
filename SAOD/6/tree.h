@@ -3,7 +3,7 @@ using namespace std;
 
 // узел дерева
 struct Node {
-  int elem;     // содержимое узла
+  double elem;     // содержимое узла
   int height;   // высота узла
 
   // Node *Prev;   // указатель на предка
@@ -19,6 +19,8 @@ public:
   void append(int);
   void pop();
   void show();
+  Node *get_root();
+  int get_height(Node* ptr);
   void print_recursion(Node* ptr);
 
 private:
@@ -61,19 +63,29 @@ void Tree::append(int elem) {
         }
       }
 
-      // if (tree == NULL) {
-      //   tree = new Node;
-      //   // tree = (Node*)malloc(sizeof(Node));
-      //   tree -> height = height;
-      //   tree -> elem = elem;
-      //   break;
-      // }
-
       height++;
     }
     tree = root;
   }
   // show();
+}
+
+void Tree::balance() {
+
+}
+
+Node *Tree::get_root() {
+  return tree;
+}
+
+int Tree::get_height(Node* ptr) {
+  if (ptr != NULL) {
+    int left = get_height(ptr -> left);
+    int right = get_height(ptr -> right);
+    return ((left > right)? left: right) + 1;
+  } else {
+    return 0;
+  }
 }
 
 //

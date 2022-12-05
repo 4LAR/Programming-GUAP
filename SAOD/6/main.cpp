@@ -40,7 +40,13 @@ int main() {
   tree.append(20);
   tree.append(20);
   tree.append(30);
+  tree.append(40);
+  tree.append(4);
   tree.append(2);
+  tree.append(1);
+  tree.append(3);
+
+  cout << "Высота дерева: " << tree.get_height(tree.get_root()) << endl;
 
   tree.show();
 
