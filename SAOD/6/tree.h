@@ -11,17 +11,21 @@ struct Node {
   Node *right = NULL;  // указатель на большего потомка
 };
 
+#include "balance.h"
+
+
 class Tree {
 public:
   Tree();
 
-  void balance();
-  void append(int);
+  void append(double);
+  void remove(Node*, double);
   void pop();
   void show();
   Node *get_root();
   int get_height(Node* ptr);
-  void print_recursion(Node* ptr);
+  Node* balance_node(Node* ptr);
+  void print_recursion(string prefix, Node* ptr, bool isLeft);
 
 private:
   Node *tree = NULL;
@@ -32,7 +36,7 @@ private:
 Tree::Tree() {}
 
 // доавление элемента
-void Tree::append(int elem) {
+void Tree::append(double elem) {
   if (tree == NULL) {
     tree = new Node;
     tree -> elem = elem;
@@ -62,16 +66,27 @@ void Tree::append(int elem) {
           break;
         }
       }
-
       height++;
     }
     tree = root;
+    tree = balance_node(tree);
   }
   // show();
 }
 
-void Tree::balance() {
+void Tree::remove(Node *ptr, double elem) {
 
+}
+
+Node* Tree::balance_node(Node *ptr) {
+  if (ptr -> left != NULL) {
+    ptr -> left = balance_node(ptr -> left);
+  }
+  if (ptr -> right != NULL) {
+    ptr -> right = balance_node(ptr -> right);
+  }
+  ptr = balance(ptr);
+  return ptr;
 }
 
 Node *Tree::get_root() {
@@ -90,14 +105,16 @@ int Tree::get_height(Node* ptr) {
 
 //
 void Tree::show() {
-  Node *root = tree;
-  print_recursion(tree);
-  tree = root;
+  print_recursion("", tree, false);
 }
 
 //
-void Tree::print_recursion(Node* ptr) {
-	if (ptr -> left != NULL) { print_recursion(ptr -> left); }
-	cout << ptr -> elem << endl;
-	if (ptr -> right != NULL) { print_recursion(ptr -> right); }
+void Tree::print_recursion(string prefix, Node* ptr, bool isLeft) {
+  if (ptr != NULL) {
+    cout << prefix;
+    cout << (isLeft ? "├──" : "└──" );
+    cout << ptr-> elem << endl;
+    print_recursion(prefix + ((isLeft) ? "│  " : "   "), ptr -> left, true);
+    print_recursion(prefix + ((isLeft) ? "│  " : "   "), ptr -> right, false);
+  }
 }

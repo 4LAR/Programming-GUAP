@@ -30,6 +30,7 @@ using namespace std;
 #include "libs/input_validation.h"
 
 #include "tree.h"
+// #include "balance.h"
 
 int main() {
   // смена кодировки
@@ -41,7 +42,13 @@ int main() {
   tree.append(20);
   tree.append(30);
   tree.append(40);
+  tree.append(50);
+  tree.append(60);
+  tree.append(70);
+  tree.append(25);
+  tree.append(12);
   tree.append(4);
+  tree.append(5);
   tree.append(2);
   tree.append(1);
   tree.append(3);
