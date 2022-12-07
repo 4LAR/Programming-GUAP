@@ -8,6 +8,7 @@ namespace global {
   extern float cam_xz_rotate;
   extern float cam_y_rotate;
   extern float cam_zoom;
+  extern bool light_run;
 }
 
 bool left = false;
@@ -58,6 +59,10 @@ void keyDown(unsigned char key, int xx, int yy) {
 
     case ('s'):
       down = true;
+      break;
+
+    case ('p'):
+      global::light_run = !global::light_run;
       break;
   }
 }

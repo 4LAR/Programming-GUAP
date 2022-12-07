@@ -27,6 +27,7 @@ namespace global {
   float cam_xz_rotate = 0;
   float cam_y_rotate = 0;
   float cam_zoom = 14;
+  bool light_run = true;
 }
 
 // замена while
