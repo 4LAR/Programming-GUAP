@@ -12,6 +12,7 @@ void fixheight(Node* p) {
 	p -> height = (hl > hr? hl: hr) + 1;
 }
 
+// поворот узла (право)
 Node* rotateright(Node* p) {
 	Node* q = p->left;
 	p->left = q->right;
@@ -21,6 +22,7 @@ Node* rotateright(Node* p) {
 	return q;
 }
 
+// поворот узла (лево)
 Node* rotateleft(Node* q) {
 	Node* p = q -> right;
 	q -> right = p -> left;
@@ -42,5 +44,37 @@ Node* balance(Node* p) {
 			p -> left = rotateleft(p -> left);
 		return rotateright(p);
 	}
-	return p; // балансировка не нужна
+	return p;
+}
+
+////////////////
+
+Node *findmin(Node *p) {
+	return p->left? findmin(p->left): p;
+}
+
+Node* removemin(Node* p) {
+	if( p->left==0 )
+		return p->right;
+	p->left = removemin(p->left);
+	return balance(p);
+}
+
+Node* remove(Node* p, int k) {
+	if( !p ) return 0;
+	if( k < p->elem )
+		p->left = remove(p->left,k);
+	else if( k > p->elem )
+		p->right = remove(p->right,k);
+	else {
+		Node* q = p->left;
+		Node* r = p->right;
+		delete p;
+		if( !r ) return q;
+		Node* min = findmin(r);
+		min->right = removemin(r);
+		min->left = q;
+		return balance(min);
+	}
+	return balance(p);
 }
