@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+#include <vector>
 
 // узел дерева
 struct Node {
@@ -22,7 +23,8 @@ public:
   void remove_elem(double);
   void show();
   Node* get_root();
-  int get_height(Node* ptr);
+  vector<double*> get_height();
+  void get_height_recursion(Node* ptr, int);
   Node* find(double);
   Node* balance_node(Node* ptr);
   void inOrder(Node* ptr);
@@ -30,6 +32,7 @@ public:
 
 private:
   Node *tree = NULL;
+  vector<double*> height_vector;
 
 };
 
@@ -135,14 +138,30 @@ void Tree::inOrder(Node* ptr) {
   inOrder(ptr -> right);
 }
 
-// получить высоту дерева
-int Tree::get_height(Node* ptr) {
+vector<double*> Tree::get_height() {
+  height_vector.clear();
+  get_height_recursion(tree, 1);
+  return height_vector;
+}
+
+// получить листы дерева
+void Tree::get_height_recursion(Node* ptr, int height = 1) {
   if (ptr != NULL) {
-    int left = get_height(ptr -> left);
-    int right = get_height(ptr -> right);
-    return ((left > right)? left: right) + 1;
-  } else {
-    return 0;
+    if (ptr -> left == NULL && ptr -> right == NULL) {
+
+      double* arr = new double[2];
+      arr[0] = ptr -> elem;
+      arr[1] = height;
+      height_vector.push_back(arr);
+      // delete arr;
+
+      // cout << ptr -> elem << " : " << height << endl;
+    }
+
+    else {
+      if (ptr -> left != NULL) get_height_recursion(ptr -> left, height + 1);
+      if (ptr -> right != NULL) get_height_recursion(ptr -> right, height + 1);
+    }
   }
 }
 
@@ -156,7 +175,7 @@ void Tree::print_recursion(string prefix, Node* ptr, bool isLeft) {
   if (ptr != NULL) {
     cout << prefix;
     cout << (isLeft ? "├──" : "└──" );
-    cout << ptr-> elem << endl;
+    cout << ptr -> elem << endl;
     print_recursion(prefix + ((isLeft) ? "│  " : "   "), ptr -> right, true);
     print_recursion(prefix + ((isLeft) ? "│  " : "   "), ptr -> left, false);
   }

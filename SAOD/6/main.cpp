@@ -30,7 +30,6 @@ using namespace std;
 #include "libs/input_validation.h"
 
 #include "tree.h"
-// #include "balance.h"
 
 #define RANDOM_MIN -100
 #define RANDOM_MAX 100
@@ -42,9 +41,11 @@ int menu() {
     cout << "3) Удалить элемент" << endl;
     cout << "4) Поиск" << endl;
     cout << "5) Обход дерева (симетрично - inOrder)" << endl;
+    cout << "6) Вывод глубин листов (minh, maxh)" << endl;
+    cout << "7) Выровнять листы (minh == maxh)" << endl;
     cout << "0) Выход" << endl;
     int id = read_value(" >>> ", false, false, false);
-    if (0 <= id <= 5) {
+    if (0 <= id <= 7) {
       return id;
 
     } else {
@@ -109,6 +110,53 @@ int main() {
         tree.inOrder(tree.get_root());
         cout << endl << "Нажмите enter для продолжения..." << endl;
         getchar();
+        break;
+      }
+
+      case (6): {
+        vector<double*> v = tree.get_height();
+        int min_id = 0;
+        int max_id = 0;
+        cout << "Все листы: ";
+        for (int i = 0; i < v.size(); i++) {
+          cout << setw(4) << v.at(i)[0] << ":" << v.at(i)[1] << " ";
+          if (v.at(i)[1] > v.at(min_id)[1])
+            min_id = i;
+          if (v.at(i)[1] < v.at(max_id)[1])
+            max_id = i;
+        }
+        cout << endl;
+        cout << "minh = " << v.at(min_id)[0] << ":" << v.at(min_id)[1] << endl;
+        cout << "maxh = " << v.at(max_id)[0] << ":" << v.at(max_id)[1] << endl;
+        cout << endl << "Нажмите enter для продолжения..." << endl;
+        getchar();
+        break;
+      }
+
+      case (7): {
+        vector<double*> v;
+        int min_id;
+        bool ok;
+        while (true) {
+          v = tree.get_height();
+
+          min_id = 0;
+          ok = true;
+          for (int i = 0; i < v.size(); i++) {
+            if (v.at(i)[1] < v.at(min_id)[1]) {
+              ok = false;
+              min_id = i;
+            }
+          }
+          
+          if (ok) break;
+
+          for (int i = 0; i < v.size(); i++) {
+            if (v.at(min_id)[1] != v.at(i)[1]) {
+              tree.remove_elem(v.at(i)[0]);
+            }
+          }
+        }
         break;
       }
 
