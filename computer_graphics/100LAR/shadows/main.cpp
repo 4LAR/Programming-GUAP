@@ -13,6 +13,7 @@
 
 #include <GL/freeglut.h>
 
+#include "models.h"
 #include "move.h" // функции для ПЕРЕДВИЖЕНИЯ
 #include "draw.h" // функции для ПРОРИСОВКИ
 
@@ -29,6 +30,7 @@ namespace global {
   float cam_zoom = 14;
   float light_xy_rotate = 0;
   float light_y_rotate = 0;
+  float obj_pos[3] = {0, 0, 0};
 }
 
 // замена while
@@ -45,7 +47,7 @@ int main(int argc, char **argv) {
   glutInitWindowSize(W_WIDTH, W_HEIGHT);
   glutCreateWindow(TITLE);
 
-  glPointSize(5);
+  init_surface();
 
   // передаём функции для прорисовки
   glutReshapeFunc(Reshape);

@@ -13,9 +13,24 @@ namespace global {
   extern float cam_zoom;
   extern float light_xy_rotate;
   extern float light_y_rotate;
+  extern float obj_pos[3];
 }
 
 // метериалы объектов
+float mat_dif_grass[] = {0.0f, 0.5f, 0.0f, 1.0f};
+float mat_spec_grass[] = {0.0f, 0.5f, 0.0f};
+float mat_amb_grass[] = {0.0f, 0.5f, 0.0f};
+float mat_shininess_grass = 0.1f * 128;
+
+float mat_dif_Sphere[] = {0.8f, 0.0f, 0.0f, 1.0f};
+float mat_spec_Sphere[] = {0.8f, 0.0f, 0.0f};
+float mat_amb_Sphere[] = {0.8f, 0.0f, 0.0f};
+float mat_shininess_Sphere = 0.1f * 128;
+
+float mat_dif_shadow[] = {0.0f, 0.0f, 0.0f, 0.8f};
+float mat_spec_shadow[] = {0.0f, 0.0f, 0.0f};
+float mat_amb_shadow[] = {0.0f, 0.0f, 0.0f};
+float mat_shininess_shadow = 0.1f * 128;
 
 // настройки света
 // материал объекта для визуализации источника
@@ -32,7 +47,7 @@ float light_position_fraction = 0.02;
 float light_position_radius = 10;
 float light_tick = 0;
 // центр вращения XYZ и W (если поставить не 0, то будет точечный источник света)
-float light_position[4] = {0.0, 5.0, 0.0, 0.0};
+float light_position[4] = {0.0, 4.0, 0.0, 0.0};
 
 // функция для отображения и включения света
 void set_light(GLenum name, GLfloat *light_position) {
@@ -85,10 +100,38 @@ void Display(void) {
   glEnable(GL_LIGHTING);
 
   /* настриваем источники света */
-  // light_position_rotate[0] = light_position[0][0] + (cos(light_tick) * light_position_radius);
-  // light_position_rotate[1] = light_position[0][1];
-  // light_position_rotate[2] = light_position[0][2] + (sin(light_tick) * light_position_radius);
-  // set_light(GL_LIGHT0, light_position_rotate);
+  set_light(GL_LIGHT0, light_position);
+
+  glMaterialfv(GL_FRONT, GL_AMBIENT, mat_amb_grass);
+  glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_dif_grass);
+  glMaterialfv(GL_FRONT, GL_SPECULAR, mat_spec_grass);
+  glMaterialf(GL_FRONT, GL_SHININESS, mat_shininess_grass);
+
+  glEnable(GL_AUTO_NORMAL);
+  draw_nurb();
+
+  // материал шара
+  glMaterialfv(GL_FRONT, GL_AMBIENT, mat_amb_Sphere);
+  glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_dif_Sphere);
+  glMaterialfv(GL_FRONT, GL_SPECULAR, mat_spec_Sphere);
+  glMaterialf(GL_FRONT, GL_SHININESS, mat_shininess_Sphere);
+
+  // шар
+  glTranslatef(global::obj_pos[0], 2, global::obj_pos[2]);
+  glutSolidSphere(1, 32, 32);
+
+  // материал тени
+  glMaterialfv(GL_FRONT, GL_AMBIENT, mat_amb_shadow);
+  glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_dif_shadow);
+  glMaterialfv(GL_FRONT, GL_SPECULAR, mat_spec_shadow);
+  glMaterialf(GL_FRONT, GL_SHININESS, mat_shininess_shadow);
+
+  // измененгие позиции тени
+  glTranslatef((global::obj_pos[0] - light_position[0]) / light_position[1], -1.9, (global::obj_pos[2] - light_position[2]) / light_position[1]);
+  // маштабирование тени в зависимости от положения источника оп высоте
+  glScalef(1 + abs(global::obj_pos[0] - light_position[0]) / (light_position[1] * 5), 0.5, 1 + abs(global::obj_pos[2] - light_position[2]) / (light_position[1] * 5));
+  // отрисовка тени
+  glutSolidSphere(1, 2, 32);
 
   // для того чтобы поверхность нормально реагировала на свет
   glEnable(GL_AUTO_NORMAL);
