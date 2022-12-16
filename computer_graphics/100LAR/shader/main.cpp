@@ -14,13 +14,14 @@
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 
+#include "shader.h" // функции для ШЕЙДЕРОВ
 #include "move.h" // функции для ПЕРЕДВИЖЕНИЯ
 #include "draw.h" // функции для ПРОРИСОВКИ
 
 #include <fstream>
 #include <string>
 
-#define TITLE "Shadows"
+#define TITLE "Shader"
 
 #define W_WIDTH 1280
 #define W_HEIGHT 720
@@ -52,9 +53,9 @@ int main(int argc, char **argv) {
   GLenum err = glewInit();
   if (GLEW_OK != err) {
     std::cout << "GLEW ERROR: " << glewGetErrorString(err) << std::endl;
-
   }
 
+  // загружаем шейдер с файла
   std::string f_shader_str = "";
   std::ifstream inp;
   inp.open("shader.frag");
@@ -64,8 +65,7 @@ int main(int argc, char **argv) {
   inp.close();
   f_shader_str.at(f_shader_str.length() - 1) = '\0';
 
-  // std::cout << f_shader_str << std::endl;
-
+  //
   make_shader(f_shader_str);
 
   // передаём функции для прорисовки

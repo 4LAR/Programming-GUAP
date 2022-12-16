@@ -61,7 +61,11 @@ void keyDown(unsigned char key, int xx, int yy) {
     case ('s'):
       down = true;
       break;
-      
+
+    case ('f'):
+      switch_shader();
+      break;
+
   }
 }
 

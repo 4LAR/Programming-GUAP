@@ -13,10 +13,13 @@ namespace global {
   extern float cam_y_rotate;
   extern float cam_zoom;
   extern float light_xy_rotate;
-  extern float light_y_rotate;
 }
 
 // метериалы объектов
+float mat_dif_cube[] = {0.8f, 0.0f, 0.0f, 1.0f};
+float mat_spec_cube[] = {0.8f, 0.0f, 0.0f};
+float mat_amb_cube[] = {0.8f, 0.0f, 0.0f};
+float mat_shininess_cube = 0.1f * 128;
 
 // настройки света
 // материал объекта для визуализации источника
@@ -56,32 +59,7 @@ void set_light(GLenum name, GLfloat *light_position) {
   glEnable(name);
 }
 
-GLuint ps, vs, prog, r_mod;
-void make_shader(std::string f_shader_str) {
-  const char *f_shader_char = f_shader_str.c_str();
-  const char* f =
 
-		"varying float x, y, z;"
-
-		"uniform float r_mod;"
-
-		"float rand(float s, float r) { return mod(mod(s, r + r_mod) * 112341.0, 1.0); }"
-
-		"void main() {"
-
-		"	gl_FragColor = vec4(0, 180, 180, 1.0);"//180,rand(gl_FragCoord.y, y), rand(gl_FragCoord.z, z), 1.0)
-
-		"}";
-
-  // std::cout << f_shader_str << std::endl;
-	ps = glCreateShader(GL_FRAGMENT_SHADER); //пустой объект шейдера. Фрагментный шейдер
-	glShaderSource(ps, 1, &f_shader_char, 0);//берет исходник шейдера из строки и ассоциирует его с шейдером ps
-  glCompileShader(ps);//компилирует шейдер ps
-	prog = glCreateProgram(); //создаём программу
-	glAttachShader(prog, ps);//говорим системе, что шейдеры vertexShaderId и fragmentShaderId будут частями программы prog
-	glLinkProgram(prog);// формирует программу из приаттаченных шейдеров
-	glUseProgram(prog);//сообщаем системе, что эту программу надо использовать для построения изображения
-}
 
 void Display(void) {
   glLoadIdentity();
@@ -118,6 +96,10 @@ void Display(void) {
   // light_position_rotate[2] = light_position[0][2] + (sin(light_tick) * light_position_radius);
   // set_light(GL_LIGHT0, light_position_rotate);
 
+  glMaterialfv(GL_FRONT, GL_AMBIENT, mat_amb_cube);
+  glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_dif_cube);
+  glMaterialfv(GL_FRONT, GL_SPECULAR, mat_spec_cube);
+  glMaterialf(GL_FRONT, GL_SHININESS, mat_shininess_cube);
   glutSolidCube(2);
 
   // для того чтобы поверхность нормально реагировала на свет
