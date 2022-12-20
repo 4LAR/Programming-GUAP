@@ -34,10 +34,12 @@ int menu() {
     cout << "3) Сгенерировать список ключей" << endl;
     cout << "4) Вывести список ключей" << endl;
     cout << "5) Очистить список ключей" << endl;
-    cout << "6) Экспортировать в файл" << endl << endl;
+    cout << "6) Экспортировать в файл" << endl;
+    cout << "7) Поиск по номеру сегмента" << endl;
+    cout << "8) Поиск по ключу" << endl;
     cout << "0) Выход" << endl;
     id = read_value(" >>> ", false, false, false);
-    if (id >= 0 && id <= 6) {
+    if (id >= 0 && id <= 8) {
       return id;
 
     } else {
@@ -59,7 +61,7 @@ int main() {
     c (char) = буква
   */
 
-  My_hash my_hash("iiicii", 6);
+  My_hash my_hash("ccciiiccc", 9);
 
   int menu_i;
   while (true) {
@@ -98,6 +100,18 @@ int main() {
     case (5):
       my_hash.clear_hash_list();
       break;
+
+    case (7):{
+      int id = read_value("Номер сегмента: ", false, false, false);
+      my_hash.get_find_by_id(id);
+      break;
+    }
+
+    case (8):{
+      char* key = my_hash.read_key();
+      my_hash.get_find_by_key(key);
+      break;
+    }
 
     case (6):
       int file_name_length;

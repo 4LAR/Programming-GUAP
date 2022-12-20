@@ -16,6 +16,7 @@ public:
 
   int hash(char*);
   char* generate(bool);
+  char* read_key();
 
   void draw_hash_list();
   void clear_hash_list();
@@ -24,6 +25,9 @@ public:
 
   bool find_by_hash(int);
   bool find_by_key(char*);
+  void get_find_by_key(char*);
+  void get_find_by_id(int);
+
 
   void export_to_file(char*);
 
@@ -54,7 +58,6 @@ My_hash::~My_hash() {
   free(hash_list);
 }
 
-
 // хеширование
 int My_hash::hash(char* key) {
   int value = 1;
@@ -62,6 +65,20 @@ int My_hash::hash(char* key) {
     value += (int)key[i] * (int)key[i];
   }
   return (value % count_sigments);
+}
+
+char* My_hash::read_key() {
+  char* key;
+  int length;
+  while (true) {
+    cout << "Введите ключ формата " << key_example << ": ";
+    key = get_string(&length);
+
+    if (length != size_key || !chek_key(key)) {
+      cout << "ключ не соответствует формату." << endl;
+    } else break;
+  }
+  return key;
 }
 
 // генератор ключей
@@ -139,6 +156,46 @@ bool My_hash::find_by_key(char* key) {
     }
   }
   return false;
+}
+
+// нахождение ключа в списке (возвращает ключ)
+void My_hash::get_find_by_id(int id) {
+  bool ok = false;
+  for (int i = 0; i < size_list; i++) {
+    if (i == id) {
+      cout << "Найденый ключ: ";
+      cout << hash_list[i].hash << " ";
+      draw_char_array(hash_list[i].key, size_key);
+      cout << endl;
+      ok = true;
+      break;
+    }
+  }
+  if (!ok) cout << "Такого ключа не существует." << endl;
+}
+
+bool check_enterd_key(char* key1, char*key2, int size_key) {
+  for (int i = 0; i < size_key; i++) {
+    if (toupper(key1[i]) != toupper(key2[i])) return false;
+  }
+  return true;
+}
+
+// нахождение ключа в списке (возвращает ключ)
+void My_hash::get_find_by_key(char* key) {
+  bool ok = false;
+  for (int i = 0; i < size_list; i++) {
+    // if (key == hash_list[i].key) {
+    if (check_enterd_key(key, hash_list[i].key, size_key)) {
+      cout << "Найденый ключ: ";
+      cout << i << " " << hash_list[i].hash << " ";
+      draw_char_array(hash_list[i].key, size_key);
+      cout << endl;
+      ok = true;
+      break;
+    }
+  }
+  if (!ok) cout << "Такого ключа не существует." << endl;
 }
 
 // очистка списка
