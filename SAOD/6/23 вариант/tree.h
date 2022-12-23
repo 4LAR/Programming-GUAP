@@ -171,17 +171,17 @@ void Tree::print_recursion(Node* ptr, Trunk *prev, bool isLeft) {
     print_recursion(ptr->right, trunk, true);
 
     if (!prev) {
-      trunk->str = "───";
+      trunk->str = "———";
     } else if (isLeft) {
-      trunk->str = "┌───";
-      prev_str = "   │";
+      trunk->str = ".———";
+      prev_str = "   |";
     } else {
-      trunk->str = "└───";
+      trunk->str = "`———";
       prev->str = prev_str;
     }
 
     showTrunks(trunk);
-    cout << ptr->elem << endl;
+    cout << " " << ptr->elem << endl;
 
     if (prev) {
       prev->str = prev_str;
