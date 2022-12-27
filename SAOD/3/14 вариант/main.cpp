@@ -27,7 +27,7 @@ using namespace std;
 
 int main() {
 	// смена кодировки
-  system("chcp 65001");
+  system("chcp 65001"); // для VS заменить на setlocale(LC_ALL, "Russian");
 
   srand(time(NULL));
 
