@@ -25,7 +25,6 @@ using namespace std;
 
 #include <iomanip>
 
-
 #include "tree.h"
 
 #define RANDOM_FILL_TREE false
