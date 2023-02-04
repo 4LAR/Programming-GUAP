@@ -126,6 +126,7 @@ void Processors::tick() {
   Task buf_stack;
   Task buf_generator;
 
+  // добавление задач из генератора в очередь (если есть место)
   if (generator -> get_size() > 0 && queue -> get_size() < size_queue) {
     buf_generator = generator -> get();
     queue -> append(
@@ -135,7 +136,7 @@ void Processors::tick() {
     );
   }
 
-  //работа процессора
+  // работа 1 процессора
   if (durationTime1 > 0) {
     durationTime1 -= 1;
     if (!(durationTime1 > 0))
@@ -146,6 +147,7 @@ void Processors::tick() {
     run1 = false;
   }
 
+  // работа 2 процессора
   if (durationTime2 > 0) {
     durationTime2 -= 1;
     if (!(durationTime2 > 0))
@@ -156,6 +158,7 @@ void Processors::tick() {
     run2 = false;
   }
 
+  // работа 3 процессора
   if (durationTime3 > 0) {
     durationTime3 -= 1;
     if (!(durationTime3 > 0))
@@ -166,7 +169,9 @@ void Processors::tick() {
     run3 = false;
   }
 
-  if (queue -> get_size() > 0) {
+  // логика распределителя
+  if (queue -> get_size() > 0) { // если в очереди есть задачи
+    // распределение задач по процессорам
     if (durationTime1 < 1) {
       buf1 = queue -> pop(0);
       durationTime1 = buf1.durationTime;
@@ -177,6 +182,8 @@ void Processors::tick() {
       buf3 = queue -> pop(0);
       durationTime3 = buf3.durationTime;
     } else if (stack -> get_size() < size_stack) {
+      // если процессоры заняты и есть место в стеке,
+      // то закидываем задачу в стек
       buf_stack = queue -> pop(0);
       stack -> append(
         buf_stack.priority,
@@ -185,6 +192,7 @@ void Processors::tick() {
       );
     }
   } else {
+    // если очередь пуста, то распределяем по процессорам задачи из стека
     if (stack -> get_size() > 0) {
       if (durationTime1 < 1) {
         buf1 = stack -> pop((stack -> get_size()) - 1);
