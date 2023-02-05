@@ -6,8 +6,7 @@ using namespace std;
 
 struct hash_struct {
   int hash;
-  char** key;
-  int count_keys;
+  char* key;
 };
 
 class My_hash {
@@ -29,7 +28,6 @@ public:
   void get_find_by_key(char*);
   void get_find_by_id(int);
 
-
   void export_to_file(char*);
 
 private:
@@ -45,7 +43,7 @@ private:
 };
 
 // конструктор
-My_hash::My_hash(const char* Key_example, int Size_key, int Count_sigments = 1500) {
+My_hash::My_hash(const char* Key_example, int Size_key, int Count_sigments = 2500) {
   key_example = Key_example;
 
   size_key = Size_key;
@@ -122,26 +120,20 @@ bool My_hash::chek_key(char* key) {
 
 // добавление ключа в список
 void My_hash::append_list(char* key) {
-  int hash_bool = hash(key);
-  if (find_by_hash(hash_bool)) {
-    for (int i = 0; i < size_list; i++) {
-      if (hash_bool == hash_list[i].hash) {
-        // если такой хеш уже существует
-        hash_list[i].count_keys++;
-        hash_list[i].key = (char**)realloc(hash_list[i].key, hash_list[i].count_keys * sizeof(char*));
-        hash_list[i].key[hash_list[i].count_keys - 1] = (char*)malloc(size_key * sizeof(char));
-        hash_list[i].key[hash_list[i].count_keys - 1] = key;
-      }
-    }
-  } else {
-    // если такого хеша не ещё не существет
-    hash_list = (hash_struct*)realloc(hash_list, (++size_list) * sizeof(hash_struct));
-    hash_list[size_list -1].hash = hash_bool;
-    hash_list[size_list -1].key = (char**)malloc(sizeof(char*));
-    hash_list[size_list -1].key[0] = (char*)malloc(size_key * sizeof(char));
-    hash_list[size_list -1].key[0] = key;
-    hash_list[size_list -1].count_keys = 1;
+  hash_list = (hash_struct*)realloc(hash_list, (++size_list) * sizeof(hash_struct));
+  hash_list[size_list -1].key = (char*) malloc(size_key * sizeof(char));
+  hash_list[size_list -1].key = key;
 
+  int hash_num = hash(key);
+  int hash_buf;
+  int i = 0;
+  while (true) {
+    hash_buf = hash_num + (i * hash_num);
+    if (!find_by_hash(hash_buf)) {
+      hash_list[size_list -1].hash = hash_buf;
+      break;
+    }
+    i++;
   }
 
 }
@@ -160,11 +152,9 @@ bool My_hash::find_by_hash(int hash) {
 // нахождение ключа в списке (возвращает bool)
 bool My_hash::find_by_key(char* key) {
   for (int i = 0; i < size_list; i++) {
-    for (int j = 0; j < hash_list[i].count_keys; j++) {
-      if (key == hash_list[i].key[j]) {
-        // cout << "2" << endl;
-        return true;
-      }
+    if (key == hash_list[i].key) {
+      // cout << "2" << endl;
+      return true;
     }
   }
   return false;
@@ -177,16 +167,11 @@ void My_hash::get_find_by_id(int id) {
     if (i == id) {
       cout << "Найденый ключ: ";
       cout << hash_list[i].hash << " ";
-      for (int j = 0; j < hash_list[i].count_keys; j++) {
-        draw_char_array(hash_list[i].key[j], size_key);
-        cout << " ";
-      }
+      draw_char_array(hash_list[i].key, size_key);
       cout << endl;
       ok = true;
       break;
-
     }
-
   }
   if (!ok) cout << "Такого ключа не существует." << endl;
 }
@@ -202,20 +187,15 @@ bool check_enterd_key(char* key1, char*key2, int size_key) {
 void My_hash::get_find_by_key(char* key) {
   bool ok = false;
   for (int i = 0; i < size_list; i++) {
-    for (int j = 0; j < hash_list[i].count_keys; j++) {
-      if (check_enterd_key(key, hash_list[i].key[j], size_key)) {
-        cout << "Найденый ключ: ";
-        cout << i << " " << hash_list[i].hash << " ";
-        for (int k = 0; k < hash_list[i].count_keys; k++) {
-          draw_char_array(hash_list[i].key[k], size_key);
-          cout << " ";
-        }
-        cout << endl;
-        ok = true;
-        break;
-      }
+    // if (key == hash_list[i].key) {
+    if (check_enterd_key(key, hash_list[i].key, size_key)) {
+      cout << "Найденый ключ: ";
+      cout << i << " " << hash_list[i].hash << " ";
+      draw_char_array(hash_list[i].key, size_key);
+      cout << endl;
+      ok = true;
+      break;
     }
-    if (ok) break;
   }
   if (!ok) cout << "Такого ключа не существует." << endl;
 }
@@ -230,10 +210,7 @@ void My_hash::clear_hash_list() {
 void My_hash::draw_hash_list() {
   for (int i = 0; i < size_list; i++) {
     cout << i << " " << hash_list[i].hash << " ";
-    for (int j = 0; j < hash_list[i].count_keys; j++) {
-      draw_char_array(hash_list[i].key[j], size_key);
-      cout << " ";
-    }
+    draw_char_array(hash_list[i].key, size_key);
     cout << endl;
   }
 }
@@ -246,11 +223,8 @@ void My_hash::export_to_file(char* file_name) {
 
   for (int i = 0; i < size_list; i++) {
     fprintf(output_file, "%d %d ", i, hash_list[i].hash);
-    for (int j = 0; j < hash_list[i].count_keys; j++) {
-      for (int k = 0; k < size_key; k++)
-        fprintf(output_file, "%c", hash_list[i].key[j][k]);
-      fprintf(output_file, " ");
-    }
+    for (int j = 0; j < size_key; j++)
+      fprintf(output_file, "%c", hash_list[i].key[j]);
     fprintf(output_file, "\n");
   }
 
