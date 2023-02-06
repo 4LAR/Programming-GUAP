@@ -47,10 +47,11 @@ int menu() {
     cout << "6) Экспортировать в файл" << endl;
     cout << "7) Поиск по номеру сегмента" << endl;
     cout << "8) Поиск по ключу" << endl;
+    cout << "9) Удалить элемент списка" << endl;
     cout << "0) Выход" << endl;
     cout << " >>> ";
     id = read_double();
-    if (id >= 0 && id <= 8) {
+    if (id >= 0 && id <= 9) {
       return id;
 
     } else {
@@ -123,6 +124,19 @@ int main() {
     case (8):{
       char* key = my_hash.read_key();
       my_hash.get_find_by_key(key);
+      break;
+    }
+
+    case (9):{
+      my_hash.draw_hash_list();
+      cout << "Номер удаляемого элемента: ";
+      int id = read_double();
+
+      if (my_hash.remove_id(id)) {
+        cout << "Элемент " << id << " успешно удалён." << endl;
+      } else {
+        cout << "Такого элемента не существует." << endl;
+      }
       break;
     }
 

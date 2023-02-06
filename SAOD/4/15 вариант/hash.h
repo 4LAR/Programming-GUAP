@@ -27,7 +27,7 @@ public:
   bool find_by_key(char*);
   void get_find_by_key(char*);
   void get_find_by_id(int);
-
+  bool remove_id(int id);
 
   void export_to_file(char*);
 
@@ -204,6 +204,26 @@ void My_hash::get_find_by_key(char* key) {
 void My_hash::clear_hash_list() {
   hash_list = (hash_struct*)malloc(sizeof(hash_struct));
   size_list = 0;
+}
+
+// удаление хеша по id
+bool My_hash::remove_id(int id) {
+  if (id < 0 || id >= size_list)
+    return false;
+
+  hash_struct* hash_list_new = (hash_struct*)malloc((size_list - 1) * sizeof(hash_struct));
+  int j = 0;
+  for (int i = 0; i < size_list; i++) {
+    if (i != id) {
+      hash_list_new[j].key = hash_list[i].key;
+      hash_list_new[j].hash = hash_list[i].hash;
+      j++;
+    }
+  }
+  size_list--;
+  hash_list = (hash_struct*)malloc((size_list) * sizeof(hash_struct));
+  hash_list = hash_list_new;
+  return true;
 }
 
 // вывод ключей, хеша и id
