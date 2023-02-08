@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QKeyEvent>
 #include <QString>
+#include <QStringListModel>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -19,6 +20,8 @@ public:
 
     void button_press(QString, int);
     double calculate(double, double, int);
+    void append_to_history(QString);
+    void clear_to_history();
 
 private:
     Ui::MainWindow *ui;
@@ -27,7 +30,12 @@ private:
     int operation = 0;
     bool clear_next = false;
 
+    QStringListModel *model = new QStringListModel(this);
+    QStringList List;
+
 protected:
     void keyPressEvent(QKeyEvent *event);
+private slots:
+    void on_pushButton_clicked();
 };
 #endif // MAINWINDOW_H

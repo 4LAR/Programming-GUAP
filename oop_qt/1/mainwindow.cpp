@@ -3,6 +3,7 @@
 
 #include <QPushButton>
 #include <QString>
+#include <QStringListModel>
 #include <QDebug>
 #include <QtMath>
 
@@ -17,6 +18,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 
     ui->lineEdit->setReadOnly(true);
     ui->lineEdit_2->setReadOnly(true);
+
+//    QStringListModel *model = new QStringListModel(this);
 
     QString CALC_BUTTONS[CALC_BUTTONS_Y][CALC_BUTTONS_X] = {
         {"", "", "", "", "C"},
@@ -74,6 +77,18 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 
 MainWindow::~MainWindow() {
     delete ui;
+}
+
+void MainWindow::clear_to_history() {
+    List.clear();
+    model->setStringList(List);
+    ui->listView->setModel(model);
+}
+
+void MainWindow::append_to_history(QString text) {
+    List << text;
+    model->setStringList(List);
+    ui->listView->setModel(model);
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event) {
@@ -156,18 +171,49 @@ double MainWindow::calculate(double a, double b, int type) {
     }
 }
 
+
+QString get_qs_type(int type) {
+    switch(type) {
+    case(1):
+        return "+";
+        break;
+    case(2):
+        return "-";
+        break;
+    case(3):
+        return "×";
+        break;
+    case(4):
+        return "÷";
+        break;
+    case(5):
+        return "√";
+        break;
+    default:
+        return "";
+    }
+}
+
 void MainWindow::button_press(QString text, int type) {
 //    qInfo() << text;
     double out;
+    QString operation_str = "";
     if (type == 7) { // вычисление
         if (buf && ui->lineEdit->text() != "" && ui->lineEdit_2->text() != "") {
-            out = calculate(buf, ui->lineEdit->text().toDouble(), type);
+            out = calculate(buf, ui->lineEdit->text().toDouble(), operation);
+            //ui->lineEdit_3->setText(QString::number(out) + ui->lineEdit->text() + QString::number(out));
+
+            append_to_history(QString::number(out) + "=" + ui->lineEdit->text() + get_qs_type(operation) + QString::number(buf));
+
             ui->lineEdit->setText(QString::number(out));
             operation = 0;
             ui->lineEdit_2->setText("");
+            ui->lineEdit_3->setText("");
             buf = out;
         }
     }else if (type == 5) {
+        out = qSqrt(ui->lineEdit->text().toDouble());
+        append_to_history(QString::number(out) + "=" + ui->lineEdit->text() + "√");
         ui->lineEdit->setText(
             QString::number(qSqrt(ui->lineEdit->text().toDouble()))
         );
@@ -175,19 +221,26 @@ void MainWindow::button_press(QString text, int type) {
         operation = type;
         buf = ui->lineEdit->text().toDouble();
         ui->lineEdit_2->setText(text);
-        clear_next = true;
+        ui->lineEdit_3->setText(ui->lineEdit->text());
+        ui->lineEdit->setText("");
+//        clear_next = true;
 
     } else if (type == 6) { // удаление
         ui->lineEdit->setText("");
         ui->lineEdit_2->setText("");
-        clear_next = false;
+//        clear_next = false;
         buf = NULL;
     } else if (type == 0) { // добавление цифр
-        if (clear_next) {
-            ui->lineEdit->setText("");
-            clear_next = false;
-        }
+//        if (clear_next) {
+//            ui->lineEdit->setText("");
+//            clear_next = false;
+//        }
         ui->lineEdit->text();
         ui->lineEdit->setText(ui->lineEdit->text() + text);
     }
 }
+
+void MainWindow::on_pushButton_clicked() {
+    clear_to_history();
+}
+
