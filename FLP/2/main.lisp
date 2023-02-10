@@ -4,21 +4,26 @@
 ;Вход: (1 2 3 4 5 6 7 8 9).
 ;Выход: (2 0 4 2 6 4 6 6 10).
 
-;(defun del-even (lst)
-;  (cond ((< (length lst) 2) lst)
-;        (t (cons (car lst) (del-even (cddr lst))))))
-;(terpri)
-;(write (del-even (list 1 2 3 4 5 6 7 8 9)))
-;(terpri)
+; чётное(T) не чётное(NIL)
+(defun isEven (num)
+  (zerop(logand num 1))
+)
 
-(defun isEven ( num )(zerop(logand num 1)))
-
-(defun transform (lst)
-  (write-line "loh")
-  (cond ((< (length lst) 2) lst)
-
-    (t (cons (car lst) (transform (cddr lst))))
+; функция для решения задания
+(defun transform (lst)  
+  (cond (                                               ; if
+      (< (length lst) 1)                                ; условие
+      (car lst)                                         ; если true
+    )
+    (T (cond (                                          ; else ; if
+          (isEven(car lst))                             ; условие (если чётное)
+          (cons (- (car lst) 2)(transform(cdr lst)))    ; если true (уменьшаем число на 2 и вызываем рекурсивно функцию без текущего элемента)
+        )
+        (T (cons (+ (car lst) 1)(transform(cdr lst))))  ; если false (уменьшаем число на 2 и вызываем рекурсивно функцию без текущего элемента)
+      )
+    )
   )
 )
 
-(write (transform (list 1 2 3 4 5 6 7 8)))
+(terpri)(write (list 2 2 3 4 5 6 7 8))                  ; изначальный список
+(terpri)(write (transform (list 2 2 3 4 5 6 7 8)))      ; вызываем функцию и выводим результат
