@@ -11,10 +11,6 @@
 (write (caaddr '( A ((B) (C) ) (D) (K) L) ))(terpri) ; D
 (write (caddr '( A ((B) (C) ) (D) (K) L) ))(terpri) ; (D)
 
-;(write (car '( A ((B) (C) ) (D) (K) L) ))(terpri)
-;(write (caaadr '( A ((B) (C) ) (D) (K) L) ))(terpri)
-;(write (car(cadadr '( A ((B) (C) ) (D) (K) L) )))(terpri)
-
 ; (A B C)
 (write
   (cons (car '( A ((B) (C) ) (D) (K) L) )
