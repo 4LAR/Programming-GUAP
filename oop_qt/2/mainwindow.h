@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QListWidgetItem>
+#include <QStringList>
+#include <QStringListModel>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -16,8 +19,19 @@ public:
     ~MainWindow();
 
     void loadBoxes();
+    void loadImages();
+    void update_count(QString, int);
+    void generate_price(bool);
+
+private slots:
+   void test(QListWidgetItem *item);
+
+   void on_pushButton_2_clicked();
 
 private:
     Ui::MainWindow *ui;
+
+    QStringListModel *model = new QStringListModel(this);
+
 };
 #endif // MAINWINDOW_H
