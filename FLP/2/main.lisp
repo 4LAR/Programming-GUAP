@@ -12,8 +12,8 @@
 ; функция для решения задания
 (defun transform (lst)  
   (cond (                                               ; if
-      (< (length lst) 1)                                ; условие
-      (car lst)                                         ; если true
+      (null lst)                                        ; условие
+      nil                                               ; если true
     )
     (T (cond (                                          ; else ; if
           (isEven(car lst))                             ; условие (если чётное)
