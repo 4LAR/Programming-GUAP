@@ -17,6 +17,7 @@ using namespace std;
 
 #define _USE_MATH_DEFINES
 
+// класс реализующий метод ХОРД
 class Method_HORD {
 public:
   Method_HORD(double, double, double, double);
@@ -28,6 +29,7 @@ private:
   double epsilon;
 };
 
+// конструктор
 Method_HORD::Method_HORD(double _a, double _b, double _c, double _epsilon) {
   a = _a;
   b = _b;
@@ -41,30 +43,52 @@ Method_HORD::Method_HORD(double _a, double _b, double _c, double _epsilon) {
   cout << "  E = " << epsilon << endl;
 }
 
+// функция
 double Method_HORD::func(double x) {
   return (a / x) + b * exp(c * x);
-  // return pow(x, 3) - 2 * pow(x, 2) - 6 * x - 1;
 }
 
-double Method_HORD::find(double min, double max) {
-  while (fabs(max - min) > epsilon) {
-    min = max - (max - min) * func(max) / (func(max) - func(min));
-    max = min - (min - max) * func(min) / (func(min) - func(max));
-    cout << min << " " << max << endl;
+// double Method_HORD::find(double min, double max) {
+//   while (fabs(max - min) > epsilon) {
+//     min = max - (max - min) * func(max) / (func(max) - func(min));
+//     max = min - (min - max) * func(min) / (func(min) - func(max));
+//     cout << min << " " << max << endl;
+//   }
+//
+//   return max;
+// }
+
+// нахождение корня
+double Method_HORD::find(double a, double b) {
+  double t;
+
+  while (fabs(b - a) >= epsilon) {
+    t = a + (func(b) * (b - a)) / (func(b) - func(a));
+
+    if (func(a) * func(t) < 0) {
+      b = t;
+    } else if (func(t) * func(b) < 0) {
+      a = t;
+    } else
+      return t;
   }
 
-  return max;
+  return t;
 }
 
 int main() {
   // смена кодировки
   system("chcp 65001");
+
+  // изначальные данные
   double a = 2.37;
   double b = -0.99;
   double c = 0.56;
   double epsilon = 5 * pow(10, -4);
 
   Method_HORD method_HORD(a, b, c, epsilon);
+
+  // рассчёт
   cout << method_HORD.find(-5, 5) << endl;
 
   return 0;
