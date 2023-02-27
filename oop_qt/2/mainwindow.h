@@ -21,6 +21,7 @@ public:
     void loadBoxes();
     void loadImages();
     void update_count(QString, int);
+    int get_id(QString);
     void generate_price(bool);
 
 private slots:
@@ -32,6 +33,7 @@ private:
     Ui::MainWindow *ui;
 
     QStringListModel *model = new QStringListModel(this);
+    int id_main = -1;
 
 };
 #endif // MAINWINDOW_H

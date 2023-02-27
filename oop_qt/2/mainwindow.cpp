@@ -55,21 +55,40 @@ void MainWindow::generate_price(bool save_check = false) {
     QStringList List;
     int sum = 0;
     int count = 0;
+
     for (int i = 0; i < SIZE_SHOP_LIST; i++) {
         if (shop_list[i][3].toInt() > 0) {
-            List << shop_list[i][2] + " = " + shop_list[i][0] + " " + shop_list[i][1];
-            sum += shop_list[i][2].toInt();
             count++;
         }
     }
-    if (count < 1)
+
+    if (count < 1) {
+        if (count == 0) {
+            id_main = -1;
+        }
         List << "Пусто";
+    }
+
+    if (id_main != -1) {
+        List << "Основной товар: " << shop_list[id_main][2] + " = " + shop_list[id_main][0] + " " + shop_list[id_main][1];
+    }
+
+    if (count > 1) {
+        List << "Дополнительные товары: ";
+    }
+    for (int i = 0; i < SIZE_SHOP_LIST; i++) {
+        if (shop_list[i][3].toInt() > 0 && id_main != i) {
+            List << shop_list[i][2] + " = " + shop_list[i][0] + " " + shop_list[i][1];
+            sum += shop_list[i][2].toInt();
+        }
+    }
+
 
     List << "--------";
     if (count == SIZE_SHOP_LIST) {
-        List << "Скидка: " + QString::number(DISCOUNT) + "%";
-        List << "Без скидки: " + QString::number(sum) + "руб";
-        List << "Итог: " + QString::number(sum - ((sum / 100) * DISCOUNT)) + "руб";
+        List << "Скидка на доп. товары: " + QString::number(DISCOUNT) + "%";
+        List << "Без скидки на доп. товары: " + QString::number(sum) + "руб";
+        List << "Итог: " + QString::number(sum - (((sum - shop_list[id_main][2].toInt()) / 100) * DISCOUNT)) + "руб";
     } else {
         List << "Итог: " + QString::number(sum) + "руб";
     }
@@ -82,7 +101,7 @@ void MainWindow::generate_price(bool save_check = false) {
 
         QString filename = "check.txt";
         QFile file(filename);
-        if (file.open(QIODevice::ReadWrite)) {
+        if (file.open(QFile::WriteOnly|QFile::Truncate)) {
             QTextStream stream(&file);
             for (int i = 0; i < List.size(); ++i)
                 stream << List.at(i) << '\n';
@@ -90,18 +109,37 @@ void MainWindow::generate_price(bool save_check = false) {
     }
 }
 
+int MainWindow::get_id(QString name) {
+    for (int i = 0; i < SIZE_SHOP_LIST; i++) {
+        if (name == shop_list[i][1]) {
+            return i;
+        }
+    }
+    return -1;
+}
+
 void MainWindow::update_count(QString name, int count) {
     for (int i = 0; i < SIZE_SHOP_LIST; i++) {
         if (name == shop_list[i][1]) {
-            shop_list[i][3] = QString::number(shop_list[i][3].toInt() + count);
+            if ((count == 1 && shop_list[i][3] == "0") || (count == -1 && shop_list[i][3] == "1"))
+                shop_list[i][3] = QString::number(shop_list[i][3].toInt() + count);
             break;
         }
     }
 }
 
 void MainWindow::test(QListWidgetItem *item){
-    //QStringList buf;
+//    if (item->checkState() == Qt::Checked)
+//        item->setCheckState(Qt::Unchecked);
+//    else
+//        item->setCheckState(Qt::Checked);
+
     QString name = item->text().split(" ")[1];
+
+    if (id_main == -1) {
+        id_main = get_id(name);
+    }
+
     if (item->checkState() == Qt::Checked) {
         update_count(name, 1);
     } else {
