@@ -15,8 +15,8 @@ using namespace std;
 
 #define _USE_MATH_DEFINES
 
-#define DEFAULT_VAREBLES false
-#define DEFAULT_RANGE false
+#define DEFAULT_VAREBLES true
+#define DEFAULT_RANGE true
 
 // проверка ввода
 double read_double(const char* promt = ""){
@@ -73,7 +73,6 @@ double Method_HORD::double_derivative_func(double x) {
   return (b * c * c) * exp(c * x) + (a * a) / pow(x, 3);
 }
 
-
 double Method_HORD::find(double a, double b) {
   iterCount = 0;
   double d, c;
@@ -94,8 +93,6 @@ double Method_HORD::find(double a, double b) {
 	}
 	return (a + b) / 2;
 }
-
-
 
 int main() {
   // смена кодировки
@@ -136,8 +133,10 @@ int main() {
   Method_HORD method_HORD(a, b, c, epsilon);
 
   // рассчёт
-  cout << endl << "Результат: " << method_HORD.find(xMin, xMax) << endl;
-  cout << "Потребовалось " << method_HORD.iterCount << " итериций." << endl;
+	// cout << endl << "Результат: " << method_HORD.find(xMin, xMax) << endl;
+  printf("Найденый корень: %lf\n", method_HORD.find(xMin, xMax));
+	cout << method_HORD.func(method_HORD.find(xMin, xMax));
+  cout << "Потребовалось " << method_HORD.iterCount << " итераций." << endl;
 
   return 0;
 }
