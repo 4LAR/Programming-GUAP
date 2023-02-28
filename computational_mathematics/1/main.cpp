@@ -10,12 +10,24 @@
 #include <iostream>
 using namespace std;
 
-// #include "libs/lib.h"
-
 #include <cmath>
 #include <iomanip>
 
 #define _USE_MATH_DEFINES
+
+#define DEFAULT_VAREBLES false
+#define DEFAULT_RANGE false
+
+// проверка ввода
+double read_double(const char* promt = ""){
+	double x;
+  cout << promt;
+  while ( (scanf("%lf",&x) ) != 1 ) {
+    cout << "Неверное введенное значение, попробуйте еще." << endl << promt;
+    while(getchar() != '\n');
+  }
+  return x;
+}
 
 // класс реализующий метод ХОРД
 class Method_HORD {
@@ -26,6 +38,7 @@ public:
   double double_derivative_func(double);
   double find(double, double);
 
+  int iterCount;
 private:
   double a, b, c;
   double epsilon;
@@ -45,34 +58,6 @@ Method_HORD::Method_HORD(double _a, double _b, double _c, double _epsilon) {
   cout << "  E = " << epsilon << endl;
 }
 
-// double Method_HORD::find(double min, double max) {
-//   while (fabs(max - min) > epsilon) {
-//     min = max - (max - min) * func(max) / (func(max) - func(min));
-//     max = min - (min - max) * func(min) / (func(min) - func(max));
-//     cout << min << " " << max << endl;
-//   }
-//
-//   return max;
-// }
-
-// нахождение корня
-// double Method_HORD::find(double a, double b) {
-//   double t;
-//
-//   while (fabs(b - a) >= epsilon) {
-//     t = a + (func(b) * (b - a)) / (func(b) - func(a));
-//
-//     if (func(a) * func(t) < 0) {
-//       b = t;
-//     } else if (func(t) * func(b) < 0) {
-//       a = t;
-//     } else
-//       return t;
-//   }
-//
-//   return t;
-// }
-
 // функция
 double Method_HORD::func(double x) {
   return (a / x) + b * exp(c * x);
@@ -90,7 +75,7 @@ double Method_HORD::double_derivative_func(double x) {
 
 
 double Method_HORD::find(double a, double b) {
-  int iterCount = 0;
+  iterCount = 0;
   double d, c;
 	while (abs(abs(b) - abs(a)) > 2 * epsilon) {
 		if (func(a) * double_derivative_func(a) > 0) {
@@ -105,7 +90,7 @@ double Method_HORD::find(double a, double b) {
 			a = c;
 		}
 		iterCount++; // узнать кол-во итераций
-    cout << iterCount << " " << a << " " << b << endl;
+    //cout << iterCount << " " << a << " " << b << endl;
 	}
 	return (a + b) / 2;
 }
@@ -116,16 +101,43 @@ int main() {
   // смена кодировки
   system("chcp 65001");
 
-  // изначальные данные
-  double a = 2.37;
-  double b = -0.99;
-  double c = 0.56;
-  double epsilon = 5 * pow(10, -4);
+  // переменные для подстановки в функцию
+  double a, b, c, epsilon;
+  if (DEFAULT_VAREBLES) {
+    a = 2.37;
+    b = -0.99;
+    c = 0.56;
+    epsilon = 5 * pow(10, -4);
+  } else {
+    a = read_double("A = ");
+    b = read_double("B = ");
+    c = read_double("C = ");
+    epsilon = read_double("E = ");
+  }
+
+  // диапазон
+  double xMin, xMax;
+  if (DEFAULT_RANGE) {
+    xMin = 0.1;
+    xMax = 10;
+  } else {
+    while (true) {
+      xMin = read_double("xMin = ");
+      xMax = read_double("xMax = ");
+
+      if (xMax <= xMin) {
+        cout << "xMin не может быть больше или равен xMax." << endl;
+      } else if (xMin <= 0) {
+        cout << "xMin не может быть меньше или равен 0." << endl;
+      } else break;
+    }
+  }
 
   Method_HORD method_HORD(a, b, c, epsilon);
 
   // рассчёт
-  cout << method_HORD.find(0.1, 300) << endl;
+  cout << endl << "Результат: " << method_HORD.find(xMin, xMax) << endl;
+  cout << "Потребовалось " << method_HORD.iterCount << " итериций." << endl;
 
   return 0;
 }
