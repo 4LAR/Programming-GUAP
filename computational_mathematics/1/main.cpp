@@ -133,9 +133,9 @@ int main() {
   Method_HORD method_HORD(a, b, c, epsilon);
 
   // рассчёт
-	// cout << endl << "Результат: " << method_HORD.find(xMin, xMax) << endl;
-  printf("Найденый корень: %lf\n", method_HORD.find(xMin, xMax));
-	cout << method_HORD.func(method_HORD.find(xMin, xMax));
+	double out = method_HORD.find(xMin, xMax);
+  printf("Найденый корень: %lf\n", out);
+	printf("F(%lf) = %lf\n", out, method_HORD.func(out));
   cout << "Потребовалось " << method_HORD.iterCount << " итераций." << endl;
 
   return 0;
