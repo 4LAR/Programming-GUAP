@@ -59,4 +59,29 @@ MainWindow::~MainWindow()
 void MainWindow::on_comboBox_currentIndexChanged(int index)
 {
     ui->lineEdit_4->setText(QString::number(materials[index]));
+    ui->lineEdit_3->clear();
 }
+
+void MainWindow::on_lineEdit_2_textEdited(const QString &arg1)
+{
+//    ui->lineEdit_3->text();
+}
+
+
+void MainWindow::on_lineEdit_textEdited(const QString &arg1)
+{
+//    ui->lineEdit_3->text();
+}
+
+
+void MainWindow::on_lineEdit_textChanged(const QString &arg1)
+{
+    ui->lineEdit_3->clear();
+}
+
+
+void MainWindow::on_lineEdit_2_textChanged(const QString &arg1)
+{
+    ui->lineEdit_3->clear();
+}
+

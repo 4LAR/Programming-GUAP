@@ -19,6 +19,14 @@ public:
 private slots:
     void on_comboBox_currentIndexChanged(int index);
 
+    void on_lineEdit_2_textEdited(const QString &arg1);
+
+    void on_lineEdit_textEdited(const QString &arg1);
+
+    void on_lineEdit_textChanged(const QString &arg1);
+
+    void on_lineEdit_2_textChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
 };
