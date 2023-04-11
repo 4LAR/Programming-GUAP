@@ -4,10 +4,9 @@
 #include <cmath>
 using namespace std;
 
-//void solve(double x[], double y[]);
+#define AUTO_INPUT true
 
-
-void solve(double x[], double y[]) {
+void solve(double x[], double y[], int n) {
   //вычисление конечных разностей
   double dY1[4];
   double dY2[3];
@@ -39,59 +38,85 @@ void solve(double x[], double y[]) {
   int c;
   double iX, Yinterp, m;
   vector <double> input;
-  int e = 1;
-  while (e == 1) {
-    //Ввод значений x
-    input.clear();
 
-    cout << "Введите количество дополнительных точек: ";
-    cin >> c;
-    for (int i = 0; i < c; i++) {
-      cout << "x[" << i << "]= ";
-      cin >> iX;
-      input.push_back(iX);
-    }
+  input.clear();
 
-    cout << endl;
-    //вычисления y по первой формуле ньютона
-
-    for (int i = 0; i < c; i++) {
-      m = 1;
-      Yinterp = 0;
-
-      for (int j = 0; j < 5; j++) {
-        Yinterp += m * a[j];
-        m *= input[i] - x[j];
-      }
-      cout << "Yinterp[" << i << "]= " << Yinterp << endl;
-    }
-
-    cout << "Если вы хотите ввести дополнительные значения, нажмите 1, нет - 0" << endl;
-    cin >> e;
+  double delta = 0;
+  c = n;
+  for (int i = 0; i < c - 1; i++) {
+    delta = (x[i] - x[i + 1]) / 2;
+    input.push_back(x[i] - delta);
   }
+
+  // cout << "Введите количество дополнительных точек: ";
+  // cin >> c;
+  // for (int i = 0; i < c; i++) {
+  //   cout << "x[" << i << "]= ";
+  //   cin >> iX;
+  //   input.push_back(iX);
+  // }
+
+  cout << endl;
+  //вычисления y по первой формуле ньютона
+
+  for (int i = 0; i < c - 1; i++) {
+    m = 1;
+    Yinterp = 0;
+
+    for (int j = 0; j < 5; j++) {
+      Yinterp += m * a[j];
+      m *= input[i] - x[j];
+    }
+    cout << "Yinterp[" << input.at(i) << "]= " << Yinterp << endl;
+  }
+
 }
 
 int main() {
   system("chcp 65001");
 
-  const int n = 5;
+  int n;
+  double *x;
+  double *y;
+  if (AUTO_INPUT) {
+    n = 5;
+    x = (double*)malloc(n * sizeof(double));
+    y = (double*)malloc(n * sizeof(double));
+    x[0] = 1.0;
+    x[1] = 0.7;
+    x[2] = 0.4;
+    x[3] = 0.1;
+    x[4] = -0.2;
 
-  //double x[n];
-  //double y[n];
+    y[0] = 2.5;
+    y[1] = 3.7;
+    y[2] = 4.2;
+    y[3] = 2.0;
+    y[4] = 0.0;
 
-  // cout << "Введите узловые точки: \n";
-  double x[] =  {1.0, 0.7, 0.4, 0.1, -0.2};
-  double y[] = {2.5, 3.7, 4.2, 2.0, 0.0};
-  for (int i = 0; i < n; i++) {
-    //cout << "x[" << i << "] = "; //{ -3.1, -2.3, -1.5, -0.7, 0.1 }
-    //cin >> x[i];
-
-
-    //cout << "y[" << i << "] = "; //{ -0.4, -1.1, -0.3, 0.5, 2.4 }
-    //cin >> y[i];
+    cout << "x = { ";
+    for (int i = 0; i < n; i++)
+      cout << x[i] << " ";
+    cout << "}\ny = { ";
+    for (int i = 0; i < n; i++)
+      cout << y[i] << " ";
+    cout << "}";
+    
+  } else {
+    cout << "количество уловых точек: ";
+    cin >> n;
+    x = (double*)malloc(n * sizeof(double));
+    y = (double*)malloc(n * sizeof(double));
+    for (int i = 0; i < n; i++) {
+      cout << "x[" << i << "] = ";
+      cin >> x[i];
+      cout << "y[" << i << "] = ";
+      cin >> y[i];
+      cout << endl;
+    }
   }
 
-  solve(x, y);
+  solve(x, y, n);
 
   return 0;
 }
