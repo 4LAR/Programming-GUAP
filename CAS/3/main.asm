@@ -24,22 +24,6 @@ _c_int00:
 	LDB .D1 *A8, A8
 	;; NOP 4
 
-ONECORE:
-	LDB .D1 *A3[A2], A4
-	NOP 4
-	ADD .L1 A8, A4, A8
-
-	B .S1 NEXTONE
-	NOP 5
-
-TWOCORE:
-	LDB .D2 *B3[B2], B4
-	NOP 4
-	ADD .L1 A8, B4, A8
-
-	B .S1 NEXTTWO
-	NOP 5
-
 LOOP:
 	SUB .S1 A2, 1, A2
 	|| ADD .S2 B2, 1, B2
@@ -52,14 +36,23 @@ LOOP:
 	NOP 2
 	SUB .L1 A2, A1, A1
 	|| SUB .L2 B2, B1, B1
-	[A1] B .S1 ONECORE
+
+	LDB .D1 *A3[A2], A4
+	|| LDB .D2 *B3[B2], B4
+	NOP 4
+
+	[!A1] B .S1 SKIPONE
 	NOP 5
 
-NEXTONE:
-	[B1] B .S2 TWOCORE
+	ADD .L1 A8, A4, A8
+
+SKIPONE:
+	[!B1] B .S2 SKIPTWO
 	NOP 5
 
-NEXTTWO:
+	ADD .L1 A8, B4, A8
+
+SKIPTWO:
 	;; проверка на середину массива
 	SUB .L1 A2, B2, A0
 	[!A0] B .S1 EXIT
