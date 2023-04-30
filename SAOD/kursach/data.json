@@ -1,0 +1,28 @@
+{
+  "roomers": {
+    "1236": {
+      "name": "\u0421\u0442\u043e\u043b\u044f\u0440\u043e\u0432 \u041d\u0438\u043a\u0438\u0442\u0430 \u0421\u0435\u0440\u0433\u0435\u0435\u0432\u0438\u0447",
+      "pasport": "1234-123123",
+      "birth": 2002,
+      "adress": "\u0434\u043e\u043c",
+      "purpose": "\u043f\u043e \u043f\u0440\u0438\u043a\u043e\u043b\u0443"
+    }
+  },
+  "hotel_rooms": [
+    {
+      "number": "\u041f001",
+      "count_seats": 4,
+      "count_rooms": 2,
+      "bathroom": true,
+      "equipment": "\u043e\u043a\u043d\u043e"
+    }
+  ],
+  "move_roomer": [
+    {
+      "pasport": "1234-123123",
+      "number": "\u041f001",
+      "date_in": "2023",
+      "date_out": "2077"
+    }
+  ]
+}
