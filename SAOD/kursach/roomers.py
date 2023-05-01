@@ -10,7 +10,8 @@ class Roomer:
         self.name = name
 
     def print(self):
-        print("%s %s %s %s" % (
+        print("%s %s %s %s %s" % (
+            self.name,
             self.pasport,
             self.birth,
             self.adress,

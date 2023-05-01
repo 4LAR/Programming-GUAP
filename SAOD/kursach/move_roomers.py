@@ -89,3 +89,14 @@ class Element_list:
             count += 1
 
         return None
+
+    def search_by_number(self, number):
+        head = self.head
+        result = []
+        while (head != None):
+            if head.item.number == number:
+                result.append(head.item)
+
+            head = head.next
+
+        return result

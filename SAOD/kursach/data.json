@@ -1,11 +1,39 @@
 {
   "roomers": {
-    "1236": {
-      "name": "\u0421\u0442\u043e\u043b\u044f\u0440\u043e\u0432 \u041d\u0438\u043a\u0438\u0442\u0430 \u0421\u0435\u0440\u0433\u0435\u0435\u0432\u0438\u0447",
-      "pasport": "1234-123123",
+    "153": {
+      "name": "\u0442\u0435\u0441\u04421",
+      "pasport": "1234-000001",
       "birth": 2002,
-      "adress": "\u0434\u043e\u043c",
-      "purpose": "\u043f\u043e \u043f\u0440\u0438\u043a\u043e\u043b\u0443"
+      "adress": "\u0442\u0435\u0441\u0442",
+      "purpose": "\u0442\u0435\u0441\u0442"
+    },
+    "252": {
+      "name": "\u0442\u0435\u0441\u04422",
+      "pasport": "1234-000002",
+      "birth": 2002,
+      "adress": "\u0442\u0435\u0441\u0442",
+      "purpose": "\u0442\u0435\u0441\u0442"
+    },
+    "456": {
+      "name": "\u0442\u0435\u0441\u04423",
+      "pasport": "1234-000004",
+      "birth": 2002,
+      "adress": "\u0442\u0435\u0441\u0442",
+      "purpose": "\u0442\u0435\u0441\u0442"
+    },
+    "561": {
+      "name": "\u0442\u0435\u0441\u04425",
+      "pasport": "1234-000005",
+      "birth": 2002,
+      "adress": "\u0442\u0435\u0441\u0442",
+      "purpose": "\u0442\u0435\u0441\u0442"
+    },
+    "353": {
+      "name": "\u0442\u0435\u0441\u04423",
+      "pasport": "1234-000003",
+      "birth": 2002,
+      "adress": "\u0442\u0435\u0441\u0442",
+      "purpose": "\u0442\u0435\u0441\u0442"
     }
   },
   "hotel_rooms": [
@@ -15,14 +43,46 @@
       "count_rooms": 2,
       "bathroom": true,
       "equipment": "\u043e\u043a\u043d\u043e"
+    },
+    {
+      "number": "\u041f002",
+      "count_seats": 1,
+      "count_rooms": 1,
+      "bathroom": false,
+      "equipment": "\u043a\u0440\u043e\u0432\u0430\u0442\u044c \u0445\u043e\u043b\u043e\u0434\u0438\u043b\u044c\u043d\u0438\u043a \u0432\u0435\u0434\u0440\u043e"
+    },
+    {
+      "number": "\u041f003",
+      "count_seats": 3,
+      "count_rooms": 4,
+      "bathroom": false,
+      "equipment": "\u043a\u0440\u043e\u0432\u0430\u0442\u044c \u0445\u043e\u043b\u043e\u0434\u0438\u043b\u044c\u043d\u0438\u043a \u0432\u0435\u0434\u0440\u043e"
     }
   ],
   "move_roomer": [
     {
-      "pasport": "1234-123123",
+      "pasport": "1234-000001",
       "number": "\u041f001",
-      "date_in": "2023",
-      "date_out": "2077"
+      "date_in": "2016",
+      "date_out": "2025"
+    },
+    {
+      "pasport": "1234-000002",
+      "number": "\u041f001",
+      "date_in": "2016",
+      "date_out": "2025"
+    },
+    {
+      "pasport": "1234-000003",
+      "number": "\u041f001",
+      "date_in": "2016",
+      "date_out": "2025"
+    },
+    {
+      "pasport": "1234-000004",
+      "number": "\u041f001",
+      "date_in": "2016",
+      "date_out": "2025"
     }
   ]
 }

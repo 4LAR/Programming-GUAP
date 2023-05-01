@@ -33,21 +33,21 @@ class AVLTree:
         node.height = 1 + max(self.get_height(node.left), self.get_height(node.right))
 
         ###
-        balance = self.get_balance(node)
-
-        if balance > 1 and client.number < node.left.client.number:
-            return self.right_rotate(node)
-
-        if balance < -1 and client.number > node.right.client.number:
-            return self.left_rotate(node)
-
-        if balance > 1 and client.number > node.left.client.number:
-            node.left = self.left_rotate(node.left)
-            return self.right_rotate(node)
-
-        if balance < -1 and client.number < node.right.client.number:
-            node.right = self.right_rotate(node.right)
-            return self.left_rotate(node)
+        # balance = self.get_balance(node)
+        #
+        # if balance > 1 and client.number < node.left.client.number:
+        #     return self.right_rotate(node)
+        #
+        # if balance < -1 and client.number > node.right.client.number:
+        #     return self.left_rotate(node)
+        #
+        # if balance > 1 and client.number > node.left.client.number:
+        #     node.left = self.left_rotate(node.left)
+        #     return self.right_rotate(node)
+        #
+        # if balance < -1 and client.number < node.right.client.number:
+        #     node.right = self.right_rotate(node.right)
+        #     return self.left_rotate(node)
         ###
 
         return node
@@ -140,8 +140,8 @@ class AVLTree:
             current = self
 
         result = []
-        if boyerMurSearch(equipment, current.client.equipment) != None:
-            result += current.client
+        if boyerMurSearch(equipment, current.client.equipment):
+            result.append(current.client)
 
         if current.left != None:
             result += self.search_by_equipment(equipment, current.left)
@@ -159,16 +159,24 @@ class AVLTree:
             if current == None:
                 return False
 
+            print(current.client.number)
             if current.client.number == number:
-                if go_left:
-                    prev.left = None
+                if prev != None:
+                    if go_left:
+                        prev.left = None
+                    else:
+                        prev.right = None
+
                 else:
-                    prev.right = None
+                    prev = self
 
                 left = current.left
                 right = current.right
-                prev.insert(prev, left)
-                prev.insert(prev, right)
+                if left != None:
+                    self.insert(prev, left.client)
+
+                if right != None:
+                    self.insert(prev, right.client)
 
                 return True
 

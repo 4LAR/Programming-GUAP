@@ -13,11 +13,8 @@ from roomers import *
 from hotel_rooms import *
 from move_roomers import *
 from file import *
+from sort import *
 from menu import *
-
-# более подробный вывод
-# удаление из move_roomer постаяльца если мы его удаляем
-# ограничение на количество человек в номере
 
 ################################################################################
 
@@ -31,6 +28,19 @@ data_file = Data_file("data")
 move_list = None
 tree = AVLTree()
 hash_table = HashTable()
+
+################################################################################
+
+def sort_move_list():
+    global move_list
+    arr = move_list.get_all()
+    move_list = None
+    merge_sort(arr, 0, len(arr))
+    for move_roomer in arr:
+        if move_list == None:
+            move_list = Element_list(move_roomer)
+        else:
+            move_list.add(move_roomer)
 
 ################################################################################
 
@@ -117,6 +127,10 @@ def delete_roomer():
         print("Такого постаяльца нет")
         return
 
+    id = move_list.search_by_pasport(pasport)
+    if id != None:
+        move_list.delete_element(id)
+
     hash_table.remove(hash)
 
 def show_roomers():
@@ -179,6 +193,12 @@ def delte_hotel_room():
     if not tree.delete_by_number(number):
         print("Такого номера не существует")
 
+    roomers = move_list.search_by_number(number)
+    for i in range(len(roomers)-1, -1, -1):
+        id = move_list.search_by_pasport(roomers[i].pasport)
+        move_list.delete_element(id)
+
+
 def clear_hotel_rooms():
     tree.clear()
 
@@ -194,13 +214,26 @@ def search_hotel_room_by_number():
         return
 
     room.print()
+    roomers = move_list.search_by_number(number)
+    for roomer in roomers:
+        hash, roomer = hash_table.find_by_pasport(roomer.pasport)
+        if hash != None:
+            print()
+            roomer.print()
 
 def search_hotel_room_by_equipment():
     equipment = input("Оборудование: ")
     arr = tree.search_by_equipment(equipment)
     for el in arr:
         print("-" * 20)
-        arr.print()
+        el.print()
+
+        roomers = move_list.search_by_number(el.number)
+        for roomer in roomers:
+            hash, roomer = hash_table.find_by_pasport(roomer.pasport)
+            if hash != None:
+                print()
+                roomer.print()
 
 ################################################################################
 
@@ -228,6 +261,12 @@ def add_move():
         print("Такого номера нет")
         return
 
+    if move_list != None:
+        roomers = move_list.search_by_number(data["number"])
+        if len(roomers) >= room.count_seats:
+            print("В номере нет мест")
+            return
+
     data["date_in"] = input("Дата заселения: ")
     data["date_out"] = input("Дата выселения: ")
 
@@ -237,9 +276,11 @@ def add_move():
     else:
         move_list.add(move_roomer)
 
+    # sort_move_list()
+
 def delete_move():
     passport = input("Номер паспорта(NNNN-NNNNNN): ")
-    if not check_format(data["pasport"], "NNNN-NNNNNN"):
+    if not check_format(passport, "NNNN-NNNNNN"):
         print("Строка не соответствует формату")
         return
 
@@ -249,6 +290,7 @@ def delete_move():
         return
 
     move_list.delete_element(id)
+    sort_move_list()
 
 def print_move():
     global move_list

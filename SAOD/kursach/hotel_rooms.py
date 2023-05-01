@@ -10,7 +10,7 @@ class Room:
         self.equipment = equipment      # Оборудование
 
     def print(self):
-        print("Номер: %s\nКоличество мест: %d\nКоличество комнат: %d\nНаличие санузла: %s\nОборудование: %s\n" % (
+        print("Номер: %s\nКоличество мест: %d\nКоличество комнат: %d\nНаличие санузла: %s\nОборудование: %s" % (
             self.number,
             self.count_seats,
             self.count_rooms,
