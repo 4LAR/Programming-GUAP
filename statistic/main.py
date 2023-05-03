@@ -42,27 +42,29 @@ class Table:
             print()
 
 ################################################################################
+#
+# table1 = Table("example.csv")
+# table2 = Table("global.csv")
+#
+# for i in range(5):
+#     a, b = stats.ttest_ind(table1.get_column(i), table2.get_column(i))
+#     print("T:", a) # t
+#     print("P:", b) # p
+#     print("-"*20)
 
-table1 = Table("example.csv")
-table2 = Table("global.csv")
+################################################################################
 
-for i in range(5):
-    a, b = stats.ttest_ind(table1.get_column(i), table2.get_column(i))
-    print("T:", a) # t
-    print("P:", b) # p
-    print("-"*20)
-
+# table1 = Table("example.csv")
 # draw_graph(table1.get_column(0), table1.get_column(2))
 
 ################################################################################
-cluster_content = clusterization(
-    table2.get_table()
-)
 
+# table2 = Table("global.csv")
+# cluster_content = clusterization(
+#     table2.get_table()
+# )
+#
 # draw_cluster(cluster_content)
-for el in cluster_content:
-    print("-" * 80)
-    to_2d_cluster(cluster_content[0])
 
 ################################################################################
 # tables_obj = []
@@ -83,5 +85,17 @@ for el in cluster_content:
 # for res in results:
 #     print("%0.5lf" % res.statistic, end="\t")
 # print()
+
+################################################################################
+
+table2 = Table("global.csv")
+
+cluster_content = clusterization(
+    table2.get_table()
+)
+
+for el in cluster_content:
+    print("-" * 80)
+    to_2d_cluster(cluster_content[0])
 
 ################################################################################
