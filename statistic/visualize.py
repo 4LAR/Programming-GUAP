@@ -7,6 +7,11 @@ import numpy as np
 
 MAX_CLUSTER_VALUE = 20
 
+def print_arr(arr):
+    for el in arr:
+        print("%lf" % el, end="\t")
+    print()
+
 def data_distribution(data, cluster, k):
     cluster_content = [[] for i in range(k)]
     n = len(data)
@@ -50,14 +55,11 @@ def clusterization(data, k=3):
     cluster = [[0 for i in range(dim)] for q in range(k)]
     cluster_content = [[] for i in range(k)]
 
-    # cluster = [[randint(0, MAX_CLUSTER_VALUE) for _ in range(k)] for _ in range(dim)]
-
     for i in range(dim):
         for q in range(k):
             cluster[q][i] = randint(0, MAX_CLUSTER_VALUE)
 
     cluster_content = data_distribution(data, cluster, k)
-    # print(cluster_content)
 
     privious_cluster = copy.deepcopy(cluster)
     while 1:
@@ -73,16 +75,24 @@ def draw_cluster(cluster_content):
     for i in range(len(cluster_content)):
         print("cluster #%d: " % i, cluster_content[i])
 
-    k = len(cluster_content)
-    plt.grid()
-    plt.xlabel("x")
-    plt.ylabel("y")
+def to_2d_cluster(cluster_content):
+    column_count = len(cluster_content[0])
+    # column_count = 2
+    cluser_reverse = [[] for _ in range(column_count)]
+    for el in cluster_content:
+        for i in range(column_count):
+            cluser_reverse[i].append(el[i])
 
-    for i in range(k):
-        x_coordinates = []
-        y_coordinates = []
-        for q in range(len(cluster_content[i])):
-            x_coordinates.append(cluster_content[i][q][0])
-            y_coordinates.append(cluster_content[i][q][1])
-        plt.scatter(x_coordinates, y_coordinates)
-    plt.show()
+    X = np.stack(cluser_reverse)
+    X_centered = [(X[i] - X[i].mean()) for i in range(column_count)]
+    m = [(X[i].mean()) for i in range(column_count)]
+    covmat = np.cov(X_centered)
+
+    _, vecs = np.linalg.eig(covmat)
+    v = -vecs[:,1]
+    Xnew = np.dot(v, X_centered)
+    for n in range(len(Xnew)):
+        Xrestored = np.dot(Xnew[n],v) + m
+        print()
+        print_arr(X[:,n])
+        print_arr(Xrestored)

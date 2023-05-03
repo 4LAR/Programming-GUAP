@@ -55,29 +55,33 @@ for i in range(5):
 # draw_graph(table1.get_column(0), table1.get_column(2))
 
 ################################################################################
-
-# cluster_content = clusterization(
-#     table2.get_table()
-# )
+cluster_content = clusterization(
+    table2.get_table()
+)
 
 # draw_cluster(cluster_content)
+for el in cluster_content:
+    print("-" * 80)
+    to_2d_cluster(cluster_content[0])
 
 ################################################################################
-tables_obj = []
-tables = []
-for file_name in ["4131", "4132", "4133", "4134", "4136"]:
-    print("Reading:", file_name)
-    tables_obj.append(Table("groups/%s.csv" % file_name, ";"))
-
-results = []
-for i in range(5):
-    tables.append([el.get_column(i) for el in tables_obj])
-    results.append(equal_oneway(tables[-1]))
-
-print("1\t2\t3\t4\t5")
-for res in results:
-    print("%0.5lf" % res.pvalue, end="\t")
-print()
+# tables_obj = []
+# tables = []
+# for file_name in ["4131", "4132", "4133", "4134", "4136"]:
+#     print("Reading:", file_name)
+#     tables_obj.append(Table("groups/%s.csv" % file_name, ";"))
+#
+# results = []
+# for i in range(5):
+#     tables.append([el.get_column(i) for el in tables_obj])
+#     results.append(equal_oneway(tables[-1]))
+#
+# print("1\t2\t3\t4\t5")
+# for res in results:
+#     print("%0.5lf" % res.pvalue, end="\t")
+# print()
 # for res in results:
 #     print("%0.5lf" % res.statistic, end="\t")
 # print()
+
+################################################################################
