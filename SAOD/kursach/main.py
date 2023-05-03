@@ -46,6 +46,7 @@ def sort_move_list():
 
 def read_file():
     global move_list
+    global tree
 
     for key in data_file.roomers:
         hash_table.add(Roomer(**data_file.roomers[key]))

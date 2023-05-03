@@ -28,12 +28,12 @@
       "adress": "\u0442\u0435\u0441\u0442",
       "purpose": "\u0442\u0435\u0441\u0442"
     },
-    "353": {
-      "name": "\u0442\u0435\u0441\u04423",
-      "pasport": "1234-000003",
+    "1236": {
+      "name": "testtest",
+      "pasport": "1234-123123",
       "birth": 2002,
-      "adress": "\u0442\u0435\u0441\u0442",
-      "purpose": "\u0442\u0435\u0441\u0442"
+      "adress": "dom",
+      "purpose": "..."
     }
   },
   "hotel_rooms": [
@@ -43,13 +43,6 @@
       "count_rooms": 2,
       "bathroom": true,
       "equipment": "\u043e\u043a\u043d\u043e"
-    },
-    {
-      "number": "\u041f002",
-      "count_seats": 1,
-      "count_rooms": 1,
-      "bathroom": false,
-      "equipment": "\u043a\u0440\u043e\u0432\u0430\u0442\u044c \u0445\u043e\u043b\u043e\u0434\u0438\u043b\u044c\u043d\u0438\u043a \u0432\u0435\u0434\u0440\u043e"
     },
     {
       "number": "\u041f003",
