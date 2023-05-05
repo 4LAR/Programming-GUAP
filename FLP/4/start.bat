@@ -1,0 +1,1 @@
+lisp.exe -M lispinit.mem
