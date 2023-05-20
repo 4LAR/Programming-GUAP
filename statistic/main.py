@@ -4,6 +4,7 @@ from scipy import stats
 
 from graph import *
 from visualize import *
+from visualize_new import *
 from equals import *
 
 class Table:
@@ -12,6 +13,8 @@ class Table:
         self.delimiter = delimiter
 
         self.table = []
+
+        self.size = [0, 0]
 
         self.read_file()
 
@@ -34,6 +37,9 @@ class Table:
 
     def get_column(self, index):
         return [row[index] for row in self.table]
+
+    def get_rotated(self):
+        return [self.get_column(i) for i in range(len(self.table[0]))]
 
     def print(self):
         for row in self.table:
@@ -87,15 +93,24 @@ class Table:
 # print()
 
 ################################################################################
+#
+# table2 = Table("global.csv")
+#
+# cluster_content = clusterization(
+#     table2.get_table()
+# )
+#
+# for el in cluster_content:
+#     print("-" * 80)
+#     to_2d_cluster(cluster_content[0])
 
-table2 = Table("global.csv")
+################################################################################
 
-cluster_content = clusterization(
-    table2.get_table()
+table = Table("example.csv")
+structure_data = Structure_data(
+    table = table.get_rotated()
 )
 
-for el in cluster_content:
-    print("-" * 80)
-    to_2d_cluster(cluster_content[0])
+structure_data.draw()
 
 ################################################################################

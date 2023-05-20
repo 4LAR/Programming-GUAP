@@ -1,9 +1,7 @@
 import numpy as np
 import copy
 from random import randint
-
 import matplotlib.pyplot as plt
-import numpy as np
 
 MAX_CLUSTER_VALUE = 20
 
