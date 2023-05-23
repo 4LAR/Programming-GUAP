@@ -90,6 +90,7 @@ double Method_HORD::find(double a, double b) {
 		}
 		iterCount++; // узнать кол-во итераций
     //cout << iterCount << " " << a << " " << b << endl;
+		cout << "TEST: " << (a + b) / 2 << endl;
 	}
 	return (a + b) / 2;
 }
