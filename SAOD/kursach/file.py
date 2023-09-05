@@ -3,7 +3,7 @@ import os
 import json
 
 def save_dict(dict, name):
-    json.dump(dict, open(str(name) + '.json','w'), indent=2)
+    json.dump(dict, open(str(name) + '.json', 'w', encoding='utf-8'), indent=2, ensure_ascii=False)
 
 def read_dict(name):
     with open(str(name) + '.json', encoding='utf-8') as fh:

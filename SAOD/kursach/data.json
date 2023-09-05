@@ -1,32 +1,32 @@
 {
   "roomers": {
     "153": {
-      "name": "\u0442\u0435\u0441\u04421",
+      "name": "тест1",
       "pasport": "1234-000001",
       "birth": 2002,
-      "adress": "\u0442\u0435\u0441\u0442",
-      "purpose": "\u0442\u0435\u0441\u0442"
+      "adress": "тест",
+      "purpose": "тест"
     },
     "252": {
-      "name": "\u0442\u0435\u0441\u04422",
+      "name": "тест2",
       "pasport": "1234-000002",
       "birth": 2002,
-      "adress": "\u0442\u0435\u0441\u0442",
-      "purpose": "\u0442\u0435\u0441\u0442"
+      "adress": "тест",
+      "purpose": "тест"
     },
     "456": {
-      "name": "\u0442\u0435\u0441\u04423",
+      "name": "тест3",
       "pasport": "1234-000004",
       "birth": 2002,
-      "adress": "\u0442\u0435\u0441\u0442",
-      "purpose": "\u0442\u0435\u0441\u0442"
+      "adress": "тест",
+      "purpose": "тест"
     },
     "561": {
-      "name": "\u0442\u0435\u0441\u04425",
+      "name": "тест5",
       "pasport": "1234-000005",
       "birth": 2002,
-      "adress": "\u0442\u0435\u0441\u0442",
-      "purpose": "\u0442\u0435\u0441\u0442"
+      "adress": "тест",
+      "purpose": "тест"
     },
     "1236": {
       "name": "testtest",
@@ -34,48 +34,67 @@
       "birth": 2002,
       "adress": "dom",
       "purpose": "..."
+    },
+    "484": {
+      "name": "Лох",
+      "pasport": "4567-123123",
+      "birth": 2002,
+      "adress": "дом",
+      "purpose": "по приколу"
     }
   },
   "hotel_rooms": [
     {
-      "number": "\u041f001",
+      "number": "П001",
       "count_seats": 4,
       "count_rooms": 2,
       "bathroom": true,
-      "equipment": "\u043e\u043a\u043d\u043e"
+      "equipment": "окно"
     },
     {
-      "number": "\u041f003",
+      "number": "П003",
       "count_seats": 3,
       "count_rooms": 4,
       "bathroom": false,
-      "equipment": "\u043a\u0440\u043e\u0432\u0430\u0442\u044c \u0445\u043e\u043b\u043e\u0434\u0438\u043b\u044c\u043d\u0438\u043a \u0432\u0435\u0434\u0440\u043e"
+      "equipment": "кровать холодильник ведро"
     }
   ],
   "move_roomer": [
     {
       "pasport": "1234-000001",
-      "number": "\u041f001",
+      "number": "П001",
       "date_in": "2016",
       "date_out": "2025"
     },
     {
       "pasport": "1234-000002",
-      "number": "\u041f001",
+      "number": "П001",
       "date_in": "2016",
       "date_out": "2025"
     },
     {
       "pasport": "1234-000003",
-      "number": "\u041f001",
+      "number": "П001",
       "date_in": "2016",
       "date_out": "2025"
     },
     {
       "pasport": "1234-000004",
-      "number": "\u041f001",
+      "number": "П001",
       "date_in": "2016",
       "date_out": "2025"
+    },
+    {
+      "pasport": "4567-123123",
+      "number": "П003",
+      "date_in": "56",
+      "date_out": "456"
+    },
+    {
+      "pasport": "4567-123123",
+      "number": "П003",
+      "date_in": "фыдвлгорра",
+      "date_out": "фызвщшлра"
     }
   ]
 }

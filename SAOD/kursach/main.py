@@ -52,7 +52,7 @@ def read_file():
         hash_table.add(Roomer(**data_file.roomers[key]))
 
     for el in data_file.hotel_rooms:
-        tree.insert(tree, Room(**el))
+        tree = tree.insert(tree, Room(**el))
 
     for el in data_file.move_roomer:
         move_roomer = Move_roomer(**el)
@@ -180,7 +180,7 @@ def add_hotel_room():
     data["equipment"] = input("Оборудование: ")
 
     room = Room(**data)
-    tree.insert(tree, room)
+    tree = tree.insert(tree, room)
 
 def print_hotel_room():
     tree.pre_order(tree)
@@ -277,7 +277,7 @@ def add_move():
     else:
         move_list.add(move_roomer)
 
-    # sort_move_list()
+    sort_move_list()
 
 def delete_move():
     passport = input("Номер паспорта(NNNN-NNNNNN): ")
@@ -309,23 +309,23 @@ def print_move():
 menu = Menu([
     ["Выход\n", exit],
 
-    ["Регистрация постаяльца в номер", add_move],
-    ["Выселение постаяльца", delete_move],
-    ["Список заселённых постаяльцев\n", print_move],
+    ["[LIST] Регистрация постаяльца в номер", add_move],
+    ["[LIST] Выселение постаяльца", delete_move],
+    ["[LIST] Список заселённых постаяльцев\n", print_move],
 
-    ["Регистрация постаяльца", add_roomer],
-    ["Удаление данных постаяльца", delete_roomer],
-    ["Список постаяльцев", show_roomers],
-    ["Очистить список постаяльцев", clear_roomers],
-    ["Поиск постаяльца по номеру паспорта", find_roomer_by_passport],
-    ["Поиск постаяльца по ФИО\n", find_roomer_by_name],
+    ["[HashTable] Регистрация постаяльца", add_roomer],
+    ["[HashTable] Удаление данных постаяльца", delete_roomer],
+    ["[HashTable] Список постаяльцев", show_roomers],
+    ["[HashTable] Очистить список постаяльцев", clear_roomers],
+    ["[HashTable] Поиск постаяльца по номеру паспорта", find_roomer_by_passport],
+    ["[HashTable] Поиск постаяльца по ФИО\n", find_roomer_by_name],
 
-    ["Добавить гостиночный номер", add_hotel_room],
-    ["Удалить гостиночный номер", delte_hotel_room],
-    ["Вывести список гостиночных номеров", print_hotel_room],
-    ["Очистить все данные о гостиночных номерах", clear_hotel_rooms],
-    ["Поиск гостиночного номера по номеру", search_hotel_room_by_number],
-    ["Поиск гостиночного номера по оборудованию", search_hotel_room_by_equipment]
+    ["[AVLTree] Добавить гостиночный номер", add_hotel_room],
+    ["[AVLTree] Удалить гостиночный номер", delte_hotel_room],
+    ["[AVLTree] Вывести список гостиночных номеров", print_hotel_room],
+    ["[AVLTree] Очистить все данные о гостиночных номерах", clear_hotel_rooms],
+    ["[AVLTree] Поиск гостиночного номера по номеру", search_hotel_room_by_number],
+    ["[AVLTree] Поиск гостиночного номера по оборудованию", search_hotel_room_by_equipment]
 ], save_to_file)
 
 menu.run()

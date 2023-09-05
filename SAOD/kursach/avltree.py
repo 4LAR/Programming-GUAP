@@ -1,5 +1,6 @@
 
 from search import *
+from str_to_key import *
 
 class AVLTree:
     def __init__(self):
@@ -24,7 +25,7 @@ class AVLTree:
             node.client = client
             return node
 
-        elif client.number < node.client.number:
+        elif str_to_key(client.number) < str_to_key(node.client.number):
             node.left = self.insert(node.left, client)
 
         else:
@@ -33,21 +34,21 @@ class AVLTree:
         node.height = 1 + max(self.get_height(node.left), self.get_height(node.right))
 
         ###
-        # balance = self.get_balance(node)
-        #
-        # if balance > 1 and client.number < node.left.client.number:
-        #     return self.right_rotate(node)
-        #
-        # if balance < -1 and client.number > node.right.client.number:
-        #     return self.left_rotate(node)
-        #
-        # if balance > 1 and client.number > node.left.client.number:
-        #     node.left = self.left_rotate(node.left)
-        #     return self.right_rotate(node)
-        #
-        # if balance < -1 and client.number < node.right.client.number:
-        #     node.right = self.right_rotate(node.right)
-        #     return self.left_rotate(node)
+        balance = self.get_balance(node)
+
+        if balance > 1 and str_to_key(client.number) < str_to_key(node.left.client.number):
+            return self.right_rotate(node)
+
+        if balance < -1 and str_to_key(client.number) > str_to_key(node.right.client.number):
+            return self.left_rotate(node)
+
+        if balance > 1 and str_to_key(client.number) > str_to_key(node.left.client.number):
+            node.left = self.left_rotate(node.left)
+            return self.right_rotate(node)
+
+        if balance < -1 and str_to_key(client.number) < str_to_key(node.right.client.number):
+            node.right = self.right_rotate(node.right)
+            return self.left_rotate(node)
         ###
 
         return node
@@ -95,7 +96,7 @@ class AVLTree:
         if number == node.client.number:
             return node.client
 
-        if number < node.client.number:
+        if str_to_key(number) < str_to_key(node.client.number):
             return self.search(node.left, number)
 
         return self.search(node.right, number)
@@ -129,7 +130,7 @@ class AVLTree:
             if current.client.number == number:
                 return current.client
 
-            elif number < current.client.number:
+            elif str_to_key(number) < str_to_key(current.client.number):
                 current = current.left
 
             else:
@@ -182,7 +183,7 @@ class AVLTree:
 
             else:
                 prev = current
-                if number < current.client.number:
+                if str_to_key(number) < str_to_key(current.client.number):
                     current = current.left
                     go_left = True
 
