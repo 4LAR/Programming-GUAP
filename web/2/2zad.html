@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2 Парктика (2 задание)</title>
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2; /* Цвет четных строк */
+      }
+
+      tr:nth-child(odd) {
+        background-color: #ccc; /* Цвет нечетных строк */
+      }
+
+      .name {
+        background-color: #FF00FF;
+      }
+
+      .name h3 {
+        margin: 0px;
+        text-align: center;
+      }
+
+    </style>
+  </head>
+  <body>
+    <table id="table">
+      <tr>
+        <th class="name"><h3>Предмет</h3></th>
+        <th class="name"><h3>Цена (в рублях)</h3></th>
+        <th class="name"><h3>Количество</h3></th>
+      </tr>
+      <!-- Добавляю через js -->
+    </table>
+  </body>
+  <script type="text/javascript">
+    var table = [
+      ["Книга", 500, 10],
+      ["Ручка", 50, 25],
+      ["Бумага", 100, 50],
+      ["Флешка", 300, 15],
+      ["Компьютер", 25000, 5],
+      ["Мышь", 300, 20],
+      ["Фотокамера", 8000, 8],
+      ["Стол", 1500, 3],
+      ["Стул", 500, 10],
+      ["Чашка", 100, 30],
+      ["Ложка", 20, 50],
+      ["Тарелка", 150, 25],
+      ["Фен", 1000, 6],
+      ["Шампунь", 200, 15],
+      ["Зубная щетка", 50, 40]
+    ];
+
+    var table_el = document.getElementById("table");
+    for (const row of table) {
+      var newRow = table_el.insertRow();
+      newRow.insertCell().innerHTML = row[0];
+      newRow.insertCell().innerHTML = row[1];
+      newRow.insertCell().innerHTML = row[2];
+    }
+  </script>
+</html>

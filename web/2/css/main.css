@@ -1,0 +1,31 @@
+table {
+  background: #000;
+  width: 100%;
+}
+
+td, th {
+  background: #fff;
+  padding: 5px;
+}
+
+table * {
+  padding: 4px;
+}
+
+table .Direction {
+  text-align: center;
+}
+
+table .direction, .name, .form {
+  text-align: center;
+}
+
+table .name {
+  background-color: #DEEAF6;
+}
+
+table .focus {
+  text-align: left;
+}
+
+/*----------------------------------------------------------------------------*/

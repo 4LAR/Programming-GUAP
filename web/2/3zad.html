@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Форма заказа бытовой техники</title>
+</head>
+<body>
+  <h1>Форма заказа бытовой техники</h1>
+  <form action="./submit.html" method="post">
+    <label for="name">Имя:</label>
+    <input type="text" id="name" name="name" required placeholder="Введите ваше имя">
+    <br>
+
+    <label for="address">Адрес доставки:</label>
+    <textarea id="address" name="address" required placeholder="Введите адрес доставки"></textarea>
+    <br>
+
+    <label for="password">Пароль:</label>
+    <input type="password" id="password" name="password" required placeholder="Введите пароль">
+    <br>
+
+    <label>Выберите способ оплаты:</label>
+    <br>
+    <input type="radio" id="payment-card" name="payment" value="card">
+    <label for="payment-card">Кредитной картой</label>
+    <br>
+    <input type="radio" id="payment-cash" name="payment" value="cash">
+    <label for="payment-cash">Наличными при получении</label>
+    <br>
+
+    <label>Выберите товары для заказа:</label>
+    <br>
+    <input type="checkbox" id="item1" name="items[]" value="item1">
+    <label for="item1">Плита</label>
+    <br>
+    <input type="checkbox" id="item2" name="items[]" value="item2">
+    <label for="item2">Холодильник</label>
+    <br>
+    <input type="checkbox" id="item3" name="items[]" value="item3">
+    <label for="item3">Стиральная машина</label>
+    <br>
+
+    <label for="country">Выберите страну доставки:</label>
+    <select id="country" name="country">
+      <option value="russia">Россия</option>
+      <option value="ukraine">Украина</option>
+      <option value="belarus">Беларусь</option>
+    </select>
+    <br>
+
+    <label for="delivery-date">Выберите дату доставки:</label>
+    <input type="date" id="delivery-date" name="delivery-date">
+    <br>
+
+    <button type="submit">Отправить заказ</button>
+  </form>
+</body>
+</html>
