@@ -13,3 +13,6 @@ server/2lab/target/*
 server/3lab/target/*
 server/4lab/target/*
 server/5lab/target/*
+statistic/1/__pycache__/*
+statistic/2/__pycache__/*
+statistic/3/__pycache__/*
