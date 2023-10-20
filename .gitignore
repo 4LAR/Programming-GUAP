@@ -16,3 +16,6 @@ server/5lab/target/*
 statistic/1/__pycache__/*
 statistic/2/__pycache__/*
 statistic/3/__pycache__/*
+optimization/1/__pycache__/*
+optimization/2/__pycache__/*
+optimization/3/__pycache__/*
