@@ -1,4 +1,4 @@
-insert into Fridge (FRIDGE_QUANTITY,FRIDGE_NAME,FRIDGE_EXPIRATION_DATE) values (1, 'name', '	Wed Dec 12 0012 00:00:00 GMT+0230 (Москва, стандартное время)');
+insert into Recept (RECEPT_DIFICULTY,RECEPT_NAME,RECEPT_BODY) values (1, 'Паста', 'С гоаном');
 
 
 --insert into BATCH (BATCH_NUMBER, BATCH_SCHOOL_ID) values ('111',1);
