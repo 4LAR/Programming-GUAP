@@ -9,7 +9,7 @@ public class ControllersConfig implements WebMvcConfigurer  {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/Fridge").setViewName("Fridge");
+        registry.addViewController("/Recept").setViewName("Recept");
     }
 
 }

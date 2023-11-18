@@ -32,5 +32,5 @@ public class Batch implements Serializable {
     private String name;
 
     @Column(name = "batch_school_id")
-    private Integer Fridge;
+    private Integer Recept;
 }
