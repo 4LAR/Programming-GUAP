@@ -38,6 +38,7 @@
   <body>
     <table id="table">
       <tr>
+        <th class="name"><h3>№</h3></th>
         <th class="name"><h3>Предмет</h3></th>
         <th class="name"><h3>Цена (в рублях)</h3></th>
         <th class="name"><h3>Количество</h3></th>
@@ -65,11 +66,22 @@
     ];
 
     var table_el = document.getElementById("table");
+    let i = 0;
     for (const row of table) {
       var newRow = table_el.insertRow();
-      newRow.insertCell().innerHTML = row[0];
-      newRow.insertCell().innerHTML = row[1];
-      newRow.insertCell().innerHTML = row[2];
+      newRow.insertCell().innerHTML = i++;
+
+      var row_center = newRow.insertCell();
+      row_center.innerHTML = row[0];
+      row_center.style.textAlign = "center";
+
+      var row_left = newRow.insertCell();
+      row_left.innerHTML = row[1];
+      row_left.style.textAlign = "left";
+
+      var row_right = newRow.insertCell();
+      row_right.innerHTML = row[2];
+      row_right.style.textAlign = "right";
     }
   </script>
 </html>

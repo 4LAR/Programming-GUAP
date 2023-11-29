@@ -8,7 +8,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
 
-        <title>Список Рецептов</title>
+        <meta name="_csrf" content="${_csrf.token}" th:content="${_csrf.token}"/>
+        <meta name="_csrf_header" content="${_csrf.parameterName}" th:content="${_csrf.parameterName}"/>
+
+        <title>Frige</title>
 
         <link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet"></link>
 
@@ -16,28 +19,21 @@
         <script src="js/bootstrap.min.js"></script>
         <script src="js/angular-1.7.5.min.js"></script>
         <script src="js/Recept.js"></script>
-        <style>
-
-          html {
-            filter: invert(100%);
-          }
-
-          body {
-            padding-left: 100px;
-            padding-right: 100px;
-          }
-
-          h1 {
-            width: 100%;
-            text-align: center;
-          }
-
-        </style>
 
     </head>
     <body ng-app="Recept" ng-controller="ReceptController">
 
-        <h1>Список Рецептов</h1>
+        <div sec:authorize="isAnonymous()" >
+            <h1><a href="/login">Login</a></h1>
+        </div>
+
+        <div sec:authorize="isAuthenticated()">
+            <form name="logoutForm" th:action="@{/logout}" method="post">
+                <input type="submit"  class="btn btn-primary" value="Sign Out"/>
+            </form>
+        </div>
+
+    <h1>Recept</h1>
 
         <div ng-controller="getRecept" ng-show="ReceptList.length > 0">
             <table id="schoolsTable" class="table table-hover">
@@ -51,11 +47,11 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="Recept in ReceptList" id="{{Recept.id}}">
-                        <td>{{Recept.dificulty}}</td>
+                        <td>{{Recept.quantity}}</td>
                         <td>{{Recept.name}}</td>
-                        <td>{{Recept.body}}</td>
+                        <td>{{Recept.recept}}</td>
                         <!-- <td><input type="button" value="Редактировать"/></td> -->
-                        <td><input type="button" value="Удалить" ng-click="deleteRecept(Recept.id)"/></td>
+                        <td><div sec:authorize="isAuthenticated()"><input type="button" value="Удалить" ng-click="deleteRecept(Recept.id)"/></div></td>
                     </tr>
                 </tbody>
             </table>
@@ -63,7 +59,7 @@
 
         <div class="alert alert-danger" role="alert" ng-show="errormessage">{{errormessage}}</div>
 
-        <div>
+        <div sec:authorize="isAuthenticated()">
             <form role="form" ng-submit="addRecept()">
                 <div class="form-group">
                     <label for="inputnumber">Номер</label>
@@ -74,8 +70,8 @@
                     <input type="text" class="form-control" id="inputname" name="inputname" ng-model="inputname" placeholder="Название"></input>
                 </div>
                 <div class="form-group">
-                    <label for="inputbody">Рецепт</label>
-                    <input type="text" class="form-control" id="inputbody" name="inputbody" ng-model="inputbody" placeholder="Рецепт"></input>
+                    <label for="inputname">Рецепт</label>
+                    <input type="text" class="form-control" id="inputrecept" name="inputrecept" ng-model="inputrecept" placeholder="Рецепт"></input>
                 </div>
                 <button type="submit" class="btn btn-default">Добавить</button>
             </form>

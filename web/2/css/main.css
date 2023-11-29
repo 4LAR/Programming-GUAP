@@ -1,11 +1,13 @@
 table {
-  background: #000;
+  /* background: #000; */
+  border-collapse: collapse;
   width: 100%;
 }
 
 td, th {
   background: #fff;
   padding: 5px;
+  border: 1px solid #000;
 }
 
 table * {
@@ -25,7 +27,7 @@ table .name {
 }
 
 table .focus {
-  text-align: left;
+  /* text-align: left; */
 }
 
 /*----------------------------------------------------------------------------*/

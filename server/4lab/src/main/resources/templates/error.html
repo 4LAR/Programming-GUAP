@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+    </head>
+    <body>
+        <div class="container">
+            <div class="starter-template">                
+                <table>
+                    <tbody>
+                        <tr><td rowspan = "2"><img src="img/logo.png"/></td><td></td></tr>
+                        <tr><td></td></tr>
+                    </tbody>
+                </table>
+                <h1>403 - Access is denied</h1>
+                <div th:inline="text">Hello '[[${#httpServletRequest.remoteUser}]]', 
+                    you do not have permission to access this page.</div>
+            </div>
+        </div>
+        <!-- /.container -->
+    </body>
+</html>

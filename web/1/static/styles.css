@@ -1,0 +1,91 @@
+/* Стили для первой веб-страницы (index.html) */
+body.page1 {
+    background-color: #80bc7d; /* Серый цвет фона */
+}
+
+/* Стили для второй веб-страницы (poetry.html) */
+body.page2 {
+    background-color: #ffeecc; /* Бежевый цвет фона */
+}
+
+#about-me-paragraph {
+    border: 2px dotted #e40707;
+    border-radius: 10px;
+    padding: 10px;
+
+}
+
+/* Стили для списков */
+ul {
+    list-style-type: square;
+}
+
+ol {
+    list-style-type: decimal;
+}
+
+/* Стили для рамки параграфа */
+div, p {
+    border: 2px solid #999;
+    border-radius: 10px;
+}
+
+/* Стиль для изменения цвета гиперссылок при наведении */
+a:hover {
+    color: #FF6600;
+}
+
+/* Стиль для изменения цвета гиперссылки на .docx файл */
+a[download] {
+    color: green;
+}
+
+.poem1 {
+    font-family: "Arial", sans-serif; 
+    font-size: 18px;
+    font-weight: bold;
+    font-style: italic;
+    color: #ff0000;
+}
+
+.poem2 {
+    font-family: "Times New Roman", serif;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    color: #0000ff;
+}
+
+.poem3 {
+    font-family: "Courier New", monospace;
+    font-size: 1.2em;
+    font-weight: bold;
+    font-style: normal;
+    color: #008000;
+}
+
+.poem4 {
+    font-family: "Verdana", sans-serif;
+    font-size: 20px;
+    font-weight: normal;
+    font-style: italic;
+    color: #660066;
+}
+
+/* Стиль для пятого стихотворения */
+.poem5 {
+    font-family: "Georgia", serif;
+    font-size: 1.5em;
+    font-weight: bold;
+    font-style: normal;
+    color: #ff6600;
+}
+
+/* Стиль для шестого стихотворения */
+.poem6 {
+    font-family: "Helvetica Neue", sans-serif;
+    font-size: 18px;
+    font-weight: normal;
+    font-style: normal;
+    color: #009900;
+}

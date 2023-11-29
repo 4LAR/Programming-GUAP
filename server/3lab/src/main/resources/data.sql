@@ -1,5 +1,4 @@
-insert into Recept (RECEPT_DIFICULTY,RECEPT_NAME,RECEPT_BODY) values (1, 'Паста', 'С гоаном');
-
+insert into Recept (RECEPT_DIFICULTY,RECEPT_NAME,RECEPT_BODY) values (1, 'Салат "Греческий"', 'Ингредиенты - помидоры, огурцы, перец, красный лук, оливки, сыр фета, оливковое масло, соль, перец. Порежьте помидоры, огурцы, перец и красный лук. Добавьте оливки и натертый сыр фета. Полейте салат оливковым маслом, посолите и поперчите по вкусу.');
 
 --insert into BATCH (BATCH_NUMBER, BATCH_SCHOOL_ID) values ('111',1);
 --insert into BATCH (BATCH_NUMBER, BATCH_SCHOOL_ID) values ('112',1);
