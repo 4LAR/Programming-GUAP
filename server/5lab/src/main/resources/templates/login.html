@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>Вход в систему</title>
+
+    <link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link href="css/login.css" rel="stylesheet"/>
+
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angular-1.7.5.min.js"></script>
+
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+
+        #LoginForm {
+            margin-left: calc(50% - 100px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 200px;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 4px 0px #00000055;
+        }
+
+        .login-form {
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        .panel {
+            /* background-color: #ffffff; */
+            padding: 30px;
+            /* border-radius: 5px; */
+            /* box-shadow: 0px 0px 10px 0px #000000; */
+            text-align: center;
+        }
+
+        .form-heading {
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .forgot {
+            color: #777;
+        }
+
+        .btn-primary {
+            background-color: #28a745;
+            border-color: #28a745;
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+
+        .alert {
+            margin-top: 20px;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="LoginForm">
+        <div class="container">
+            <div class="login-form">
+                <div class="panel">
+                    <h2 th:text="#{app.name}" class="form-heading">Рецепты</h2>
+                    <p th:text="#{login.welcome}">Введите логин и пароль</p>
+                    <div th:if="${param.error}" th:text="#{login.error}" class="alert alert-danger">Неправильный пользователь или пароль.</div>
+                    <div th:if="${param.logout}" th:text="#{login.logout}" class="alert alert-success">До свидания!</div>
+                </div>
+                <form id="Login" th:action="@{/login}" method="post">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="login" name="login" placeholder="Логин"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="pass" name="pass" placeholder="Пароль"/>
+                    </div>
+
+                    <div class="forgot">
+                        <!--<a href="reset.html">Forgot password?</a>-->
+                    </div>
+                    <button type="submit" class="btn btn-primary" th:text="#{login.button}">Вход</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

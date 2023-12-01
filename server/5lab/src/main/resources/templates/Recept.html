@@ -24,7 +24,7 @@
     <body ng-app="Recept" ng-controller="ReceptController">
 
         <div sec:authorize="isAnonymous()" >
-            <h1><a href="/login">Login</a></h1>
+            <h1><a href="/login" th:text="#{login.enter}">Login</a></h1>
         </div>
 
         <div sec:authorize="isAuthenticated()">
@@ -33,15 +33,15 @@
             </form>
         </div>
 
-    <h1>Recept</h1>
+    <h1 th:text="#{app.name}">Recept</h1>
 
         <div ng-controller="getRecept" ng-show="ReceptList.length > 0">
             <table id="schoolsTable" class="table table-hover">
                 <thead>
                     <tr>
-                        <th><h2>Номер</h2></th>
-                        <th><h2>Название</h2></th>
-                        <th>Рецепт</th>
+                        <th><h2 th:text="#{table.num}">Номер</h2></th>
+                        <th><h2 th:text="#{table.name}">Название</h2></th>
+                        <th th:text="#{table.recept}">Рецепт</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -62,18 +62,18 @@
         <div sec:authorize="isAuthenticated()">
             <form role="form" ng-submit="addRecept()">
                 <div class="form-group">
-                    <label for="inputnumber">Номер</label>
+                    <label for="inputnumber" th:text="#{table.num}">Номер</label>
                     <input type="number" class="form-control" id="inputnumber" name="inputnumber"  placeholder="Номер" ng-model="inputnumber"> </input>
                 </div>
                 <div class="form-group">
-                    <label for="inputname">Название</label>
+                    <label for="inputname" th:text="#{table.name}">Название</label>
                     <input type="text" class="form-control" id="inputname" name="inputname" ng-model="inputname" placeholder="Название"></input>
                 </div>
                 <div class="form-group">
-                    <label for="inputname">Рецепт</label>
+                    <label for="inputname" th:text="#{table.recept}">Рецепт</label>
                     <input type="text" class="form-control" id="inputrecept" name="inputrecept" ng-model="inputrecept" placeholder="Рецепт"></input>
                 </div>
-                <button type="submit" class="btn btn-default">Добавить</button>
+                <button type="submit" class="btn btn-default" th:text="#{table.action}">Добавить</button>
             </form>
         </div>
     </body>
