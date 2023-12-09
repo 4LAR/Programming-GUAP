@@ -1,4 +1,13 @@
 
+--
+-- а. достопримечательности, в которых есть слово «Дворец», но с него название не начинается
+-- б. город без улиц
+-- в. улица, на которой есть и памятники, и музеи
+-- г. город, в котором нет памятников, но архитектурные комплексы
+-- д. улица, на которой музеев больше среднего
+-- е. улица с самыми старыми достопримечательностями
+-- ж. тип достопримечательностей, который есть во всех городах, где есть достопримечательности
+
 -- СПБ https://www.tripadvisor.ru/Attractions-g298507-Activities-St_Petersburg_Northwestern_District.html
 INSERT INTO City (IDCity, NameCity) VALUES (1, 'Санкт Петербург');
 
@@ -49,6 +58,16 @@ INSERT INTO TypeSight (IDTypeSight, TypeSightName) VALUES (3, 'Памятник'
 INSERT INTO Sight (IDSight, NameSight, CreateDate, IDAdress, IDTypeSight) VALUES (7, 'Музейно-выставочный комплекс стрелкового оружия им. М.Т. Калашникова', '2004 г', 7, 1);
 INSERT INTO Sight (IDSight, NameSight, CreateDate, IDAdress, IDTypeSight) VALUES (8, 'Памятник благоверным Петру и Февронии Муромским', '2008 г', 8, 3);
 INSERT INTO Sight (IDSight, NameSight, CreateDate, IDAdress, IDTypeSight) VALUES (9, 'Национальный Музей Удмуртской Республики', '1920 г', 9, 1);
+
+-- для условий
+
+INSERT INTO City (IDCity, NameCity) VALUES (4, 'Пустырь');
+INSERT INTO City (IDCity, NameCity) VALUES (5, 'Поле');
+INSERT INTO Sight (IDSight, NameSight, CreateDate, IDAdress, IDTypeSight) VALUES (10, 'Музей веселья', '2077', 8, 1);
+INSERT INTO Sight (IDSight, NameSight, CreateDate, IDAdress, IDTypeSight) VALUES (11, 'какой-то памятник', '2999 г.', 2, 1);
+INSERT INTO Sight (IDSight, NameSight, CreateDate, IDAdress, IDTypeSight) VALUES (12, 'какой-то дворец', '3333 г.', 2, 1);
+INSERT INTO Sight (IDSight, NameSight, CreateDate, IDAdress, IDTypeSight) VALUES (13, 'Архитектурный комплекс', '1389', 1, 2);
+INSERT INTO Sight (IDSight, NameSight, CreateDate, IDAdress, IDTypeSight) VALUES (14, 'Музей страданий', '2077', 8, 1);
 
 --
 
