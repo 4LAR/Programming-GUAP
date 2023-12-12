@@ -64,7 +64,7 @@ INSERT INTO Sight (IDSight, NameSight, CreateDate, IDAdress, IDTypeSight) VALUES
 INSERT INTO City (IDCity, NameCity) VALUES (4, 'Пустырь');
 INSERT INTO City (IDCity, NameCity) VALUES (5, 'Поле');
 INSERT INTO Sight (IDSight, NameSight, CreateDate, IDAdress, IDTypeSight) VALUES (10, 'Музей веселья', '2077', 8, 1);
-INSERT INTO Sight (IDSight, NameSight, CreateDate, IDAdress, IDTypeSight) VALUES (11, 'какой-то памятник', '2999 г.', 2, 1);
+INSERT INTO Sight (IDSight, NameSight, CreateDate, IDAdress, IDTypeSight) VALUES (11, 'какой-то памятник', '2999 г.', 2, 3);
 INSERT INTO Sight (IDSight, NameSight, CreateDate, IDAdress, IDTypeSight) VALUES (12, 'какой-то дворец', '3333 г.', 2, 1);
 INSERT INTO Sight (IDSight, NameSight, CreateDate, IDAdress, IDTypeSight) VALUES (13, 'Архитектурный комплекс', '1389', 1, 2);
 INSERT INTO Sight (IDSight, NameSight, CreateDate, IDAdress, IDTypeSight) VALUES (14, 'Музей страданий', '2077', 8, 1);
