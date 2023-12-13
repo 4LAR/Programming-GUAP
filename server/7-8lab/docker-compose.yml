@@ -1,0 +1,87 @@
+version: '3.1'
+
+# ------------------------------------------------------------------------------
+
+services:
+  # mysql_db:
+  #   image: mysql:8
+  #   restart: always
+  #   hostname: mysql_db
+  #   ports:
+  #     - "3306:3306"
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: user
+  #     MYSQL_DATABASE: mydb
+  #   volumes:
+  #     - ./dbdata:/var/lib/mysql/
+
+# ------------------------------------------------------------------------------
+
+  zookeeper:
+      image: confluentinc/cp-zookeeper:latest
+      ports:
+       - 22181:2181
+       - 2888:2888
+       - 3888:3888
+      environment:
+        ZOOKEEPER_CLIENT_PORT: 2181
+        ZOOKEEPER_TICK_TIME: 2000
+
+  kafka:
+      image: confluentinc/cp-kafka:latest
+      depends_on:
+        - zookeeper
+      ports:
+        - 9092:9092
+      environment:
+        KAFKA_BROKER_ID: 1
+        KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+        KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+        KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+        KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+        KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+        KAFKA_CREATE_TOPICS: "test1:1:1"
+
+  kafka-ui:
+      image: provectuslabs/kafka-ui
+      container_name: kafka-ui
+      ports:
+        - "8090:8080"
+      restart: always
+      environment:
+        - KAFKA_CLUSTERS_0_NAME=local
+        - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
+        - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
+      links:
+       - kafka
+       - zookeeper
+
+# ------------------------------------------------------------------------------
+
+  my_app:
+    build:
+      context: app
+    hostname: javaapp
+    ports:
+      - "8443:8443"
+      - "8100:8090"
+    environment:
+      - KAFKA_HOST=kafka:9092
+      - KAFKA_GROUP_ID=GROUP1
+    links:
+      - kafka
+
+  my_app2:
+    build:
+      context: app
+    hostname: javaapp2
+    ports:
+      - "8444:8443"
+      - "8200:8090"
+    environment:
+      - KAFKA_HOST=kafka:9092
+      - KAFKA_GROUP_ID=GROUP2
+    links:
+      - kafka
+
+# ------------------------------------------------------------------------------

@@ -12,10 +12,8 @@ server/1lab/target/*
 server/2lab/target/*
 server/3lab/target/*
 server/4lab/target/*
-server/5lab/target/*
-server/6lab/target/*
-server/7lab/target/*
-server/8lab/target/*
+server/5-6lab/target/*
+server/7-8lab/app/target/*
 statistic/1/__pycache__/*
 statistic/2/__pycache__/*
 statistic/3/__pycache__/*
