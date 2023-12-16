@@ -20,3 +20,4 @@ statistic/3/__pycache__/*
 optimization/1/__pycache__/*
 optimization/2/__pycache__/*
 optimization/3/__pycache__/*
+*.pyc
