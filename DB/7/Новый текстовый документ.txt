@@ -1,0 +1,1 @@
+https://repo.granit-concern.ru/qhb/std-1/doc/1.5.1/ru/SQL/plpgsql.html
