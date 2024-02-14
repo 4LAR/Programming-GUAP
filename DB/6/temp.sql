@@ -166,3 +166,12 @@ WHERE (
     SELECT COUNT(DISTINCT City.IDCity)
     FROM City
 );
+
+--------------------
+
+select City.namecity , typesightname from City
+join street on street.idcity = City.idcity
+join addres on addres.idstreet = street.idstreet
+left join sight on sight.idadress = addres.idadress
+left join typesight on typesight.idtypesight = sight.idtypesight
+

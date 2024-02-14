@@ -19,6 +19,7 @@ FOR EACH ROW
 EXECUTE FUNCTION after_insert_street();
 
 insert into street(idstreet,idcity,strretname) VALUES (503,1,'test');
+select count_street from city;
 
 -- уменьшает
 CREATE OR REPLACE FUNCTION after_del_street()
@@ -63,7 +64,7 @@ CREATE OR REPLACE FUNCTION befor_update_City()
 RETURNS TRIGGER AS $$
 BEGIN
     INSERT INTO City_backup (IDCity,NameCity)
-    value (old.IDCity,old.NameCity);
+    values (old.IDCity,old.NameCity);
     RETURN NULL;
 END;
 $$ LANGUAGE plpgsql;
@@ -108,3 +109,21 @@ CREATE TRIGGER after_update_street
 after update ON street
 FOR EACH ROW
 EXECUTE FUNCTION after_update_street();
+
+-- проверка на дату
+CREATE OR REPLACE FUNCTION befor_insert_sight()
+RETURNS TRIGGER AS $$
+BEGIN
+     if new.createdate > current_date
+  then RAISE EXCEPTION 'Условие не удовлетворено. Операция отменена.';
+  end if;
+    RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER befor_insert_sight
+before insert ON sight
+FOR EACH ROW
+EXECUTE FUNCTION befor_insert_sight();
+
+INSERT INTO Sight (IDSight, NameSight, CreateDate, IDAdress, IDTypeSight) VALUES (100, 'Памятник уныния', '2000-01-01', 8, 1);

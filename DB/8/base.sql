@@ -120,3 +120,5 @@ INSERT INTO Sight (IDSight, NameSight, CreateDate, IDAdress, IDTypeSight) VALUES
 INSERT INTO Sight (IDSight, NameSight, CreateDate, IDAdress, IDTypeSight) VALUES (12, 'какой-то дворец', '2033-01-01', 2, 1);
 INSERT INTO Sight (IDSight, NameSight, CreateDate, IDAdress, IDTypeSight) VALUES (13, 'Архитектурный комплекс', '1389-01-01', 1, 2);
 INSERT INTO Sight (IDSight, NameSight, CreateDate, IDAdress, IDTypeSight) VALUES (14, 'Музей страданий', '2077-01-01', 8, 1);
+
+INSERT INTO Sight (IDSight, NameSight, CreateDate, IDAdress, IDTypeSight) VALUES (100, 'Памятник уныния', '2000-01-01', 8, 1);
