@@ -54,7 +54,7 @@ EXECUTE FUNCTION befor_del_typesight();
 
 -- бэкап
 CREATE TABLE City_backup (
-  id_City_backup int SERIAL  primary key;
+    id_City_backup serial,
     IDCity INT,
     NameCity VARCHAR(50)
 );
