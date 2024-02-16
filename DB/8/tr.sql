@@ -37,11 +37,11 @@ after delete ON street
 FOR EACH ROW
 EXECUTE FUNCTION after_del_street();
 
---
+-- удаление доспремечательностей если удаляем их тип
 CREATE OR REPLACE FUNCTION befor_del_typesight()
 RETURNS TRIGGER AS $$
 BEGIN
-    delete frome sight
+    delete from sight
   where idtypesight = old.idtypesight;
     RETURN NULL;
 END;
@@ -52,19 +52,20 @@ before delete ON typesight
 FOR EACH ROW
 EXECUTE FUNCTION befor_del_typesight();
 
--- бэкап
+-- для бэкапа
 CREATE TABLE City_backup (
     id_City_backup serial,
     IDCity INT,
-    NameCity VARCHAR(50)
+    NameCity VARCHAR(50),
+    count_street int
 );
 
--- логирование
+-- бэкап
 CREATE OR REPLACE FUNCTION befor_update_City()
 RETURNS TRIGGER AS $$
 BEGIN
-    INSERT INTO City_backup (IDCity,NameCity)
-    values (old.IDCity,old.NameCity);
+    INSERT INTO City_backup (IDCity,NameCity,count_street)
+    values (old.IDCity,old.NameCity, old.count_street);
     RETURN NULL;
 END;
 $$ LANGUAGE plpgsql;
@@ -117,7 +118,7 @@ BEGIN
      if new.createdate > current_date
   then RAISE EXCEPTION 'Условие не удовлетворено. Операция отменена.';
   end if;
-    RETURN NULL;
+    RETURN new;
 END;
 $$ LANGUAGE plpgsql;
 
