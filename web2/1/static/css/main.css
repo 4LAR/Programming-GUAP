@@ -22,6 +22,12 @@ body {
   box-sizing: border-box;
 }
 
+@media screen and (max-width: 1200px) {
+  .body {
+    grid-template-columns: 1fr;
+  }
+}
+
 .body > div {
   position: relative;
   width: 100%;
@@ -75,6 +81,29 @@ body {
 
 /* -------------------------------------------------------------------------- */
 
+.body > div:last-child {
+
+}
+
+.body > div:last-child > p.name {
+  color: #19191C;
+  font-size: 2em;
+  margin-left: 40px;
+  font-weight: 600;
+}
+
+.body > div:last-child > div.code {
+  position: absolute;
+  top: 80px;
+  left: 40px;
+  width: calc(100% - 80px);
+  height: 400px;
+  border-radius: 12px;
+  background-color: #0C0C0E;
+}
+
+/* -------------------------------------------------------------------------- */
+
 .head {
   position: fixed;
   top: 0px;
@@ -89,4 +118,22 @@ body {
   left: 20px;
   top: 18px;
   height: 22px;
+}
+
+.head > div.menu {
+  margin-left: 160px;
+  margin-top: 23px;
+}
+
+.head > div.menu > a {
+  color: #BABABB;
+  font-size: 1.2em;
+  text-decoration: none;
+  margin-right: 20px;
+  padding-bottom: 16px;
+}
+
+.head > div.menu > a:hover {
+  color: #FFFFFF;
+  border-bottom: 2px solid #BABABB;
 }
