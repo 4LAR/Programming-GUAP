@@ -50,6 +50,29 @@ body {
   margin-left: 100px;
 }
 
+.body > div:first-child > div.button_start {
+  position: absolute;
+  margin-top: 40px;
+  right: 0px;
+  background-color: #7F52FF;
+  transition: .1s all;
+  border-radius: 20px 0 0 20px;
+  cursor: pointer;
+  width: 200px;
+}
+
+.body > div:first-child > div.button_start > p {
+  padding: 10px 40px;
+  margin: 0px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1.5em;
+}
+
+.body > div:first-child > div.button_start:hover {
+  background-color: #6B47D2;
+}
+
 /* -------------------------------------------------------------------------- */
 
 .head {
