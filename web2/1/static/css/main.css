@@ -97,9 +97,16 @@ body {
   top: 80px;
   left: 40px;
   width: calc(100% - 80px);
-  height: 400px;
+  height: 500px;
   border-radius: 12px;
   background-color: #0C0C0E;
+}
+
+.body > div:last-child > div.code > iframe {
+  border-radius: 8px;
+  margin: 5px;
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
 }
 
 /* -------------------------------------------------------------------------- */
