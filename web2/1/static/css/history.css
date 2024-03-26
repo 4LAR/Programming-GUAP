@@ -1,0 +1,41 @@
+div.history {
+  margin-top: 80px;
+}
+
+.footer {
+  position: sticky;
+  width: 100%;
+}
+
+div.history {
+  box-sizing: border-box;
+  padding-top: 0px;
+  width: 800px;
+  margin-left: 50%;
+  transform: translate(-50%, 0);
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 100px;
+}
+
+div.history > article > p.name {
+  font-size: 1.4em;
+  font-weight: bold;
+  padding-left: 20px;
+}
+
+div.history > article > img {
+  max-width: 400px;
+}
+
+@media screen and (max-width: 900px) {
+  div.history {
+    box-sizing: border-box;
+    padding-top: 0px;
+    width: 100%;
+    margin-left: 0;
+    transform: none;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}

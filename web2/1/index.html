@@ -3,8 +3,10 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kotlin</title>
     <link rel="stylesheet" href="./static/css/main.css">
+    <link rel="icon" type="image/x-icon" href="./static/img/favicon.svg">
   </head>
   <body>
     <div class="body">
@@ -14,23 +16,46 @@
         <div class="button_start" onclick="openLink('https://kotlinlang.org/docs/getting-started.html')">
           <p>Get started</p>
         </div>
+        <!-- <div class="news">
+          <p>Последние новости</p>
+          <ul id="news"></ul>
+        </div> -->
       </div>
       <div class="">
-        <!-- <p>Kotlin — статически типизированный, объектно-ориентированный язык программирования, работающий поверх Java Virtual Machine и разрабатываемый компанией JetBrains. Также компилируется в JavaScript и в исполняемый код ряда платформ через инфраструктуру LLVM. Язык назван в честь российского острова Котлин в Финском заливе, на котором расположен город Кронштадт.</p> -->
         <p class="name">Why Kotlin?</p>
         <div class="code">
-          <iframe src="https://www.youtube.com/embed/xT8oP0wy-A0?si=PTKcCRoVzM_4Jz71" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <video src="./static/video/video.mp4" controls>
+            <source src="./static/video/video.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <hr>
+        <div class="info">
+          <p class="name">Share code on your terms and for different platforms</p>
+          <p class="text">Simplify the development of cross-platform projects with Kotlin Multiplatform. It reduces time spent writing and maintaining the same code for different platforms while retaining the flexibility and benefits of native programming. Kotlin applications will work on different operating systems, such as iOS, Android, macOS, Windows, Linux, watchOS, and others.</p>
+          <img src="./static/img/multiplatform.svg">
+          <a href="https://www.jetbrains.com/kotlin-multiplatform/" class="button" style="width: 250px;">Learn about Kotlin Multiplatform</a>
+        </div>
+        <hr>
+        <div class="info">
+          <p class="name">Big, friendly and helpful community</p>
+          <p class="text">Kotlin has great support and many contributors in its fast-growing global community. Enjoy the benefits of a rich ecosystem with a wide range of community libraries. Help is never far away — consult extensive community resources or ask the Kotlin team directly.</p>
+          <a href="https://kotlinlang.org/community/" class="button">Join the community</a>
+        </div>
+        <div class="footer">
+          <p class="supported">Supported and developed by JetBrains.</p>
+          <p class="license">Kotlin™ is protected under the Kotlin Foundation and licensed under the Apache 2 license.</p>
         </div>
       </div>
     </div>
     <div class="head">
-      <img class="logo" src="./static/img/logo.svg">
+      <img class="logo" src="./static/img/logo.svg" onclick="openLink('./index.html')">
       <div class="menu">
-        <a href="./code.html">Примеры кода</a>
+        <a href="./sources.html">Использованные источники</a>
         <a href="./history.html">История</a>
         <a href="https://kotlinlang.org/docs/getting-started.html#install-kotlin">Документация</a>
       </div>
     </div>
   </body>
   <script src="./static/js/main.js" charset="utf-8"></script>
+  <script src="./static/js/index.js" charset="utf-8"></script>
 </html>
