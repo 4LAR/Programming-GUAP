@@ -287,3 +287,25 @@ body {
   bottom: 30px;
   padding-left: 20px;
 }
+
+/* -------------------------------------------------------------------------- */
+
+.sources {
+  padding-top: 60px;
+}
+
+.sources > ul {
+  list-style-type: none;
+}
+
+.sources > ul > li {
+  margin-bottom: 20px;
+}
+
+.sources > ul > li > a {
+  font-size: 1.2em;
+}
+
+.sources > ul > li > a > img {
+  width: 40px;
+}
