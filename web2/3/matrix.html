@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title>Редактор JavaScript</title>
+</head>
+<body>
+  Введите скрипт:<br/>
+  <textarea id="mycode" rows=40 cols=100></textarea>
+  <br/>Результат:<br/>
+  <textarea id="myrezult" rows=10 cols=100></textarea> <br/>
+  <input id="size" type="number" placeholder="Размерность матрицы" value="10">
+  <button onclick="run_code()">
+    Выполнить
+  </button>
+  <button onclick="document.getElementById('mycode').value=''; document.getElementById('myrezult').value=''">
+    Очистить
+  </button>
+  <a href="extra.html">extra</a>
+
+  <script>
+    res = `
+      var symbol = 7;
+
+      function fillMatrix(n) {
+        let matrix = [];
+        for (let i = 0; i < n; i++) {
+          matrix[i] = new Array(n).fill(0);
+        }
+        for (let i = 0; i < n; i++) {
+          for (let j = 0; j <= i - 1; j++) {
+            matrix[i][j] = symbol;
+            matrix[i][n - 1 - j] = symbol;
+          }
+        }
+        return matrix;
+      }
+
+      let size = Number(document.getElementById('size').value);
+      const resultMatrix = fillMatrix(size);
+      result = '';
+      for (let i = 0; i < size; i++) {
+        result += resultMatrix[i].join(' ')+'\\n';
+      }
+    `;
+
+    function run_code() {
+      try {
+        console.log(document.getElementById('mycode').value);
+        document.getElementById('myrezult').value = eval(document.getElementById('mycode').value)
+      } catch (e) {
+          document.getElementById('myrezult').value = e;
+      }
+    }
+    document.getElementById('mycode').value=res;
+  </script>
+  <!-- <script src="./matrix.js" charset="utf-8"></script> -->
+  </body>
+</html>
+
+
+<!-- function fillMatrix(n) {
+let matrix = [];
+
+
+for (let i = 0; i < n; i++) {
+matrix[i] = new Array(n).fill(0);
+}
+
+
+for (let i = 0; i < n; i++) {
+for (let j = 0; j <= i; j++) {
+matrix[i][j] = i - j;
+}
+}
+
+return matrix;
+}
+
+
+const size = 6;
+const resultMatrix = fillMatrix(size);
+result = '';
+for (let i = 0; i < size; i++) {
+result += resultMatrix[i].join(' ')+'\n';
+}
+result -->

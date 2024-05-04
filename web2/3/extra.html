@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <title>Редактор JavaScript</title>
+    <style>
+      canvas {
+        border: 1px dashed black;
+      }
+    </style>
+
+    <script>
+      function clear_holst()
+      { var canvas = document.getElementById("drawingCanvas");
+      var context = canvas.getContext("2d");
+      context.clearRect(0,0,600,200);  }
+    </script>
+  </head>
+
+  <body>
+    <table border =0>
+      <tr> <td> Введите  текст программы на javascript:</td>
+
+        <td>Отображение рисунка: </td></tr>
+        <tr><td><textarea id="mycode" rows=20 cols=100></textarea></td>
+          <td> <canvas id="drawingCanvas" width="400" height="300">Ваш браузер не поддерживает canvas </canvas></td>
+        </tr></table>
+        <br> <br>
+        <button onclick= "eval(document.getElementById('mycode').value)">
+          Отобразить рисунок  </button>
+          <input type="number" value="4" id="num" placeholder="количество прямоугольников">
+          <input type="number" step="25" id="psize" placeholder="Размер прямоугольников" value =100>
+
+          <button onclick="document.getElementById('drawingCanvas').getContext('2d').clearRect(0,0,600,400).then(beginPath());">Clear canvas</button>
+
+          <script>
+            res =`var canvas = document.getElementById("drawingCanvas");
+            var context = canvas.getContext("2d");
+
+            let size = Number(document.getElementById('psize').value);;
+            let ratio = 16/9;
+            let start_x = 100;
+            let start_y = 100;
+
+            for (let i = 0; i < Number(document.getElementById('num').value); i++) {
+              context.strokeStyle = "blue";
+              context.beginPath();
+
+              context.moveTo(start_x ,start_y);
+              context.lineTo(start_x + size,start_y);
+              context.lineTo(start_x + size,start_y + size / ratio);
+              context.lineTo(start_x,start_y + size / ratio);
+              context.lineTo(start_x,start_y);
+              context.stroke();
+
+              start_x += (size * (1 - 0.75)) / 2;
+              start_y += (size / ratio * (1 - 0.75)) / 2;
+              size *= 0.75;
+            } `;
+
+            document.getElementById('mycode').value =res;
+          </script>
+        </body></html>
