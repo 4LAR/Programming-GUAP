@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Источники</title>
+    <link rel="stylesheet" href="./static/css/main.css">
+    <link rel="stylesheet" href="./static/css/history.css">
+    <link rel="icon" type="image/x-icon" href="./static/img/favicon.svg">
+  </head>
+  <style media="screen">
+    .sources {
+      padding-top: 60px;
+    }
+
+    .sources > ul {
+      list-style-type: none;
+    }
+
+    .sources > ul > li {
+      margin-bottom: 20px;
+    }
+
+    .sources > ul > li > a {
+      font-size: 1.2em;
+    }
+
+    .sources > ul > li > a:link {
+      color: red;
+    }
+
+    .sources > ul > li > a:visited {
+      color: forestgreen;
+      text-decoration-color: hotpink;
+    }
+
+    .sources > ul > li > a > img {
+      width: 40px;
+    }
+  </style>
+  <body>
+
+    <header class="head">
+      <img class="logo" src="./static/img/logo.svg" onclick="openLink('./index.html')">
+      <div class="menu">
+        <a href="./sources.html" class="selected">Использованные источники</a>
+        <a href="./history.html">История</a>
+        <a href="https://kotlinlang.org/docs/getting-started.html#install-kotlin">Документация</a>
+      </div>
+    </header>
+    <div class="sources">
+      <ul>
+        <li>
+          <a href="https://github.com/JetBrains/kotlin">
+            <img src="./static/img/sources/github.svg">
+            GitHub
+          </a>
+        </li>
+        <li>
+          <a href="https://kotlinlang.org/">
+            <img src="./static/img/sources/kotlin.svg">
+            Официальный сайт
+          </a>
+        </li>
+        <li>
+          <a href="https://ru.wikipedia.org/wiki/Kotlin">
+            <img src="./static/img/sources/wiki.svg">
+            Страница на wikipedia
+          </a>
+        </li>
+        <li>
+          <a href="https://en.wikipedia.org/wiki/Kotlin_(programming_language)">
+            <img src="./static/img/sources/wiki.svg">
+            Страница на wikipedia (на английском)
+          </a>
+        </li>
+      </ul>
+    </div>
+    <footer class="footer">
+      <p class="supported">Supported and developed by JetBrains.</p>
+      <p class="license">Kotlin™ is protected under the Kotlin Foundation and licensed under the Apache 2 license.</p>
+    </footer>
+    <script src="./static/js/main.js" charset="utf-8"></script>
+  </body>
+</html>
