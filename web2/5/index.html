@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Волшебная форма</title>
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+    <div class="form">
+      <p class="form_name">Запись на курс</p>
+      <form id="form" class="" action="/" method="post">
+        <input type="text" name="surname" placeholder="Фамилия">
+        <input type="text" name="name" placeholder="Имя">
+        <input type="text" name="middle_name" placeholder="Отчество">
+        <input type="text" name="phone" placeholder="Номер телефона">
+        <label for="test">Тип обучения: </label>
+        <select class="" name="time_education">
+          <option value="Очная">Очная</option>
+          <option value="Заочная">Заочная</option>
+        </select>
+        <br>
+        <label>Пол:</label>
+        <br>
+        <label for="">
+          <input type="radio" name="sex" value="male">
+          Мужской
+        </label>
+        <br>
+        <label for="">
+          <input type="radio" name="sex" value="female">
+          Женский
+        </label>
+        <br>
+        <br>
+        <input type="password" name="code" placeholder="Реферальный код">
+        <label for="">
+          <input type="checkbox" name="human">
+          Вы человек?
+        </label>
+        <br>
+        <label for="">
+          <input type="checkbox" name="agreement">
+          Я ничего не принимаю. Просто хочу нажать на кнопку отправки
+        </label>
+        <br>
+
+        <input type=submit value="Отправить">
+      </form>
+    </div>
+    <script src="main.js" charset="utf-8"></script>
+  </body>
+</html>
