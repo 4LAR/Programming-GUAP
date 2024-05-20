@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<indexing>
+ <object alt="" name="Изображение1" object_type="graphic"/>
+ <object alt="" name="Изображение2" object_type="graphic"/>
+ <object alt="" name="Изображение3" object_type="graphic"/>
+ <paragraph index="22" node_type="writer">ГУАП</paragraph>
+ <paragraph index="23" node_type="writer">КАФЕДРА № 43</paragraph>
+ <paragraph index="24" node_type="writer">ОТЧЕТ 
+ЗАЩИЩЕН С ОЦЕНКОЙ</paragraph>
+ <paragraph index="25" node_type="writer">ПРЕПОДАВАТЕЛЬ</paragraph>
+ <object index="26" name="Table1" object_type="table"/>
+ <paragraph index="28" node_type="writer" parent_index="26">Старший преподаватель</paragraph>
+ <paragraph index="40" node_type="writer" parent_index="26">             Соловьева Н.А.</paragraph>
+ <paragraph index="43" node_type="writer" parent_index="26">должность, уч. степень, звание</paragraph>
+ <paragraph index="49" node_type="writer" parent_index="26">подпись, дата</paragraph>
+ <paragraph index="55" node_type="writer" parent_index="26">инициалы, фамилия</paragraph>
+ <object index="59" name="Table2" object_type="table"/>
+ <paragraph index="61" node_type="writer" parent_index="59">ОТЧЕТ О ЛАБОРАТОРНОЙ РАБОТЕ №1</paragraph>
+ <paragraph index="62" node_type="writer" parent_index="59">Язык HTML. Приемы верстки</paragraph>
+ <paragraph index="65" node_type="writer" parent_index="59">по дисциплине: Web-Технологии</paragraph>
+ <paragraph index="75" node_type="writer">РАБОТУ ВЫПОЛНИЛ</paragraph>
+ <object index="76" name="Table3" object_type="table"/>
+ <paragraph index="78" node_type="writer" parent_index="76">СТУДЕНТ ГР.</paragraph>
+ <paragraph index="81" node_type="writer" parent_index="76">4134к</paragraph>
+ <paragraph index="93" node_type="writer" parent_index="76">Столяров Н.С.</paragraph>
+ <paragraph index="105" node_type="writer" parent_index="76">подпись, дата</paragraph>
+ <paragraph index="111" node_type="writer" parent_index="76">инициалы, фамилия</paragraph>
+ <paragraph index="124" node_type="writer">Санкт-Петербург</paragraph>
+ <paragraph index="125" node_type="writer">2023</paragraph>
+ <object index="127" name="Table of Contents1" object_type="section"/>
+ <object index="128" name="TextSection" object_type="section"/>
+ <paragraph index="129" node_type="writer" parent_index="128">Оглавление</paragraph>
+ <paragraph index="131" node_type="writer" parent_index="127">Цель работы:	3</paragraph>
+ <paragraph index="132" node_type="writer" parent_index="127">Вариант задания 4	3</paragraph>
+ <paragraph index="133" node_type="writer" parent_index="127">Названия средств, использованных при выполнении работы	3</paragraph>
+ <paragraph index="134" node_type="writer" parent_index="127">Описание выполненных пунктов базового задания	3</paragraph>
+ <paragraph index="135" node_type="writer" parent_index="127">Описание выполненных пунктов Расширенного задания	3</paragraph>
+ <paragraph index="136" node_type="writer" parent_index="127">Список примененных тегов HTML5 со ссылками на рисунки со скриншотами и на номера страниц отчета, где размещен соответствующий листинг.	4</paragraph>
+ <paragraph index="137" node_type="writer" parent_index="127">Скриншоты  web-страниц с подписью и номерами рисунков	5</paragraph>
+ <paragraph index="138" node_type="writer" parent_index="127">Листинг html4	7</paragraph>
+ <paragraph index="139" node_type="writer" parent_index="127">Листинг html5	11</paragraph>
+ <paragraph index="140" node_type="writer" parent_index="127">Листинг Источники	16</paragraph>
+ <paragraph index="143" node_type="writer">Цель работы: знакомство с языком разметки HTML, работа с основными тегами</paragraph>
+ <paragraph index="145" node_type="writer">Вариант задания 4</paragraph>
+ <object index="146" name="Table4" object_type="table"/>
+ <paragraph index="148" node_type="writer" parent_index="146">№</paragraph>
+ <paragraph index="151" node_type="writer" parent_index="146">Вид таблицы</paragraph>
+ <paragraph index="154" node_type="writer" parent_index="146">Вид списка</paragraph>
+ <paragraph index="157" node_type="writer" parent_index="146">7</paragraph>
+ <paragraph index="160" node_type="writer" parent_index="146">Объединение столбцов</paragraph>
+ <paragraph index="163" node_type="writer" parent_index="146">Определений (теги dl, dt, dd) </paragraph>
+ <object index="167" name="Table5" object_type="table"/>
+ <paragraph index="169" node_type="writer" parent_index="167">1</paragraph>
+ <paragraph index="172" node_type="writer" parent_index="167">Язык Котлин</paragraph>
+ <paragraph index="176" node_type="writer">Названия средств, использованных при выполнении работы</paragraph>
+ <paragraph index="177" node_type="writer">Редактор кода Atom</paragraph>
+ <paragraph index="178" node_type="writer">Браузер Chrome</paragraph>
+ <paragraph index="180" node_type="writer">Описание выполненных пунктов базового задания</paragraph>
+ <paragraph index="182" node_type="writer">1) Первая страница на html4</paragraph>
+ <paragraph index="183" node_type="writer">2) Третья страница ссылок на источники</paragraph>
+ <paragraph index="184" node_type="writer">3) Вторая страница на html5
+</paragraph>
+ <paragraph index="185" node_type="writer">Описание выполненных пунктов Расширенного задания</paragraph>
+ <paragraph index="186" node_type="writer">1) Расширенное использование тега meta (кроме кодировки) </paragraph>
+ <paragraph index="187" node_type="writer">2) Применение тегов audio, video, embed, address, picture, time.</paragraph>
+ <paragraph index="188" node_type="writer">3) Использование тегов структурного форматирования: abbr, cite, code, dfn, em, kbd, mark, samp, strong, var, q, blockquote. Минимум 5 разных</paragraph>
+ <paragraph index="190" node_type="writer">Список примененных тегов HTML5 со ссылками на рисунки со скриншотами и на номера страниц отчета, где размещен соответствующий листинг.</paragraph>
+ <paragraph index="192" node_type="writer">&lt;!DOCTYPE html&gt; - это обязательный тег, который указывает браузеру, что это HTML5 документ.</paragraph>
+ <paragraph index="193" node_type="writer">&lt;html lang=&quot;en&quot;&gt; - это тег указывает язык документа.</paragraph>
+ <paragraph index="194" node_type="writer">&lt;meta charset=&quot;UTF-8&quot;&gt; - это тег указывает кодировку документа.</paragraph>
+ <paragraph index="196" node_type="writer">&lt;meta property=&quot;og:type&quot; content=&quot;website&quot;&gt;</paragraph>
+ <paragraph index="197" node_type="writer">&lt;meta property=&quot;og:url&quot; content=&quot;https://linkfork.co/&quot;&gt;</paragraph>
+ <paragraph index="198" node_type="writer">&lt;meta property=&quot;og:title&quot; content=&quot;Kotlin&quot;&gt;</paragraph>
+ <paragraph index="199" node_type="writer">&lt;meta property=&quot;og:description&quot; content=&quot;Сайт для лабораторной работы на тему &lt;&lt;Kotlin&gt;&gt;&quot;&gt;</paragraph>
+ <paragraph index="200" node_type="writer">&lt;meta property=&quot;og:image&quot; content=&quot;https://kotlinlang.org/assets/images/favicon.ico?v2&quot;&gt;</paragraph>
+ <paragraph index="201" node_type="writer">	Данные о странице (для соц сетей например)</paragraph>
+ <paragraph index="202" node_type="writer">&lt;title&gt;Document&lt;/title&gt; - это тег указывает заголовок страницы.</paragraph>
+ <paragraph index="203" node_type="writer">&lt;div&gt; - это тег используется для создания блоков контента.</paragraph>
+ <paragraph index="204" node_type="writer">&lt;h1&gt; - это тег используется для создания заголовка первого уровня.</paragraph>
+ <paragraph index="205" node_type="writer">&lt;br&gt; - это тег используется для создания новой строки.</paragraph>
+ <paragraph index="206" node_type="writer">&lt;h2&gt; - это тег используется для создания заголовка второго уровня.</paragraph>
+ <paragraph index="207" node_type="writer">&lt;ul&gt; - это тег используется для создания списка.</paragraph>
+ <paragraph index="208" node_type="writer">&lt;li&gt; - это тег используется для создания элемента списка.</paragraph>
+ <paragraph index="209" node_type="writer">&lt;a href=&quot;html5.html&quot;&gt;Перейти на html5 версию&lt;/a&gt; - это тег используется для создания гиперссылки.</paragraph>
+ <paragraph index="210" node_type="writer">&lt;a href=&quot;resources.html&quot;&gt;Источники&lt;/a&gt; - это тег используется для создания гиперссылки.</paragraph>
+ <paragraph index="211" node_type="writer">&lt;table border=&quot;1&quot;&gt; - это тег используется для создания таблицы.</paragraph>
+ <paragraph index="212" node_type="writer">&lt;tr&gt; - это тег используется для создания строки таблицы.</paragraph>
+ <paragraph index="213" node_type="writer">&lt;th&gt; - это тег используется для создания заголовка столбца таблицы.</paragraph>
+ <paragraph index="214" node_type="writer">&lt;td&gt; - это тег используется для создания ячейки таблицы.</paragraph>
+ <paragraph index="216" node_type="writer">Скриншоты  web-страниц с подписью и номерами рисунков</paragraph>
+ <paragraph index="219" node_type="writer">Рисунок 1(index.html)</paragraph>
+ <paragraph index="222" node_type="writer">Рисунок 2 (sources.html)</paragraph>
+ <paragraph index="225" node_type="writer">Рисунок 3 (history.html)
+
+Листинг index.html(html4)</paragraph>
+ <object index="226" name="Table6" object_type="table"/>
+ <paragraph index="229" node_type="writer" parent_index="226">&lt;!DOCTYPE html&gt;</paragraph>
+ <paragraph index="230" node_type="writer" parent_index="226">&lt;html lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;</paragraph>
+ <paragraph index="231" node_type="writer" parent_index="226">  &lt;head&gt;</paragraph>
+ <paragraph index="232" node_type="writer" parent_index="226">    &lt;meta charset=&quot;utf-8&quot;&gt;</paragraph>
+ <paragraph index="233" node_type="writer" parent_index="226">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</paragraph>
+ <paragraph index="234" node_type="writer" parent_index="226">    &lt;title&gt;Kotlin&lt;/title&gt;</paragraph>
+ <paragraph index="235" node_type="writer" parent_index="226">    &lt;link rel=&quot;stylesheet&quot; href=&quot;./static/css/main.css&quot;&gt;</paragraph>
+ <paragraph index="236" node_type="writer" parent_index="226">    &lt;link rel=&quot;icon&quot; type=&quot;image/x-icon&quot; href=&quot;./static/img/favicon.svg&quot;&gt;</paragraph>
+ <paragraph index="238" node_type="writer" parent_index="226">    &lt;meta property=&quot;og:type&quot; content=&quot;website&quot;&gt;</paragraph>
+ <paragraph index="239" node_type="writer" parent_index="226">    &lt;meta property=&quot;og:url&quot; content=&quot;https://linkfork.co/&quot;&gt;</paragraph>
+ <paragraph index="240" node_type="writer" parent_index="226">    &lt;meta property=&quot;og:title&quot; content=&quot;Kotlin&quot;&gt;</paragraph>
+ <paragraph index="241" node_type="writer" parent_index="226">    &lt;meta property=&quot;og:description&quot; content=&quot;Сайт для лабораторной работы на тему &lt;&lt;Kotlin&gt;&gt;&quot;&gt;</paragraph>
+ <paragraph index="242" node_type="writer" parent_index="226">    &lt;meta property=&quot;og:image&quot; content=&quot;https://kotlinlang.org/assets/images/favicon.ico?v2&quot;&gt;</paragraph>
+ <paragraph index="243" node_type="writer" parent_index="226">  &lt;/head&gt;</paragraph>
+ <paragraph index="244" node_type="writer" parent_index="226">  &lt;body&gt;</paragraph>
+ <paragraph index="245" node_type="writer" parent_index="226">    &lt;div class=&quot;body&quot;&gt;</paragraph>
+ <paragraph index="246" node_type="writer" parent_index="226">      &lt;div class=&quot;&quot;&gt;</paragraph>
+ <paragraph index="247" node_type="writer" parent_index="226">        &lt;p class=&quot;name&quot;&gt;Kotlin&lt;/p&gt;</paragraph>
+ <paragraph index="248" node_type="writer" parent_index="226">        &lt;p class=&quot;info&quot;&gt;Concise. Multiplatform. Fun.&lt;/p&gt;</paragraph>
+ <paragraph index="249" node_type="writer" parent_index="226">        &lt;div class=&quot;button_start&quot; onclick=&quot;openLink('https://kotlinlang.org/docs/getting-started.html')&quot;&gt;</paragraph>
+ <paragraph index="250" node_type="writer" parent_index="226">          &lt;p&gt;Get started&lt;/p&gt;</paragraph>
+ <paragraph index="251" node_type="writer" parent_index="226">        &lt;/div&gt;</paragraph>
+ <paragraph index="252" node_type="writer" parent_index="226">        &lt;!-- &lt;div class=&quot;news&quot;&gt;</paragraph>
+ <paragraph index="253" node_type="writer" parent_index="226">          &lt;p&gt;Последние новости&lt;/p&gt;</paragraph>
+ <paragraph index="254" node_type="writer" parent_index="226">          &lt;ul id=&quot;news&quot;&gt;&lt;/ul&gt;</paragraph>
+ <paragraph index="255" node_type="writer" parent_index="226">        &lt;/div&gt; --&gt;</paragraph>
+ <paragraph index="256" node_type="writer" parent_index="226">      &lt;/div&gt;</paragraph>
+ <paragraph index="257" node_type="writer" parent_index="226">      &lt;div class=&quot;&quot;&gt;</paragraph>
+ <paragraph index="258" node_type="writer" parent_index="226">        &lt;p class=&quot;name&quot;&gt;Why Kotlin?&lt;/p&gt;</paragraph>
+ <paragraph index="259" node_type="writer" parent_index="226">        &lt;div class=&quot;code&quot;&gt;</paragraph>
+ <paragraph index="260" node_type="writer" parent_index="226">          &lt;video src=&quot;./static/video/video.mp4&quot; controls&gt;</paragraph>
+ <paragraph index="261" node_type="writer" parent_index="226">            &lt;source src=&quot;./static/video/video.mp4&quot; type=&quot;video/mp4&quot; /&gt;</paragraph>
+ <paragraph index="262" node_type="writer" parent_index="226">          &lt;/video&gt;</paragraph>
+ <paragraph index="263" node_type="writer" parent_index="226">        &lt;/div&gt;</paragraph>
+ <paragraph index="264" node_type="writer" parent_index="226">        &lt;hr&gt;</paragraph>
+ <paragraph index="265" node_type="writer" parent_index="226">        &lt;div class=&quot;info&quot;&gt;</paragraph>
+ <paragraph index="266" node_type="writer" parent_index="226">          &lt;p class=&quot;name&quot;&gt;Share code on your terms and for different platforms&lt;/p&gt;</paragraph>
+ <paragraph index="267" node_type="writer" parent_index="226">          &lt;p class=&quot;text&quot;&gt;Simplify the development of cross-platform projects with Kotlin Multiplatform. It reduces time spent writing and maintaining the same code for different platforms while retaining the flexibility and benefits of native programming. Kotlin applications will work on different operating systems, such as iOS, Android, macOS, Windows, Linux, watchOS, and others.&lt;/p&gt;</paragraph>
+ <paragraph index="268" node_type="writer" parent_index="226">          &lt;img src=&quot;./static/img/multiplatform.svg&quot;&gt;</paragraph>
+ <paragraph index="269" node_type="writer" parent_index="226">          &lt;a href=&quot;https://www.jetbrains.com/kotlin-multiplatform/&quot; class=&quot;button&quot; style=&quot;width: 250px;&quot;&gt;Learn about Kotlin Multiplatform&lt;/a&gt;</paragraph>
+ <paragraph index="270" node_type="writer" parent_index="226">        &lt;/div&gt;</paragraph>
+ <paragraph index="271" node_type="writer" parent_index="226">        &lt;hr&gt;</paragraph>
+ <paragraph index="272" node_type="writer" parent_index="226">        &lt;div class=&quot;info&quot;&gt;</paragraph>
+ <paragraph index="273" node_type="writer" parent_index="226">          &lt;p class=&quot;name&quot;&gt;Big, friendly and helpful community&lt;/p&gt;</paragraph>
+ <paragraph index="274" node_type="writer" parent_index="226">          &lt;p class=&quot;text&quot;&gt;Kotlin has great support and many contributors in its fast-growing global community. Enjoy the benefits of a rich ecosystem with a wide range of community libraries. Help is never far away — consult extensive community resources or ask the Kotlin team directly.&lt;/p&gt;</paragraph>
+ <paragraph index="275" node_type="writer" parent_index="226">          &lt;a href=&quot;https://kotlinlang.org/community/&quot; class=&quot;button&quot;&gt;Join the community&lt;/a&gt;</paragraph>
+ <paragraph index="276" node_type="writer" parent_index="226">        &lt;/div&gt;</paragraph>
+ <paragraph index="277" node_type="writer" parent_index="226">        &lt;div class=&quot;footer&quot;&gt;</paragraph>
+ <paragraph index="278" node_type="writer" parent_index="226">          &lt;p class=&quot;supported&quot;&gt;Supported and developed by JetBrains.&lt;/p&gt;</paragraph>
+ <paragraph index="279" node_type="writer" parent_index="226">          &lt;p class=&quot;license&quot;&gt;Kotlin™ is protected under the Kotlin Foundation and licensed under the Apache 2 license.&lt;/p&gt;</paragraph>
+ <paragraph index="280" node_type="writer" parent_index="226">        &lt;/div&gt;</paragraph>
+ <paragraph index="281" node_type="writer" parent_index="226">      &lt;/div&gt;</paragraph>
+ <paragraph index="282" node_type="writer" parent_index="226">    &lt;/div&gt;</paragraph>
+ <paragraph index="283" node_type="writer" parent_index="226">    &lt;div class=&quot;head&quot;&gt;</paragraph>
+ <paragraph index="284" node_type="writer" parent_index="226">      &lt;img class=&quot;logo&quot; src=&quot;./static/img/logo.svg&quot; onclick=&quot;openLink('./index.html')&quot;&gt;</paragraph>
+ <paragraph index="285" node_type="writer" parent_index="226">      &lt;div class=&quot;menu&quot;&gt;</paragraph>
+ <paragraph index="286" node_type="writer" parent_index="226">        &lt;a href=&quot;./sources.html&quot;&gt;Использованные источники&lt;/a&gt;</paragraph>
+ <paragraph index="287" node_type="writer" parent_index="226">        &lt;a href=&quot;./history.html&quot;&gt;История&lt;/a&gt;</paragraph>
+ <paragraph index="288" node_type="writer" parent_index="226">        &lt;a href=&quot;https://kotlinlang.org/docs/getting-started.html#install-kotlin&quot;&gt;Документация&lt;/a&gt;</paragraph>
+ <paragraph index="289" node_type="writer" parent_index="226">      &lt;/div&gt;</paragraph>
+ <paragraph index="290" node_type="writer" parent_index="226">    &lt;/div&gt;</paragraph>
+ <paragraph index="291" node_type="writer" parent_index="226">  &lt;/body&gt;</paragraph>
+ <paragraph index="292" node_type="writer" parent_index="226">  &lt;script src=&quot;./static/js/main.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</paragraph>
+ <paragraph index="293" node_type="writer" parent_index="226">  &lt;script src=&quot;./static/js/index.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</paragraph>
+ <paragraph index="294" node_type="writer" parent_index="226">&lt;/html&gt;</paragraph>
+ <paragraph index="298" node_type="writer">Листинг sources.html(html5)</paragraph>
+ <object index="299" name="Table7" object_type="table"/>
+ <paragraph index="301" node_type="writer" parent_index="299">&lt;!DOCTYPE html&gt;</paragraph>
+ <paragraph index="302" node_type="writer" parent_index="299">&lt;html lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;</paragraph>
+ <paragraph index="303" node_type="writer" parent_index="299">  &lt;head&gt;</paragraph>
+ <paragraph index="304" node_type="writer" parent_index="299">    &lt;meta charset=&quot;utf-8&quot;&gt;</paragraph>
+ <paragraph index="305" node_type="writer" parent_index="299">    &lt;title&gt;Источники&lt;/title&gt;</paragraph>
+ <paragraph index="306" node_type="writer" parent_index="299">    &lt;link rel=&quot;stylesheet&quot; href=&quot;./static/css/main.css&quot;&gt;</paragraph>
+ <paragraph index="307" node_type="writer" parent_index="299">    &lt;link rel=&quot;stylesheet&quot; href=&quot;./static/css/history.css&quot;&gt;</paragraph>
+ <paragraph index="308" node_type="writer" parent_index="299">    &lt;link rel=&quot;icon&quot; type=&quot;image/x-icon&quot; href=&quot;./static/img/favicon.svg&quot;&gt;</paragraph>
+ <paragraph index="309" node_type="writer" parent_index="299">  &lt;/head&gt;</paragraph>
+ <paragraph index="310" node_type="writer" parent_index="299">  &lt;style media=&quot;screen&quot;&gt;</paragraph>
+ <paragraph index="311" node_type="writer" parent_index="299">    .sources {</paragraph>
+ <paragraph index="312" node_type="writer" parent_index="299">      padding-top: 60px;</paragraph>
+ <paragraph index="313" node_type="writer" parent_index="299">    }</paragraph>
+ <paragraph index="315" node_type="writer" parent_index="299">    .sources &gt; ul {</paragraph>
+ <paragraph index="316" node_type="writer" parent_index="299">      list-style-type: none;</paragraph>
+ <paragraph index="317" node_type="writer" parent_index="299">    }</paragraph>
+ <paragraph index="319" node_type="writer" parent_index="299">    .sources &gt; ul &gt; li {</paragraph>
+ <paragraph index="320" node_type="writer" parent_index="299">      margin-bottom: 20px;</paragraph>
+ <paragraph index="321" node_type="writer" parent_index="299">    }</paragraph>
+ <paragraph index="323" node_type="writer" parent_index="299">    .sources &gt; ul &gt; li &gt; a {</paragraph>
+ <paragraph index="324" node_type="writer" parent_index="299">      font-size: 1.2em;</paragraph>
+ <paragraph index="325" node_type="writer" parent_index="299">    }</paragraph>
+ <paragraph index="327" node_type="writer" parent_index="299">    .sources &gt; ul &gt; li &gt; a:link {</paragraph>
+ <paragraph index="328" node_type="writer" parent_index="299">      color: red;</paragraph>
+ <paragraph index="329" node_type="writer" parent_index="299">    }</paragraph>
+ <paragraph index="331" node_type="writer" parent_index="299">    .sources &gt; ul &gt; li &gt; a:visited {</paragraph>
+ <paragraph index="332" node_type="writer" parent_index="299">      color: forestgreen;</paragraph>
+ <paragraph index="333" node_type="writer" parent_index="299">      text-decoration-color: hotpink;</paragraph>
+ <paragraph index="334" node_type="writer" parent_index="299">    }</paragraph>
+ <paragraph index="336" node_type="writer" parent_index="299">    .sources &gt; ul &gt; li &gt; a &gt; img {</paragraph>
+ <paragraph index="337" node_type="writer" parent_index="299">      width: 40px;</paragraph>
+ <paragraph index="338" node_type="writer" parent_index="299">    }</paragraph>
+ <paragraph index="339" node_type="writer" parent_index="299">  &lt;/style&gt;</paragraph>
+ <paragraph index="340" node_type="writer" parent_index="299">  &lt;body&gt;</paragraph>
+ <paragraph index="342" node_type="writer" parent_index="299">    &lt;header class=&quot;head&quot;&gt;</paragraph>
+ <paragraph index="343" node_type="writer" parent_index="299">      &lt;img class=&quot;logo&quot; src=&quot;./static/img/logo.svg&quot; onclick=&quot;openLink('./index.html')&quot;&gt;</paragraph>
+ <paragraph index="344" node_type="writer" parent_index="299">      &lt;div class=&quot;menu&quot;&gt;</paragraph>
+ <paragraph index="345" node_type="writer" parent_index="299">        &lt;a href=&quot;./sources.html&quot; class=&quot;selected&quot;&gt;Использованные источники&lt;/a&gt;</paragraph>
+ <paragraph index="346" node_type="writer" parent_index="299">        &lt;a href=&quot;./history.html&quot;&gt;История&lt;/a&gt;</paragraph>
+ <paragraph index="347" node_type="writer" parent_index="299">        &lt;a href=&quot;https://kotlinlang.org/docs/getting-started.html#install-kotlin&quot;&gt;Документация&lt;/a&gt;</paragraph>
+ <paragraph index="348" node_type="writer" parent_index="299">      &lt;/div&gt;</paragraph>
+ <paragraph index="349" node_type="writer" parent_index="299">    &lt;/header&gt;</paragraph>
+ <paragraph index="350" node_type="writer" parent_index="299">    &lt;div class=&quot;sources&quot;&gt;</paragraph>
+ <paragraph index="351" node_type="writer" parent_index="299">      &lt;ul&gt;</paragraph>
+ <paragraph index="352" node_type="writer" parent_index="299">        &lt;li&gt;</paragraph>
+ <paragraph index="353" node_type="writer" parent_index="299">          &lt;a href=&quot;https://github.com/JetBrains/kotlin&quot;&gt;</paragraph>
+ <paragraph index="354" node_type="writer" parent_index="299">            &lt;img src=&quot;./static/img/sources/github.svg&quot;&gt;</paragraph>
+ <paragraph index="355" node_type="writer" parent_index="299">            GitHub</paragraph>
+ <paragraph index="356" node_type="writer" parent_index="299">          &lt;/a&gt;</paragraph>
+ <paragraph index="357" node_type="writer" parent_index="299">        &lt;/li&gt;</paragraph>
+ <paragraph index="358" node_type="writer" parent_index="299">        &lt;li&gt;</paragraph>
+ <paragraph index="359" node_type="writer" parent_index="299">          &lt;a href=&quot;https://kotlinlang.org/&quot;&gt;</paragraph>
+ <paragraph index="360" node_type="writer" parent_index="299">            &lt;img src=&quot;./static/img/sources/kotlin.svg&quot;&gt;</paragraph>
+ <paragraph index="361" node_type="writer" parent_index="299">            Официальный сайт</paragraph>
+ <paragraph index="362" node_type="writer" parent_index="299">          &lt;/a&gt;</paragraph>
+ <paragraph index="363" node_type="writer" parent_index="299">        &lt;/li&gt;</paragraph>
+ <paragraph index="364" node_type="writer" parent_index="299">        &lt;li&gt;</paragraph>
+ <paragraph index="365" node_type="writer" parent_index="299">          &lt;a href=&quot;https://ru.wikipedia.org/wiki/Kotlin&quot;&gt;</paragraph>
+ <paragraph index="366" node_type="writer" parent_index="299">            &lt;img src=&quot;./static/img/sources/wiki.svg&quot;&gt;</paragraph>
+ <paragraph index="367" node_type="writer" parent_index="299">            Страница на wikipedia</paragraph>
+ <paragraph index="368" node_type="writer" parent_index="299">          &lt;/a&gt;</paragraph>
+ <paragraph index="369" node_type="writer" parent_index="299">        &lt;/li&gt;</paragraph>
+ <paragraph index="370" node_type="writer" parent_index="299">        &lt;li&gt;</paragraph>
+ <paragraph index="371" node_type="writer" parent_index="299">          &lt;a href=&quot;https://en.wikipedia.org/wiki/Kotlin_(programming_language)&quot;&gt;</paragraph>
+ <paragraph index="372" node_type="writer" parent_index="299">            &lt;img src=&quot;./static/img/sources/wiki.svg&quot;&gt;</paragraph>
+ <paragraph index="373" node_type="writer" parent_index="299">            Страница на wikipedia (на английском)</paragraph>
+ <paragraph index="374" node_type="writer" parent_index="299">          &lt;/a&gt;</paragraph>
+ <paragraph index="375" node_type="writer" parent_index="299">        &lt;/li&gt;</paragraph>
+ <paragraph index="376" node_type="writer" parent_index="299">      &lt;/ul&gt;</paragraph>
+ <paragraph index="377" node_type="writer" parent_index="299">    &lt;/div&gt;</paragraph>
+ <paragraph index="378" node_type="writer" parent_index="299">    &lt;footer class=&quot;footer&quot;&gt;</paragraph>
+ <paragraph index="379" node_type="writer" parent_index="299">      &lt;p class=&quot;supported&quot;&gt;Supported and developed by JetBrains.&lt;/p&gt;</paragraph>
+ <paragraph index="380" node_type="writer" parent_index="299">      &lt;p class=&quot;license&quot;&gt;Kotlin™ is protected under the Kotlin Foundation and licensed under the Apache 2 license.&lt;/p&gt;</paragraph>
+ <paragraph index="381" node_type="writer" parent_index="299">    &lt;/footer&gt;</paragraph>
+ <paragraph index="382" node_type="writer" parent_index="299">    &lt;script src=&quot;./static/js/main.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</paragraph>
+ <paragraph index="383" node_type="writer" parent_index="299">  &lt;/body&gt;</paragraph>
+ <paragraph index="384" node_type="writer" parent_index="299">&lt;/html&gt;</paragraph>
+ <paragraph index="388" node_type="writer">Листинг history.html(html5)</paragraph>
+ <object index="389" name="Table8" object_type="table"/>
+ <paragraph index="391" node_type="writer" parent_index="389">&lt;!DOCTYPE html&gt;</paragraph>
+ <paragraph index="392" node_type="writer" parent_index="389">&lt;html lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;</paragraph>
+ <paragraph index="393" node_type="writer" parent_index="389">  &lt;head&gt;</paragraph>
+ <paragraph index="394" node_type="writer" parent_index="389">    &lt;meta charset=&quot;utf-8&quot;&gt;</paragraph>
+ <paragraph index="395" node_type="writer" parent_index="389">    &lt;title&gt;История&lt;/title&gt;</paragraph>
+ <paragraph index="396" node_type="writer" parent_index="389">    &lt;link rel=&quot;stylesheet&quot; href=&quot;./static/css/main.css&quot;&gt;</paragraph>
+ <paragraph index="397" node_type="writer" parent_index="389">    &lt;link rel=&quot;stylesheet&quot; href=&quot;./static/css/history.css&quot;&gt;</paragraph>
+ <paragraph index="398" node_type="writer" parent_index="389">    &lt;link rel=&quot;icon&quot; type=&quot;image/x-icon&quot; href=&quot;./static/img/favicon.svg&quot;&gt;</paragraph>
+ <paragraph index="399" node_type="writer" parent_index="389">  &lt;/head&gt;</paragraph>
+ <paragraph index="400" node_type="writer" parent_index="389">  &lt;style media=&quot;screen&quot;&gt;</paragraph>
+ <paragraph index="401" node_type="writer" parent_index="389">    body {</paragraph>
+ <paragraph index="402" node_type="writer" parent_index="389">      background: linear-gradient(#9A5044, #E8D9A9) fixed;</paragraph>
+ <paragraph index="403" node_type="writer" parent_index="389">    }</paragraph>
+ <paragraph index="404" node_type="writer" parent_index="389">  &lt;/style&gt;</paragraph>
+ <paragraph index="405" node_type="writer" parent_index="389">  &lt;body&gt;</paragraph>
+ <paragraph index="406" node_type="writer" parent_index="389">    &lt;div class=&quot;history&quot;&gt;</paragraph>
+ <paragraph index="407" node_type="writer" parent_index="389">      &lt;article class=&quot;&quot;&gt;</paragraph>
+ <paragraph index="408" node_type="writer" parent_index="389">        &lt;p class=&quot;name&quot;&gt;Что такое Kotlin&lt;/p&gt;</paragraph>
+ <paragraph index="409" node_type="writer" parent_index="389">        &lt;p&gt;Kotlin — это язык программирования, созданный в компании JetBrains. Его разработали в 2011 году на замену Java, который в компании считали чересчур многословным. Новый язык получился на 40% компактнее предшественника, что помогло ускорить работу над основным продуктом JetBrains — средой разработки IntelliJ IDEA. При этом Kotlin полностью совместим с Java, потому что запускается на его виртуальной машине (JVM).&lt;/p&gt;</paragraph>
+ <paragraph index="410" node_type="writer" parent_index="389">        &lt;p&gt;Если же давать формальное определение, Kotlin — это объектно-ориентированный язык со статической типизацией. Что это значит?&lt;/p&gt;</paragraph>
+ <paragraph index="411" node_type="writer" parent_index="389">        &lt;p&gt;Объектно-ориентированными называют языки, в которых все операции происходят с объектами — блоками кода, куда можно «складывать» несколько значений. Объектом может быть любая сущность с определённым набором характеристик. Например, персонаж в онлайн-игре или стикер со Спанч Бобом в Telegram. Все объекты проектируются по специальным шаблонам, которые называются классами.&lt;/p&gt;</paragraph>
+ <paragraph index="412" node_type="writer" parent_index="389">        &lt;p&gt;Статическая типизация означает, что типы переменных задаются разработчиком до выполнения программы. Если вы объявили целочисленную переменную, текст в неё поместить уже не получится — компилятор сразу укажет на ошибку. Это замедляет разработку на начальном этапе, но добавляет надёжности.&lt;/p&gt;</paragraph>
+ <paragraph index="413" node_type="writer" parent_index="389">        &lt;p&gt;Кстати, корни теперь уже международной JetBrains — в Санкт-Петербурге. А свой язык они назвали в честь острова в Финском заливе. Помимо намёка на Питер, такое название ещё и подчёркивает связь с Java (и Ява, и Котлин — острова).&lt;/p&gt;</paragraph>
+ <paragraph index="414" node_type="writer" parent_index="389">      &lt;/article&gt;</paragraph>
+ <paragraph index="415" node_type="writer" parent_index="389">      &lt;hr&gt;</paragraph>
+ <paragraph index="416" node_type="writer" parent_index="389">      &lt;article class=&quot;&quot;&gt;</paragraph>
+ <paragraph index="417" node_type="writer" parent_index="389">        &lt;p class=&quot;name&quot;&gt;История&lt;/p&gt;</paragraph>
+ <paragraph index="418" node_type="writer" parent_index="389">        &lt;p&gt;Язык разрабатывается с 2010 года под руководством Андрея Бреслава, представлен общественности в июле 2011. Исходный код реализации языка открыт в феврале 2012. В феврале выпущен milestone 1, включающий плагин для IDEA. В июне — milestone 2 с поддержкой Android. В декабре 2012 года вышел milestone 4, включающий, в частности, поддержку Java 7.&lt;/p&gt;</paragraph>
+ <paragraph index="419" node_type="writer" parent_index="389">        &lt;p&gt;В феврале 2016 года вышел официальный релиз-кандидат версии 1.0, а 15 февраля 2016 года — релиз 1.0. 1 марта 2017 вышел релиз 1.1.&lt;/p&gt;</paragraph>
+ <paragraph index="420" node_type="writer" parent_index="389">        &lt;p&gt;В мае 2017 года компания Google сообщила, что инструменты языка Kotlin, основанные на JetBrains IDE, будут по стандарту включены в Android Studio 3.0 — официальный инструмент разработки для ОС Android.&lt;/p&gt;</paragraph>
+ <paragraph index="421" node_type="writer" parent_index="389">        &lt;p&gt;На Google I/O 2019 было объявлено, что язык программирования Kotlin стал приоритетным в разработке под Android.&lt;/p&gt;</paragraph>
+ <paragraph index="422" node_type="writer" parent_index="389">        &lt;p&gt;В ноябре 2020 года Бреслав объявил об уходе из JetBrains, руководство разработкой языка было передано Роману Елизарову.&lt;/p&gt;</paragraph>
+ <paragraph index="423" node_type="writer" parent_index="389">      &lt;/article&gt;</paragraph>
+ <paragraph index="424" node_type="writer" parent_index="389">      &lt;hr&gt;</paragraph>
+ <paragraph index="425" node_type="writer" parent_index="389">      &lt;article class=&quot;&quot;&gt;</paragraph>
+ <paragraph index="426" node_type="writer" parent_index="389">        &lt;p class=&quot;name&quot;&gt;Что можно писать на Kotlin&lt;/p&gt;</paragraph>
+ <paragraph index="427" node_type="writer" parent_index="389">        &lt;p&gt;Потенциально Kotlin можно использовать везде, где работает Java — а это и бэкенд, и веб, и десктоп, и куча других задач. Как говорит Андрей Бреслав, создатель языка, «Kotlin — это язык для всех платформ». И в этом большая доля правды.&lt;/p&gt;</paragraph>
+ <paragraph index="428" node_type="writer" parent_index="389">        &lt;p&gt;Тем не менее у каждого языка есть своя ниша — та сфера, где его используют больше всего программистов. У Kotlin пока их две — это серверная и мобильная разработка. Хотя его всё чаще можно встретить и в других областях — например, в науке и Data Science.&lt;/p&gt;</paragraph>
+ <paragraph index="429" node_type="writer" parent_index="389">      &lt;/article&gt;</paragraph>
+ <paragraph index="430" node_type="writer" parent_index="389">      &lt;hr&gt;</paragraph>
+ <paragraph index="431" node_type="writer" parent_index="389">      &lt;article class=&quot;&quot;&gt;</paragraph>
+ <paragraph index="432" node_type="writer" parent_index="389">        &lt;p class=&quot;name&quot;&gt;Безопасность&lt;/p&gt;</paragraph>
+ <paragraph index="433" node_type="writer" parent_index="389">        &lt;p&gt;Безопасность — это то, как язык защищает программиста от его собственных ошибок. В языках со статической типизацией, таких как Java и Kotlin, компилятор следит, чтобы не смешивались несовместимые типы данных — например, строка и число.&lt;/p&gt;</paragraph>
+ <paragraph index="434" node_type="writer" parent_index="389">        &lt;p&gt;В Kotlin вшито несколько функций, которые упрощают работу с типами — например, язык может сам привести переменные к единому типу, если того требует логика кода. Эта функция называется smart cast, или «умное преобразование».&lt;/p&gt;</paragraph>
+ <paragraph index="435" node_type="writer" parent_index="389">      &lt;/article&gt;</paragraph>
+ <paragraph index="436" node_type="writer" parent_index="389">      &lt;hr&gt;</paragraph>
+ <paragraph index="437" node_type="writer" parent_index="389">      &lt;article class=&quot;&quot;&gt;</paragraph>
+ <paragraph index="438" node_type="writer" parent_index="389">        &lt;p class=&quot;name&quot;&gt;Корутины&lt;/p&gt;</paragraph>
+ <paragraph index="439" node_type="writer" parent_index="389">        &lt;p&gt;Coroutines (корутины) — это средство, которое обеспечивает параллелизм, чтобы программа могла выполнять несколько операций одновременно. Когда возникает необходимость, выполнение одной функции приостанавливается с сохранением данных, и начинает работать другая функция.&lt;/p&gt;</paragraph>
+ <paragraph index="440" node_type="writer" parent_index="389">        &lt;img src=&quot;./static/img/corutine.jpg&quot; alt=&quot;&quot;&gt;</paragraph>
+ <paragraph index="441" node_type="writer" parent_index="389">        &lt;p&gt;Допустим, нам нужно сделать приложение — электронный дневник, чтобы ученик мог зайти в него, узнать свои оценки и посмотреть, что задали.&lt;/p&gt;</paragraph>
+ <paragraph index="442" node_type="writer" parent_index="389">        &lt;p&gt;Если загружать с сервера все данные последовательно, то приложение будет открываться очень долго. Вместо этого ненужные пока данные (например, новости), можно вынести в корутину и поставить их подгрузку на паузу, пока грузится основной интерфейс.&lt;/p&gt;</paragraph>
+ <paragraph index="443" node_type="writer" parent_index="389">        &lt;p&gt;Корутины позволяют расставить приоритеты в работе программы. Этот механизм напоминает многопоточность, но тратит меньше ресурсов процессора — за что их и ценят, например, в мобильной разработке.&lt;/p&gt;</paragraph>
+ <paragraph index="444" node_type="writer" parent_index="389">      &lt;/article&gt;</paragraph>
+ <paragraph index="445" node_type="writer" parent_index="389">      &lt;hr&gt;</paragraph>
+ <paragraph index="446" node_type="writer" parent_index="389">      &lt;article class=&quot;&quot;&gt;</paragraph>
+ <paragraph index="447" node_type="writer" parent_index="389">        &lt;p class=&quot;name&quot;&gt;Что нужно новичку&lt;/p&gt;</paragraph>
+ <paragraph index="448" node_type="writer" parent_index="389">        &lt;p&gt;Требования работодателей к новичкам сильно зависят от ниши. Если метите в бэкенд, изучите фреймворки Kotlin для работы с сервером: например, Spring, Ktor и Vert.x. Плюсом к ним надо будет освоить протокол HTTP, форматы XML и JSON, научиться работать с SQL-запросами и одной из популярных баз данных — например, PostgreSQL.&lt;/p&gt;</paragraph>
+ <paragraph index="449" node_type="writer" parent_index="389">        &lt;p&gt;Для разработки под Android джуну нужно знать Android SDK, уметь работать в Git и Android Studio (и/или IntelliJ IDEA), понимать, как устроены корутины и многопоточность. Ещё с вас обязательно спросят и паттерны проектирования: MVC, MVP и MVVM.&lt;/p&gt;</paragraph>
+ <paragraph index="450" node_type="writer" parent_index="389">        &lt;p&gt;Если хотите научиться программировать, но чувствуете, что не хватит времени или терпения, поищите курсы с опытными преподавателями. Так вы точно не собьётесь с пути и уже сейчас начнёте работать в команде.&lt;/p&gt;</paragraph>
+ <paragraph index="451" node_type="writer" parent_index="389">      &lt;/article&gt;</paragraph>
+ <paragraph index="452" node_type="writer" parent_index="389">      &lt;hr&gt;</paragraph>
+ <paragraph index="453" node_type="writer" parent_index="389">      &lt;dl&gt;</paragraph>
+ <paragraph index="454" node_type="writer" parent_index="389">        &lt;dt&gt;Плюсы Kotlin:&lt;/dt&gt;</paragraph>
+ <paragraph index="455" node_type="writer" parent_index="389">        &lt;dd&gt;</paragraph>
+ <paragraph index="456" node_type="writer" parent_index="389">          &lt;ol&gt;</paragraph>
+ <paragraph index="457" node_type="writer" parent_index="389">            &lt;li&gt;&lt;strong&gt;Интероперабельность с Java:&lt;/strong&gt; Kotlin полностью совместим с Java, что упрощает интеграцию с существующими Java-проектами.&lt;/li&gt;</paragraph>
+ <paragraph index="458" node_type="writer" parent_index="389">            &lt;li&gt;&lt;strong&gt;Безопасность типов:&lt;/strong&gt; Предоставляет большую безопасность типов, уменьшая вероятность ошибок времени выполнения.&lt;/li&gt;</paragraph>
+ <paragraph index="459" node_type="writer" parent_index="389">            &lt;li&gt;&lt;strong&gt;Краткость и выразительность:&lt;/strong&gt; Сокращенный и читаемый синтаксис делает код на Kotlin более понятным и легким в разработке.&lt;/li&gt;</paragraph>
+ <paragraph index="460" node_type="writer" parent_index="389">            &lt;li&gt;&lt;strong&gt;Расширения функций (Extensions):&lt;/strong&gt; Поддержка расширений функций позволяет добавлять методы к классам без наследования.&lt;/li&gt;</paragraph>
+ <paragraph index="461" node_type="writer" parent_index="389">            &lt;li&gt;&lt;strong&gt;Нулевая безопасность:&lt;/strong&gt; Kotlin требует явного указания, может ли переменная быть `null`, что снижает риск ошибок из-за нулевых ссылок.&lt;/li&gt;</paragraph>
+ <paragraph index="462" node_type="writer" parent_index="389">          &lt;/ol&gt;</paragraph>
+ <paragraph index="463" node_type="writer" parent_index="389">        &lt;/dd&gt;</paragraph>
+ <paragraph index="464" node_type="writer" parent_index="389">        &lt;dt&gt;Минусы Kotlin:&lt;/dt&gt;</paragraph>
+ <paragraph index="465" node_type="writer" parent_index="389">        &lt;dd&gt;</paragraph>
+ <paragraph index="466" node_type="writer" parent_index="389">          &lt;ol&gt;</paragraph>
+ <paragraph index="467" node_type="writer" parent_index="389">              &lt;li&gt;&lt;strong&gt;Скорость компиляции:&lt;/strong&gt; Компиляция Kotlin может быть медленнее по сравнению с Java из-за дополнительных шагов компиляции.&lt;/li&gt;</paragraph>
+ <paragraph index="468" node_type="writer" parent_index="389">              &lt;li&gt;&lt;strong&gt;Размер библиотек:&lt;/strong&gt; Использование Kotlin может требовать больших библиотек, увеличивая размер конечного приложения.&lt;/li&gt;</paragraph>
+ <paragraph index="469" node_type="writer" parent_index="389">              &lt;li&gt;&lt;strong&gt;Меньшее сообщество:&lt;/strong&gt; Котлин имеет меньшее сообщество разработчиков по сравнению с Java, что может затруднить доступ к некоторым ресурсам или библиотекам.&lt;/li&gt;</paragraph>
+ <paragraph index="470" node_type="writer" parent_index="389">              &lt;li&gt;&lt;strong&gt;Обратная совместимость:&lt;/strong&gt; Иногда при обновлении Kotlin возникают проблемы с обратной совместимостью, особенно при переходе на новые версии языка.&lt;/li&gt;</paragraph>
+ <paragraph index="471" node_type="writer" parent_index="389">          &lt;/ol&gt;</paragraph>
+ <paragraph index="472" node_type="writer" parent_index="389">        &lt;/dd&gt;</paragraph>
+ <paragraph index="473" node_type="writer" parent_index="389">      &lt;/dl&gt;</paragraph>
+ <paragraph index="474" node_type="writer" parent_index="389">      &lt;hr&gt;</paragraph>
+ <paragraph index="475" node_type="writer" parent_index="389">      &lt;table border=&quot;1&quot;&gt;</paragraph>
+ <paragraph index="476" node_type="writer" parent_index="389">        &lt;caption&gt;Совместимость Kotlin с Java&lt;/caption&gt;</paragraph>
+ <paragraph index="477" node_type="writer" parent_index="389">        &lt;tr&gt;</paragraph>
+ <paragraph index="478" node_type="writer" parent_index="389">          &lt;th rowspan=&quot;2&quot;&gt;Характеристика&lt;/th&gt;</paragraph>
+ <paragraph index="479" node_type="writer" parent_index="389">          &lt;th colspan=&quot;2&quot;&gt;Язык&lt;/th&gt;</paragraph>
+ <paragraph index="480" node_type="writer" parent_index="389">        &lt;/tr&gt;</paragraph>
+ <paragraph index="481" node_type="writer" parent_index="389">        &lt;tr&gt;</paragraph>
+ <paragraph index="482" node_type="writer" parent_index="389">          &lt;th&gt;Kotlin&lt;/th&gt;</paragraph>
+ <paragraph index="483" node_type="writer" parent_index="389">          &lt;th&gt;Java&lt;/th&gt;</paragraph>
+ <paragraph index="484" node_type="writer" parent_index="389">        &lt;/tr&gt;</paragraph>
+ <paragraph index="485" node_type="writer" parent_index="389">        &lt;tr&gt;</paragraph>
+ <paragraph index="486" node_type="writer" parent_index="389">          &lt;td&gt;Интеграция с существующим Java-кодом&lt;/td&gt;</paragraph>
+ <paragraph index="487" node_type="writer" parent_index="389">          &lt;td colspan=&quot;2&quot;&gt;Полностью совместим&lt;/td&gt;</paragraph>
+ <paragraph index="488" node_type="writer" parent_index="389">        &lt;/tr&gt;</paragraph>
+ <paragraph index="489" node_type="writer" parent_index="389">        &lt;tr&gt;</paragraph>
+ <paragraph index="490" node_type="writer" parent_index="389">          &lt;td&gt;Типы данных&lt;/td&gt;</paragraph>
+ <paragraph index="491" node_type="writer" parent_index="389">          &lt;td&gt;Безопасность типов (null safety)&lt;/td&gt;</paragraph>
+ <paragraph index="492" node_type="writer" parent_index="389">          &lt;td&gt;Стандартные типы данных&lt;/td&gt;</paragraph>
+ <paragraph index="493" node_type="writer" parent_index="389">        &lt;/tr&gt;</paragraph>
+ <paragraph index="494" node_type="writer" parent_index="389">        &lt;tr&gt;</paragraph>
+ <paragraph index="495" node_type="writer" parent_index="389">          &lt;td&gt;Синтаксис&lt;/td&gt;</paragraph>
+ <paragraph index="496" node_type="writer" parent_index="389">          &lt;td&gt;Краткий и выразительный&lt;/td&gt;</paragraph>
+ <paragraph index="497" node_type="writer" parent_index="389">          &lt;td&gt;Классический синтаксис Java&lt;/td&gt;</paragraph>
+ <paragraph index="498" node_type="writer" parent_index="389">        &lt;/tr&gt;</paragraph>
+ <paragraph index="499" node_type="writer" parent_index="389">        &lt;tr&gt;</paragraph>
+ <paragraph index="500" node_type="writer" parent_index="389">          &lt;td&gt;Работа с нулевыми значениями&lt;/td&gt;</paragraph>
+ <paragraph index="501" node_type="writer" parent_index="389">          &lt;td&gt;Требуется явное указание (`nullable`)&lt;/td&gt;</paragraph>
+ <paragraph index="502" node_type="writer" parent_index="389">          &lt;td&gt;Могут быть нулевыми (null)&lt;/td&gt;</paragraph>
+ <paragraph index="503" node_type="writer" parent_index="389">        &lt;/tr&gt;</paragraph>
+ <paragraph index="504" node_type="writer" parent_index="389">        &lt;tr&gt;</paragraph>
+ <paragraph index="505" node_type="writer" parent_index="389">          &lt;td&gt;Использование библиотек и фреймворков&lt;/td&gt;</paragraph>
+ <paragraph index="506" node_type="writer" parent_index="389">          &lt;td colspan=&quot;2&quot;&gt;Можно использовать Java-библиотеки напрямую&lt;/td&gt;</paragraph>
+ <paragraph index="507" node_type="writer" parent_index="389">        &lt;/tr&gt;</paragraph>
+ <paragraph index="508" node_type="writer" parent_index="389">        &lt;tr&gt;</paragraph>
+ <paragraph index="509" node_type="writer" parent_index="389">          &lt;td&gt;Скорость компиляции&lt;/td&gt;</paragraph>
+ <paragraph index="510" node_type="writer" parent_index="389">          &lt;td&gt;Обычно медленнее Java&lt;/td&gt;</paragraph>
+ <paragraph index="511" node_type="writer" parent_index="389">          &lt;td&gt;Быстро&lt;/td&gt;</paragraph>
+ <paragraph index="512" node_type="writer" parent_index="389">        &lt;/tr&gt;</paragraph>
+ <paragraph index="513" node_type="writer" parent_index="389">      &lt;/table&gt;</paragraph>
+ <paragraph index="514" node_type="writer" parent_index="389">    &lt;/div&gt;</paragraph>
+ <paragraph index="515" node_type="writer" parent_index="389">    &lt;header class=&quot;head&quot;&gt;</paragraph>
+ <paragraph index="516" node_type="writer" parent_index="389">      &lt;img class=&quot;logo&quot; src=&quot;./static/img/logo.svg&quot; onclick=&quot;openLink('./index.html')&quot;&gt;</paragraph>
+ <paragraph index="517" node_type="writer" parent_index="389">      &lt;div class=&quot;menu&quot;&gt;</paragraph>
+ <paragraph index="518" node_type="writer" parent_index="389">        &lt;a href=&quot;./sources.html&quot;&gt;Использованные источники&lt;/a&gt;</paragraph>
+ <paragraph index="519" node_type="writer" parent_index="389">        &lt;a href=&quot;./history.html&quot; class=&quot;selected&quot;&gt;История&lt;/a&gt;</paragraph>
+ <paragraph index="520" node_type="writer" parent_index="389">        &lt;a href=&quot;https://kotlinlang.org/docs/getting-started.html#install-kotlin&quot;&gt;Документация&lt;/a&gt;</paragraph>
+ <paragraph index="521" node_type="writer" parent_index="389">      &lt;/div&gt;</paragraph>
+ <paragraph index="522" node_type="writer" parent_index="389">    &lt;/header&gt;</paragraph>
+ <paragraph index="523" node_type="writer" parent_index="389">    &lt;footer class=&quot;footer&quot;&gt;</paragraph>
+ <paragraph index="524" node_type="writer" parent_index="389">      &lt;p class=&quot;supported&quot;&gt;Supported and developed by JetBrains.&lt;/p&gt;</paragraph>
+ <paragraph index="525" node_type="writer" parent_index="389">      &lt;p class=&quot;license&quot;&gt;Kotlin™ is protected under the Kotlin Foundation and licensed under the Apache 2 license.&lt;/p&gt;</paragraph>
+ <paragraph index="526" node_type="writer" parent_index="389">    &lt;/footer&gt;</paragraph>
+ <paragraph index="527" node_type="writer" parent_index="389">    &lt;script src=&quot;./static/js/main.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</paragraph>
+ <paragraph index="528" node_type="writer" parent_index="389">  &lt;/body&gt;</paragraph>
+ <paragraph index="529" node_type="writer" parent_index="389">&lt;/html&gt;</paragraph>
+</indexing>

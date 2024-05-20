@@ -42,4 +42,28 @@ function fill_news() {
   }
 }
 
+
+function change_color(element) {
+  element.style.color = "#FF0000";
+}
+
+function change_width(element) {
+  element.style.width = "100px";
+  element.style.height = "100px";
+}
+
+function addrow(){
+  let table = document.getElementById("table")
+  var row = table.insertRow(2);
+  var cell1 = row.insertCell(0);
+  cell1.innerHTML = document.getElementById('table_1').value;
+  var cell2 = row.insertCell(1);
+  cell2.innerHTML = document.getElementById('table_2').value;
+  var cell3 = row.insertCell(2);
+  cell3.innerHTML = document.getElementById('table_3').value;
+  var cell4 = row.insertCell(3);
+  cell4.innerHTML = document.getElementById('table_4').value;
+}
+
+
 // fill_news();
