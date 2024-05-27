@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Список файлов</title>
+    <style media="screen">
+      body {
+        padding-left: 10%;
+        padding-right: 10%;
+      }
+
+      h2 {
+        width: 100%;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="result_list"></div>
+    <div id="result_table"></div>
+  </body>
+  <script type="text/javascript">
+    function loadXMLDoc(filename) {
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("GET", filename, false);
+      xhttp.send();
+      return xhttp.responseXML;
+    }
+
+    function displayResult(xml_path, xsl_path, result_id) {
+      var xml = loadXMLDoc(xml_path);
+      var xsl = loadXMLDoc(xsl_path);
+      console.log(xml);
+      var xsltProcessor = new XSLTProcessor();
+      xsltProcessor.importStylesheet(xsl);
+      var resultDocument = xsltProcessor.transformToFragment(xml, document);
+      document.getElementById(result_id).appendChild(resultDocument);
+    }
+
+    displayResult("data.xml", "table.xsl", "result_table");
+    displayResult("data.xml", "list.xsl", "result_list");
+  </script>
+</html>
