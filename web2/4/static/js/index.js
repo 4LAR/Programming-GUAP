@@ -61,8 +61,6 @@ function addrow(){
   cell2.innerHTML = document.getElementById('table_2').value;
   var cell3 = row.insertCell(2);
   cell3.innerHTML = document.getElementById('table_3').value;
-  var cell4 = row.insertCell(3);
-  cell4.innerHTML = document.getElementById('table_4').value;
 }
 
 

@@ -67,6 +67,7 @@ db.Sight.insertMany([
     create_date: new Date("1156-01-01"),
     type_sight: "исторический памятник",
     natural: false,
+    exhibition: false,
     house: "1"
   },
   {
@@ -74,6 +75,7 @@ db.Sight.insertMany([
     name: "Большой театр",
     create_date: new Date("1825-01-01"),
     type_sight: "театр",
+    exhibition: false,
     natural: false,
     house: "10"
   },
@@ -82,6 +84,7 @@ db.Sight.insertMany([
     name: "Эрмитаж",
     create_date: new Date("1764-12-07"),
     type_sight: "музей",
+    exhibition: true,
     natural: false,
     house: "30"
   },
@@ -90,6 +93,7 @@ db.Sight.insertMany([
     name: "Петропавловская крепость",
     create_date: new Date("1703-05-16"),
     type_sight: "крепость",
+    exhibition: false,
     natural: false,
     house: "2"
   },
@@ -98,6 +102,7 @@ db.Sight.insertMany([
     name: "Казанский Кремль",
     create_date: new Date("1556-01-01"),
     type_sight: "исторический памятник",
+    exhibition: false,
     natural: false,
     house: "2"
   },
@@ -106,6 +111,7 @@ db.Sight.insertMany([
     name: "Мечеть Кул-Шариф",
     create_date: new Date("2005-06-24"),
     type_sight: "религиозное здание",
+    exhibition: false,
     natural: false,
     house: "50"
   }
@@ -117,6 +123,7 @@ db.Sight.insertMany([
     name: "Горький Парк",
     create_date: new Date("1928-08-12"),
     type_sight: "парк",
+    exhibition: false,
     natural: true,
     house: "9"
   },
@@ -125,6 +132,7 @@ db.Sight.insertMany([
     name: "Таврический сад",
     create_date: new Date("1783-01-01"),
     type_sight: "парк",
+    exhibition: false,
     natural: true,
     house: "15"
   },
@@ -133,6 +141,7 @@ db.Sight.insertMany([
     name: "Центральный парк культуры и отдыха",
     create_date: new Date("1931-06-01"),
     type_sight: "парк",
+    exhibition: false,
     natural: true,
     house: "7"
   }
@@ -144,6 +153,7 @@ db.Sight.insertMany([
     name: "Родина мать",
     create_date: new Date("1931-06-01"),
     type_sight: "парк",
+    exhibition: false,
     natural: true,
     house: "0"
   }
@@ -255,6 +265,7 @@ db.Sight.insertOne({
   name: "Выставка 'Искусство и технологии'",
   create_date: new Date("2024-06-11"),
   type_sight: "выставка",
+  exhibition: true,
   natural: false,
   house: "0"
 });
@@ -263,6 +274,7 @@ db.Sight.insertOne({
   name: "Фотовыставка 'Города мира'",
   create_date: new Date("2024-07-01"),
   type_sight: "выставка",
+  exhibition: true,
   natural: false,
   house: "0"
 });
