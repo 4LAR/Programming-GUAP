@@ -1,8 +1,12 @@
-use sights // Переход в нужную базу данных
+// Переход в нужную базу данных
+use sights
 
-// Вставка города
+// Вставка коллекций
 db.createCollection("City");
+db.createCollection("Address");
+db.createCollection("Sight");
 
+// Вставка городов
 db.City.insertMany([
   {
     _id: ObjectId(),
@@ -21,9 +25,7 @@ db.City.insertMany([
   }
 ]);
 
-// вставка адресов
-db.createCollection("Address");
-
+// Вставка адресов
 db.Address.insertMany([
   {
     _id: ObjectId(),
@@ -57,9 +59,7 @@ db.Address.insertMany([
   }
 ]);
 
-// вставка достопримечательностей
-db.createCollection("Sight");
-
+// Вставка достопримечательностей
 db.Sight.insertMany([
   {
     _id: ObjectId(),
@@ -67,99 +67,109 @@ db.Sight.insertMany([
     create_date: new Date("1156-01-01"),
     type_sight: "исторический памятник",
     natural: false,
-    exhibition: false,
-    house: "1"
+    house: "1",
+    exhibitions: []
   },
   {
     _id: ObjectId(),
     name: "Большой театр",
     create_date: new Date("1825-01-01"),
     type_sight: "театр",
-    exhibition: false,
     natural: false,
-    house: "10"
+    house: "10",
+    exhibitions: []
   },
   {
     _id: ObjectId(),
     name: "Эрмитаж",
     create_date: new Date("1764-12-07"),
     type_sight: "музей",
-    exhibition: true,
     natural: false,
-    house: "30"
+    house: "30",
+    exhibitions: []
+  },
+  {
+    _id: ObjectId(),
+    name: "Русский музей",
+    create_date: new Date("1895-04-13"),
+    type_sight: "музей",
+    natural: false,
+    house: "4",
+    exhibitions: []
+  },
+  {
+    _id: ObjectId(),
+    name: "Музей современного искусства",
+    create_date: new Date("1999-12-12"),
+    type_sight: "музей",
+    natural: false,
+    house: "16",
+    exhibitions: []
   },
   {
     _id: ObjectId(),
     name: "Петропавловская крепость",
     create_date: new Date("1703-05-16"),
     type_sight: "крепость",
-    exhibition: false,
     natural: false,
-    house: "2"
+    house: "2",
+    exhibitions: []
   },
   {
     _id: ObjectId(),
     name: "Казанский Кремль",
     create_date: new Date("1556-01-01"),
     type_sight: "исторический памятник",
-    exhibition: false,
     natural: false,
-    house: "2"
+    house: "2",
+    exhibitions: []
   },
   {
     _id: ObjectId(),
     name: "Мечеть Кул-Шариф",
     create_date: new Date("2005-06-24"),
     type_sight: "религиозное здание",
-    exhibition: false,
     natural: false,
-    house: "50"
-  }
-]);
-
-db.Sight.insertMany([
+    house: "50",
+    exhibitions: []
+  },
   {
     _id: ObjectId(),
     name: "Горький Парк",
     create_date: new Date("1928-08-12"),
     type_sight: "парк",
-    exhibition: false,
     natural: true,
-    house: "9"
+    house: "9",
+    exhibitions: []
   },
   {
     _id: ObjectId(),
     name: "Таврический сад",
     create_date: new Date("1783-01-01"),
     type_sight: "парк",
-    exhibition: false,
     natural: true,
-    house: "15"
+    house: "15",
+    exhibitions: []
   },
   {
     _id: ObjectId(),
     name: "Центральный парк культуры и отдыха",
     create_date: new Date("1931-06-01"),
     type_sight: "парк",
-    exhibition: false,
     natural: true,
-    house: "7"
-  }
-]);
-
-db.Sight.insertMany([
+    house: "7",
+    exhibitions: []
+  },
   {
     _id: ObjectId(),
     name: "Родина мать",
     create_date: new Date("1931-06-01"),
     type_sight: "парк",
-    exhibition: false,
     natural: true,
-    house: "0"
+    house: "0",
+    exhibitions: []
   }
 ]);
-
-// добавление ссылок
 
 // Получение ObjectId адресов
 const address1 = db.Address.findOne({ street: "Красная площадь" })._id;
@@ -169,19 +179,17 @@ const address4 = db.Address.findOne({ street: "Дворцовая площадь
 const address5 = db.Address.findOne({ street: "Кремлёвская" })._id;
 const address6 = db.Address.findOne({ street: "Баумана" })._id;
 
-// Обновление города Москва
+// Обновление городов
 db.City.updateOne(
   { city: "Москва" },
   { $push: { list_addr: { $each: [address1, address2] } } }
 );
 
-// Обновление города Санкт-Петербург
 db.City.updateOne(
   { city: "Санкт-Петербург" },
   { $push: { list_addr: { $each: [address3, address4] } } }
 );
 
-// Обновление города Казань
 db.City.updateOne(
   { city: "Казань" },
   { $push: { list_addr: { $each: [address5, address6] } } }
@@ -191,103 +199,74 @@ db.City.updateOne(
 const sight1 = db.Sight.findOne({ name: "Кремль" })._id;
 const sight2 = db.Sight.findOne({ name: "Большой театр" })._id;
 const sight3 = db.Sight.findOne({ name: "Эрмитаж" })._id;
-const sight4 = db.Sight.findOne({ name: "Петропавловская крепость" })._id;
-const sight5 = db.Sight.findOne({ name: "Казанский Кремль" })._id;
-const sight6 = db.Sight.findOne({ name: "Мечеть Кул-Шариф" })._id;
-const sight7 = db.Sight.findOne({ name: "Родина мать" })._id;
+const sight4 = db.Sight.findOne({ name: "Русский музей" })._id;
+const sight5 = db.Sight.findOne({ name: "Музей современного искусства" })._id;
+const sight6 = db.Sight.findOne({ name: "Петропавловская крепость" })._id;
+const sight7 = db.Sight.findOne({ name: "Казанский Кремль" })._id;
+const sight8 = db.Sight.findOne({ name: "Мечеть Кул-Шариф" })._id;
+const sight9 = db.Sight.findOne({ name: "Родина мать" })._id;
+const park1 = db.Sight.findOne({ name: "Горький Парк" })._id;
+const park2 = db.Sight.findOne({ name: "Таврический сад" })._id;
+const park3 = db.Sight.findOne({ name: "Центральный парк культуры и отдыха" })._id;
 
-// Обновление адреса Красная площадь
+// Обновление адресов
 db.Address.updateOne(
   { street: "Красная площадь" },
-  { $push: { list_sights: sight1 } }
+  { $push: { list_sights: { $each: [sight1, sight9, park1] } } }
 );
 
-db.Address.updateOne(
-  { street: "Красная площадь" },
-  { $push: { list_sights: sight7 } }
-);
-
-// Обновление адреса Арбат
 db.Address.updateOne(
   { street: "Арбат" },
   { $push: { list_sights: sight2 } }
 );
 
-// Обновление адреса Невский проспект
 db.Address.updateOne(
   { street: "Невский проспект" },
-  { $push: { list_sights: sight3 } }
+  { $push: { list_sights: { $each: [sight3, sight4, park2] } } }
 );
 
-// Обновление адреса Дворцовая площадь
 db.Address.updateOne(
   { street: "Дворцовая площадь" },
-  { $push: { list_sights: sight4 } }
-);
-
-// Обновление адреса Кремлёвская
-db.Address.updateOne(
-  { street: "Кремлёвская" },
-  { $push: { list_sights: sight5 } }
-);
-
-// Обновление адреса Баумана
-db.Address.updateOne(
-  { street: "Баумана" },
   { $push: { list_sights: sight6 } }
 );
 
-// Получение ObjectId парков
-const park1 = db.Sight.findOne({ name: "Горький Парк" })._id;
-const park2 = db.Sight.findOne({ name: "Таврический сад" })._id;
-const park3 = db.Sight.findOne({ name: "Центральный парк культуры и отдыха" })._id;
-
-// Обновление адреса Красная площадь
 db.Address.updateOne(
-  { street: "Красная площадь" },
-  { $push: { list_sights: park1 } }
+  { street: "Кремлёвская" },
+  { $push: { list_sights: sight7 } }
 );
 
-// Обновление адреса Невский проспект
-db.Address.updateOne(
-  { street: "Невский проспект" },
-  { $push: { list_sights: park2 } }
-);
-
-// Обновление адреса Баумана
 db.Address.updateOne(
   { street: "Баумана" },
-  { $push: { list_sights: park3 } }
+  { $push: { list_sights: { $each: [sight8, sight5, park3] } } }
 );
 
-// Добавление выставки
-db.Sight.insertOne({
-  name: "Выставка 'Искусство и технологии'",
-  create_date: new Date("2024-06-11"),
-  type_sight: "выставка",
-  exhibition: true,
-  natural: false,
-  house: "0"
-});
+// Добавление выставок
+const exhibitions1 = [
+  "Выставка 'Искусство и технологии'",
+  "Фотовыставка 'Города мира'"
+];
 
-db.Sight.insertOne({
-  name: "Фотовыставка 'Города мира'",
-  create_date: new Date("2024-07-01"),
-  type_sight: "выставка",
-  exhibition: true,
-  natural: false,
-  house: "0"
-});
+const exhibitions2 = [
+  "Выставка 'История и культура'",
+  "Выставка 'Современное искусство'"
+];
 
-const exhibition = db.Sight.findOne({ name: "Выставка 'Искусство и технологии'" })._id;
-const photoExhibition = db.Sight.findOne({ name: "Фотовыставка 'Города мира'" })._id;
+const exhibitions3 = [
+  "Фотовыставка 'Природа России'",
+  "Выставка 'Научные достижения'"
+];
 
-db.Address.updateOne(
-  { street: "Кремлёвская" },
-  { $push: { list_sights: exhibition } }
+db.Sight.updateOne(
+  { name: "Эрмитаж" },
+  { $push: { exhibitions: { $each: exhibitions1 } } }
 );
 
-db.Address.updateOne(
-  { street: "Кремлёвская" },
-  { $push: { list_sights: photoExhibition } }
+db.Sight.updateOne(
+  { name: "Русский музей" },
+  { $push: { exhibitions: { $each: exhibitions2 } } }
+);
+
+db.Sight.updateOne(
+  { name: "Музей современного искусства" },
+  { $push: { exhibitions: { $each: exhibitions3 } } }
 );
