@@ -222,3 +222,173 @@ db.City.aggregate([
     $limit: 1 // Получаем только один город с самой старой достопримечательностью
   }
 ]);
+
+////////////////////////////////////////////////////////////////////////////////
+
+db.Sight.aggregate([
+  {
+    $sort: { create_date: 1 } // Сортировка достопримечательностей по дате создания
+  },
+  {
+    $limit: 1 // Выбор самой старой достопримечательности
+  },
+  {
+    $lookup: {
+      from: "Address",
+      localField: "_id",
+      foreignField: "list_sights",
+      as: "address"
+    }
+  },
+  {
+    $unwind: "$address" // Разворачивание массива адресов
+  },
+  {
+    $lookup: {
+      from: "City",
+      localField: "address._id",
+      foreignField: "list_addr",
+      as: "city"
+    }
+  },
+  {
+    $unwind: "$city" // Разворачивание массива городов
+  },
+  {
+    $project: {
+      _id: 0,
+      city: "$city.city"
+    }
+  }
+]).pretty();
+
+////////////////////////////////////////////////////////////////////////////////
+
+// д
+db.Sight.aggregate([
+  // Шаг 1: Найти минимальную дату создания достопримечательности
+  {
+    $group: {
+      _id: null,
+      minDate: { $min: "$create_date" }
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      minDate: 1
+    }
+  },
+  // Шаг 2: Использовать минимальную дату для поиска достопримечательностей
+  {
+    $lookup: {
+      from: "Sight",
+      localField: "minDate",
+      foreignField: "create_date",
+      as: "oldest_sights"
+    }
+  },
+  {
+    $unwind: "$oldest_sights"
+  },
+  {
+    $project: {
+      minDate: 1,
+      sight_id: "$oldest_sights._id"
+    }
+  },
+  // Шаг 3: Найти адреса, содержащие эти достопримечательности
+  {
+    $lookup: {
+      from: "Address",
+      localField: "sight_id",
+      foreignField: "list_sights",
+      as: "addresses"
+    }
+  },
+  {
+    $unwind: "$addresses"
+  },
+  {
+    $project: {
+      minDate: 1,
+      address_id: "$addresses._id"
+    }
+  },
+  // Шаг 4: Найти города, содержащие эти адреса
+  {
+    $lookup: {
+      from: "City",
+      localField: "address_id",
+      foreignField: "list_addr",
+      as: "cities"
+    }
+  },
+  {
+    $unwind: "$cities"
+  },
+  {
+    $project: {
+      _id: 0,
+      city: "$cities.city"
+    }
+  },
+  {
+    $group: {
+      _id: "$city"
+    }
+  }
+]).pretty();
+
+//г
+
+db.Sight.aggregate([
+  {
+    $match: { natural: true }
+  },
+  {
+    $lookup: {
+      from: "Address",
+      localField: "_id",
+      foreignField: "list_sights",
+      as: "addresses"
+    }
+  },
+  {
+    $unwind: "$addresses"
+  },
+  {
+    $lookup: {
+      from: "City",
+      localField: "addresses._id",
+      foreignField: "list_addr",
+      as: "cities"
+    }
+  },
+  {
+    $unwind: "$cities"
+  },
+  {
+    $group: {
+      _id: "$cities.city",
+      natural_sights_count: { $sum: 1 }
+    }
+  },
+  {
+    $sort: { natural_sights_count: -1 }
+  },
+  {
+    $group: {
+      _id: null,
+      topCity: { $first: "$_id" },
+      maxCount: { $first: "$natural_sights_count" }
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      topCity: 1,
+      maxCount: 1
+    }
+  }
+])
