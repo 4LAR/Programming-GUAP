@@ -1,4 +1,4 @@
-// д
+// города с самыми старыми достопримечательностями
 db.Sight.aggregate([
   {
     $group: {
@@ -70,7 +70,7 @@ db.Sight.aggregate([
   }
 ]).pretty();
 
-//г
+// г. местность, где больше всего природных достопримечательностей
 
 db.Sight.aggregate([
   {
@@ -120,5 +120,72 @@ db.Sight.aggregate([
       topCity: 1,
       maxCount: 1
     }
+  }
+])
+
+///// final
+// местность, где больше всего природных достопримечательностей
+
+db.City.aggregate([
+  {
+    $lookup: {
+      from: "Address",
+      localField: "list_addr",
+      foreignField: "_id",
+      as: "addresses"
+    }
+  },
+  {
+    $unwind: "$addresses"
+  },
+  {
+    $lookup: {
+      from: "Sight",
+      localField: "addresses.list_sights",
+      foreignField: "_id",
+      as: "sights"
+    }
+  },
+  {
+    $unwind: "$sights"
+  },
+  {
+    $match: {
+      "sights.natural": true
+    }
+  },
+  {
+    $group: {
+      _id: "$city",
+      count: { $sum: 1 }
+    }
+  },
+  {
+    $sort: { count: -1 }
+  },
+  {
+    $group: {
+      _id: null,
+      maxCount: { $first: "$count" },
+      cities: { $push: { city: "$_id", count: "$count" } }
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      cities: {
+        $filter: {
+          input: "$cities",
+          as: "city",
+          cond: { $eq: ["$$city.count", "$maxCount"] }
+        }
+      }
+    }
+  },
+  {
+    $unwind: "$cities"
+  },
+  {
+    $replaceRoot: { newRoot: "$cities" }
   }
 ])

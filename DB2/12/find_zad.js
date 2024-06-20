@@ -392,3 +392,45 @@ db.Sight.aggregate([
     }
   }
 ])
+
+
+//
+
+db.City.aggregate([
+  {
+    $lookup: {
+      from: "Address",
+      localField: "list_addr",
+      foreignField: "_id",
+      as: "addresses"
+    }
+  },
+  {
+    $unwind: "$addresses"
+  },
+  {
+    $lookup: {
+      from: "Sight",
+      localField: "addresses.list_sights",
+      foreignField: "_id",
+      as: "sights"
+    }
+  },
+  {
+    $unwind: "$sights"
+  },
+  {
+    $match: {
+      "sights.natural": true
+    }
+  },
+  {
+    $group: {
+      _id: "$city",
+      count: { $sum: 1 }
+    }
+  },
+  {
+    $sort: { count: -1 }
+  }
+])
