@@ -110,8 +110,11 @@ db.Sight.aggregate([
   {
     $group: {
       _id: null,
-      topCity: { $first: "$_id" },
-      maxCount: { $first: "$natural_sights_count" }
+      // topCity: { $first: "$_id" },
+      // city: {},
+      task_data: { "$push": "$$ROOT"  },
+      // maxCount: { $first: "$natural_sights_count" }
+      topCount: { $first: "$natural_sights_count" }
     }
   },
   {
