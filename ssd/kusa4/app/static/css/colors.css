@@ -1,0 +1,26 @@
+:root {
+  --bg-color: #EFF1F5;
+  --border-color: #1C262D;
+
+  --input-bg: #F6F6F6;
+  --input-warning-color: #B92025;
+  --input-focus: #00A073;
+  --input-border-color: #F6F6F6;
+
+  --font-color: #3B3F4A;
+  --font-info-color: #3B3F4A;
+  --font-sub-color: #3B3F4A;
+
+  --alert-hr-color: #384047;
+  --alert-bg-color: #FFFFFF;
+  --alert-border-color: #2D404E;
+
+  --button-p-color: #fff;
+  --button-select-color: #3391EE;
+
+  --not-active-button-bg-color: #31373A;
+  --not-active-button-p-color: #667375;
+
+  --invert-buttons: .6;
+  --invert-selected-buttons: .8;
+}

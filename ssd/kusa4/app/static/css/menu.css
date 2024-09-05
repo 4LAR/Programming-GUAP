@@ -1,0 +1,40 @@
+
+ul.menu {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 200px;
+  height: 100%;
+  background-color: #fff;
+  margin: 0px;
+  padding-top: 50px;
+}
+
+ul.menu > li {
+  height: 40px;
+  font-size: 16px;
+  width: 100%;
+  text-align: left;
+  padding-left: 20px;
+  box-sizing: border-box;
+  cursor: pointer;
+  padding-top: 8px;
+}
+
+ul.menu > li:hover {
+  background-color: var(--input-bg);
+}
+
+div.main_container {
+  position: fixed;
+  left: 200px;
+  top: 0px;
+  width: calc(100% - 200px);
+  height: 100%;
+  box-sizing: border-box;
+  padding-left: 20px;
+}
+
+div.inline > * {
+  display: inline-block;
+}

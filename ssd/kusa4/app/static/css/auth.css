@@ -1,0 +1,187 @@
+
+div.auth-container {
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--alert-bg-color);
+  padding: 35px;
+  border: 1px solid var(--alert-border-color);
+  border-radius: 5px;
+  width: 400px;
+  padding-bottom: 85px;
+  padding-top: 0px;
+}
+
+/* div.auth-container > div.login, */
+div.auth-container > div.register,
+div.auth-container > div.register-code,
+div.auth-container > div.reset,
+div.auth-container > div.reset-code {
+  display: none;
+}
+
+div.auth-container > div.head {
+  position: relative;
+  border-bottom: 1px solid var(--alert-hr-color);
+  margin-bottom: 15px;
+}
+
+div.auth-container > div.head > img {
+  position: absolute;
+  width: 30px;
+  filter: invert(var(--invert-buttons));
+  transform: rotate(-90deg);
+  cursor: pointer;
+  left: 0px;
+  top: -7px;
+  transition: .1s all;
+}
+
+div.auth-container > div.head > img:hover {
+  filter: invert(var(--invert-selected-buttons));
+}
+
+div.auth-container > div.head > p {
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+/* -------------------------------------------------------------------------- */
+
+div.auth-container > div.login > div.register-box {
+  position: absolute;
+  top: calc(100% + 30px);
+  left: 0px;
+  background-color: var(--alert-bg-color);
+  padding: 15px 35px;
+  border: 1px solid var(--alert-border-color);
+  border-radius: 5px;
+  width: 400px;
+}
+
+div.auth-container > div.login > div.register-box > p {
+  width: calc(100% - 180px);
+  font-size: 16px;
+}
+
+div.auth-container > div.login > div.register-box > button {
+  position: absolute;
+  right: 35px;
+  top: 30px;
+}
+
+div.auth-container > p.error {
+  font-size: 16px;
+  color: var(--input-warning-color);
+  width: 100%;
+  text-align: center;
+  margin-top: 0px;
+}
+
+div.auth-container > div > input {
+  width: 100%;
+  width: calc(100% - 35px);
+  margin-bottom: 10px;
+}
+
+div.auth-container > div > button {
+  position: absolute;
+  bottom: 35px;
+  right: 35px;
+}
+
+div.auth-container > div > button.left {
+  left: 35px;
+}
+
+div.auth-container > div > a {
+  position: absolute;
+  bottom: 45px;
+  left: 40px;
+  font-size: 16px;
+}
+
+/* -------------------------------------------------------------------------- */
+
+.input_style {
+  background-color: var(--input-bg);
+  height: 34px;
+  border: 1px solid var(--input-border-color);
+  border-radius: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: var(--font-color);
+}
+
+.input_style.error {
+  border-color: var(--input-warning-color);
+}
+
+.input_style:focus{
+  outline: none;
+  border: 1px solid var(--input-focus);
+}
+
+.input_style::placeholder {
+  color: var(--font-sub-color);
+}
+
+/* -------------------------------------------------------------------------- */
+
+div.loading {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-color);
+  /* transition: .5s all; */
+  opacity: 1;
+}
+
+div.loading.end {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* -------------------------------------------------------------------------- */
+
+button {
+  border-radius: 5px;
+  background-color: var(--input-focus);
+  height: 40px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: .15s all;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
+  border: none;
+  /* padding-left: 20px; */
+  /* padding-right: 20px; */
+  width: 150px;
+  font-size: 16px;
+  font-weight: 450;
+  color: var(--button-p-color);
+}
+
+button > svg {
+  display: none;
+}
+
+button:hover {
+  background-color: var(--button-select-color);
+}
+
+button.loading {
+  background-color: var(--not-active-button-bg-color);
+  color: var(--not-active-button-p-color);
+  cursor: wait;
+}
+
+button.loading > svg {
+  height: 80%;
+  margin-top: 4px;
+  display: block;
+}

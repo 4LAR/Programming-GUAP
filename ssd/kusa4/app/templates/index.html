@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>WatchGuard</title>
+    <link rel="icon" href="/static/img/logo.svg" type="image/svg+xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/colors.css">
+    <link rel="stylesheet" href="static/css/main.css">
+    <link rel="stylesheet" href="static/css/loading.css">
+    <link rel="stylesheet" href="static/css/auth.css">
+    <link rel="stylesheet" href="static/css/menu.css">
+  </head>
+  <body>
+    <div id="auth_container" class="auth-container">
+      <div class="head">
+        <img src="/static/img/arrow.svg" id="back_menu" onclick="back_auth_menu()" alt="Back">
+        <p id="page_name" class="title"></p>
+      </div>
+      <p id="error_prompt" class="error"></p>
+      <div id="login_container" class="login">
+        <input type="text" class="input_style" id="login_login" onchange="remove_error(this)" placeholder="Login">
+        <input type="password" class="input_style" id="login_password" onchange="remove_error(this)" placeholder="Password">
+        <a href="javascript:change_auth_menu('reset')">Forgot your password?</a>
+        <br>
+        <button onclick="login_request(this)">
+          <svg class="circular-loader"viewBox="25 25 50 50" >
+            <circle class="loader-path" cx="50" cy="50" r="20" fill="none" stroke="#1D63ED" stroke-width="5" />
+          </svg>
+          Login
+        </button>
+        <div class="register-box">
+          <p>If you don't have an account, you can create one.</p>
+          <button onclick="change_auth_menu('register')">Register</button>
+        </div>
+      </div>
+      <div id="register_container" class="register">
+        <input type="text" class="input_style" id="register_name" onchange="remove_error(this)" placeholder="Name">
+        <input type="text" class="input_style" id="register_email" onchange="remove_error(this)" placeholder="Email">
+        <input type="password" class="input_style" id="register_password" onchange="remove_error(this)" placeholder="Password">
+        <input type="password" class="input_style" id="register_repeat_password" onchange="remove_error(this)" placeholder="Repeat password">
+        <button onclick="register_request(this)">
+          <svg class="circular-loader"viewBox="25 25 50 50" >
+            <circle class="loader-path" cx="50" cy="50" r="20" fill="none" stroke="#1D63ED" stroke-width="5" />
+          </svg>
+          Continue
+        </button>
+      </div>
+      <div id="register_code_container" class="register-code">
+        <p id="register_email_send">The confirmation code was sent to: test@example.com</p>
+        <input type="text" class="input_style" id="register_code" onchange="remove_error(this)" placeholder="Verification code">
+        <button onclick="register_code_request(this)">
+          <svg class="circular-loader"viewBox="25 25 50 50" >
+            <circle class="loader-path" cx="50" cy="50" r="20" fill="none" stroke="#1D63ED" stroke-width="5" />
+          </svg>
+          Finish
+        </button>
+      </div>
+      <div id="reset_container" class="reset">
+        <input type="text" class="input_style" id="reset_email" onchange="remove_error(this)" placeholder="Email">
+        <button onclick="reset_request(this)">
+          <svg class="circular-loader"viewBox="25 25 50 50" >
+            <circle class="loader-path" cx="50" cy="50" r="20" fill="none" stroke="#1D63ED" stroke-width="5" />
+          </svg>
+          Continue
+        </button>
+      </div>
+      <div id="reset_code_container" class="reset-code">
+        <p>The password reset code has been sent to your email</p>
+        <input type="text" class="input_style" id="reset_code" onchange="remove_error(this)" placeholder="Verification code">
+        <input type="password" class="input_style" id="reset_password" onchange="remove_error(this)" placeholder="New password">
+        <input type="password" class="input_style" id="reset_repeat_password" onchange="remove_error(this)" placeholder="Repeat password">
+        <button onclick="reset_code_request(this)">
+          <svg class="circular-loader"viewBox="25 25 50 50" >
+            <circle class="loader-path" cx="50" cy="50" r="20" fill="none" stroke="#1D63ED" stroke-width="5" />
+          </svg>
+          Reset
+        </button>
+      </div>
+    </div>
+    <div id="dashboard_container" class="dashboard-container">
+      <ul class="menu">
+        <li onclick="open_main_menu('cameras')">Камеры</li>
+        <li onclick="open_main_menu('users')">Пользователи</li>
+        <li onclick="open_main_menu('audit')">Журнал аудита</li>
+        <li onclick="open_main_menu('cards')">Пропуска</li>
+      </ul>
+      <div class="main_container">
+        <div id="main_container_cameras">
+          <h1>Камеры</h1>
+          <p>Невозможно получить доступ к камерам</p>
+        </div>
+        <div id="main_container_users">
+          <h1>Пользователи</h1>
+          <input type="text" placeholder="login" id="user_login">
+          <input type="text" placeholder="password" id="user_password">
+          <input type="text" placeholder="role" id="user_role">
+          <button type="button" onclick="add_user()">
+            Добавить полльзователя
+          </button>
+          <ul id="users"></ul>
+        </div>
+        <div id="main_container_audit">
+          <h1>Журнал аудита</h1>
+          <p>Дата в формате YYYY-MM-DD</p>
+          <input type="text" placeholder="0000-00-00" id="audit_date">
+          <button type="button" name="button">
+            Сгенерировать отчёт
+          </button>
+          <ul id="audit"></ul>
+        </div>
+        <div id="main_container_cards">
+          <h1>Пропуска</h1>
+          <input type="text" placeholder="name" id="card_name">
+          <button type="button" name="button">
+            Добавить пропуск
+          </button>
+          <ul id="cards"></ul>
+        </div>
+      </div>
+    </div>
+    <div id="main_loading" class="loading"></div>
+    <script src="static/js/main.js" charset="utf-8"></script>
+    <script src="static/js/auth.js" charset="utf-8"></script>
+    <script src="static/js/auth_menu.js" charset="utf-8"></script>
+    <script src="static/js/dashboard.js" charset="utf-8"></script>
+  </body>
+</html>
