@@ -104,7 +104,7 @@
           <h1>Журнал аудита</h1>
           <p>Дата в формате YYYY-MM-DD</p>
           <input type="text" placeholder="0000-00-00" id="audit_date">
-          <button type="button" name="button">
+          <button type="button" name="button" onclick="getAuditPdf()">
             Сгенерировать отчёт
           </button>
           <ul id="audit"></ul>
@@ -112,7 +112,7 @@
         <div id="main_container_cards">
           <h1>Пропуска</h1>
           <input type="text" placeholder="name" id="card_name">
-          <button type="button" name="button">
+          <button type="button" onclick="add_card()">
             Добавить пропуск
           </button>
           <ul id="cards"></ul>

@@ -380,6 +380,8 @@ function get_data(onload=undefined) {
         response.json().then(data => {
           USER = data;
           get_users();
+          get_audit();
+          get_cards();
         });
       }
       open_main_container();
