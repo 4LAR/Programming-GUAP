@@ -2,7 +2,7 @@ import numpy as np
 import random
 import matplotlib.pyplot as plt
 
-# Координаты городов (из изображения)
+# Координаты городов
 cities = np.array([
     [20833.3333, 17100.0000],
     [20900.0000, 17066.6667],
@@ -42,6 +42,10 @@ def distance(city1, city2):
 # Функция для расчета общей длины маршрута
 def total_distance(route):
     return sum(distance(cities[route[i]], cities[route[i + 1]]) for i in range(len(route) - 1)) + distance(cities[route[-1]], cities[route[0]])
+
+length = total_distance([i for i in range(len(cities))])
+
+print(f"Общая длина маршрута: {length}")
 
 # Генерация начальной популяции
 def generate_population(size, num_cities):

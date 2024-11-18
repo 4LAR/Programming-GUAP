@@ -56,7 +56,6 @@ def plot_generation(generation):
     print("Популяция:", population_history[generation])
     plt.figure(figsize=(10, 6))
     plt.plot(population_history[generation], fitness_history[generation], 'o', label=f'Поколение {generation + 1}', alpha=0.7)
-
     # Построение графика исходной функции
     x_values = np.linspace(x_bounds[0], x_bounds[1], 400)
     plt.plot(x_values, f(x_values), label='Исходная функция', color='red', linewidth=2)

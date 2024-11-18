@@ -19,6 +19,7 @@ class Individual(list):
     """Класс для представления индивидуумов популяции"""
     def __init__(self, *args):
         super().__init__(*args)
+        # print(args)
         self.value = 0
 
 # Функция приспособленности (De Jong's function 1)
@@ -89,6 +90,14 @@ def animate(frame):
     for ind in population:
         ax.scatter(ind[0], ind[1], ind.value, color='red', s=20)
 
+    # Вывод значений x и y для каждого индивидуума
+    if generation_counter % 5 == 0:  # Выводить каждые 5 поколений
+        print(f"Поколение {generation_counter}:")
+        for ind in population:
+            # print(ind)
+            # print(f"  Индивидуум: x={ind[0]:.6f}, y={ind[1]:.6f}, Fitness={ind.value:.2f}")
+            print(f"  Индивидуум: x={ind[0]:.6f}, y={ind[1]:.6f}, z={ind.value:.6f}")
+
     # Селекция, кроссовер и мутация
     offspring = selection(population)
     offspring = list(map(clone, offspring))
@@ -111,10 +120,14 @@ def animate(frame):
 
     # Сбор статистики
     fitness_values = [ind.value for ind in population]
+    std_fitness = np.std(fitness_values)
     min_fitness = min(fitness_values)
     mean_fitness = sum(fitness_values) / len(fitness_values)
     min_fitness_values.append(min_fitness)
     mean_fitness_values.append(mean_fitness)
+
+    if generation_counter % 5 == 0:
+        print(f"Минимальная приспособле нность: {min_fitness:.6f}\nСредняя приспособленность: {mean_fitness:.6f}\nСтандартное отклонение: {std_fitness:.6f}")
 
     generation_counter += 1
 
@@ -128,5 +141,5 @@ Z = X**2 + Y**2
 fig = plt.figure(figsize=(12, 6))
 ax = fig.add_subplot(1, 1, 1, projection='3d')
 
-ani = animation.FuncAnimation(fig, animate, frames=MAX_GENERATIONS, interval=500, repeat=False)
+ani = animation.FuncAnimation(fig, animate, frames=MAX_GENERATIONS, interval=50, repeat=False)
 plt.show()
