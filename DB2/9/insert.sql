@@ -41,37 +41,27 @@ CREATE TABLE Sight (
     FOREIGN KEY (IDTypeSight) REFERENCES TypeSight(IDTypeSight) ON DELETE CASCADE
 );
 
+--------------------------------------------------------------------------------
+-- FOREIGN KEY (IDSight) REFERENCES Sight(IDSight) ON DELETE CASCADE
 -- Создание таблицы Museum (наследник Sight)
 CREATE TABLE Museum (
     PRIMARY KEY (IDSight),
-    Exhibition VARCHAR(100)
+    Exhibition VARCHAR(100),
+    FOREIGN KEY (IDAddress) REFERENCES Address(IDAddress) ON DELETE CASCADE,
+    FOREIGN KEY (IDTypeSight) REFERENCES TypeSight(IDTypeSight) ON DELETE CASCADE
 ) INHERITS (Sight);
 
 -- Создание таблицы Theater (наследник Sight)
 CREATE TABLE Theater (
     PRIMARY KEY (IDSight),
-    Director VARCHAR(100)
+    Director VARCHAR(100),
+    FOREIGN KEY (IDAddress) REFERENCES Address(IDAddress) ON DELETE CASCADE,
+    FOREIGN KEY (IDTypeSight) REFERENCES TypeSight(IDTypeSight) ON DELETE CASCADE
 ) INHERITS (Sight);
 
--- Создание триггера для проверки существования адреса
-CREATE OR REPLACE FUNCTION check_address_exists() RETURNS TRIGGER AS $$
-BEGIN
-    IF NOT EXISTS (SELECT 1 FROM Address WHERE IDAddress = NEW.IDAddress) THEN
-        RAISE EXCEPTION 'Address with ID % does not exist', NEW.IDAddress;
-    END IF;
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
+--------------------------------------------------------------------------------
 
-CREATE TRIGGER check_address_before_insert
-BEFORE INSERT ON Sight
-FOR EACH ROW
-EXECUTE FUNCTION check_address_exists();
-
-CREATE TRIGGER check_address_before_update
-BEFORE UPDATE ON Sight
-FOR EACH ROW
-EXECUTE FUNCTION check_address_exists();
+--------------------------------------------------------------------------------
 
 -- Вставка данных
 INSERT INTO City (NameCity) VALUES ('Санкт Петербург');
