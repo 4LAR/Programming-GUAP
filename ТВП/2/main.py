@@ -1,32 +1,37 @@
 class TuringMachine:
     def __init__(self, tape, transitions, alphabet):
-        self.tape = list(tape)
+        # Заполнение ленты до 100 символов
+        self.tape = list(tape) + ['_'] * (100 - len(tape))
+        self.tape = self.tape[:100]
         self.head = 0
         self.state = 'q0'  # Начальное состояние
         self.transitions = transitions
         self.alphabet = alphabet
+        self.steps = 0
 
     def step(self):
-
         current_symbol = self.tape[self.head]
         command = self.transitions.get((self.state, current_symbol))
+
+        if (current_symbol == "_"):
+            print(self.steps, current_symbol, command)
 
         if command is None:
             raise Exception(f"Нет перехода для состояния {self.state} и символа {current_symbol}")
 
         new_state, new_symbol, direction = command
 
-
         self.tape[self.head] = new_symbol
         self.state = new_state
         if new_state == 'q00':
             raise Exception(f"Завершение программы")
 
-
         if direction == '>':
             self.head += 1
         elif direction == '<':
             self.head -= 1
+
+        self.steps += 1
 
         # Проверка выхода за границы ленты
         if self.head < 0 or self.head >= len(self.tape):
@@ -36,8 +41,8 @@ class TuringMachine:
         with open(output_file, 'w', encoding='utf-8') as f:
             while True:
                 # Запись состояния перед выполнением команды
-                f.write(''.join(self.tape) + ' =\n')
-                f.write(' ' * self.head +'^' + '\n')
+                f.write(''.join(self.tape) + '\n')
+                f.write(' ' * self.head + '^' + '\n')
                 f.write(f"{self.state} -> {self.transitions.get((self.state, self.tape[self.head]), 'Нет команды')} \n")
 
                 try:
