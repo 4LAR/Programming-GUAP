@@ -1,45 +1,55 @@
 class TuringMachine:
     def __init__(self, tape, transitions, alphabet):
-        # Заполнение ленты до 100 символов
-        self.tape = list(tape) + ['_'] * (100 - len(tape))
-        self.tape = self.tape[:100]
-        self.head = 0
+        self.tape = list(tape)  # Лента, создается из входных данных
+        self.head = 0  # Положение головки
         self.state = 'q0'  # Начальное состояние
-        self.transitions = transitions
-        self.alphabet = alphabet
-        self.steps = 0
+        self.transitions = transitions  # Таблица переходов
+        self.alphabet = alphabet  # Алфавит
+        self.steps = 0  # Счётчик шагов
 
     def step(self):
+        # Расширение ленты, если головка выходит за текущие границы
+        if self.head < 0:
+            self.tape.insert(0, '_')  # Добавить пробел в начало ленты
+            self.head = 0  # Переместить головку в начало
+        elif self.head >= len(self.tape):
+            self.tape.append('_')  # Добавить пробел в конец ленты
+
         current_symbol = self.tape[self.head]
         command = self.transitions.get((self.state, current_symbol))
-
-        if (current_symbol == "_"):
-            print(self.steps, current_symbol, command)
 
         if command is None:
             raise Exception(f"Нет перехода для состояния {self.state} и символа {current_symbol}")
 
+        # Получаем новые состояние, символ и направление
         new_state, new_symbol, direction = command
 
+        # Обновляем символ под головкой
         self.tape[self.head] = new_symbol
+
+        # Обновляем состояние машины
         self.state = new_state
-        if new_state == 'q00':
+        if new_state == 'q00':  # Конечное состояние
             raise Exception(f"Завершение программы")
 
+        # Двигаем головку
         if direction == '>':
             self.head += 1
         elif direction == '<':
             self.head -= 1
 
-        self.steps += 1
-
-        # Проверка выхода за границы ленты
-        if self.head < 0 or self.head >= len(self.tape):
-            raise Exception("Головка вышла за границы ленты")
+        self.steps += 1  # Увеличиваем счётчик шагов
 
     def run(self, output_file):
         with open(output_file, 'w', encoding='utf-8') as f:
             while True:
+                # Расширение ленты на всякий случай
+                if self.head < 0:
+                    self.tape.insert(0, '_')
+                    self.head = 0
+                elif self.head >= len(self.tape):
+                    self.tape.append('_')
+
                 # Запись состояния перед выполнением команды
                 f.write(''.join(self.tape) + '\n')
                 f.write(' ' * self.head + '^' + '\n')
