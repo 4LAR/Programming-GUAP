@@ -1,38 +1,36 @@
-import time
+# Глобальные переменные для подсчета числа вызовов функций
+iter_count = 0
+rec_count = 0
 
-def iterations(x, y):
-    print(f"Вызов функции iterations({x}, {y})")
-    result = 0
-    while x - y + 1 >= 10:
-        x -= 10
-        result += 1
-    return result
+# Итеративная функция для вычисления x - y + 1
+def iterative_function(x, y):
+    global iter_count                                                           # Используем глобальную переменную для подсчета числа вызовов
+    result = x                                                                  # Начальное значение результата равно x
+    for _ in range(y):                                                          # Цикл, который выполняется y раз
+        iter_count += 1                                                         # Увеличиваем счетчик вызовов итеративной функции
+        result -= 1                                                             # На каждой итерации уменьшаем результат на 1
+    return result + 1                                                           # Возвращаем результат с добавлением 1
 
-def recursive(x, y):
-    print(f"Вызов функции recursive({x}, {y})")
-    if x - y + 1 < 10:
-        return 0
-    else:
-        return 1 + recursive(x - 10, y)
+# Рекурсивная функция для вычисления x - y + 1
+def recursive_function(x, y):
+    global rec_count                                                            # Используем глобальную переменную для подсчета числа вызовов
+    rec_count += 1                                                              # Увеличиваем счетчик вызовов рекурсивной функции
+    if y == 0:                                                                  # Базовый случай: если y равно 0
+        return x + 1
+    else:  # Рекурсивный случай
+        return recursive_function(x, y - 1) - 1
 
-while True:
-    try:
-        x = int(input("Введите значение x: "))
-        y = int(input("Введите значение y: "))
+x = int(input("Введите значение x: "))                                          # Ввод значения x
+y = int(input("Введите значение y: "))                                          # Ввод значения y
 
-        # Измерение времени для итеративного способа
-        start_time = time.time()
-        iter_result = iterations(x, y)
-        iter_time = time.time() - start_time
+# Вычисление итеративным способом
+iterative_result = iterative_function(x, y)                                     # Вызов итеративной функции
+print(f"Результат итеративного вычисления: {iterative_result}")                 # Вывод результата итеративного вычисления
 
-        print(f"Итеративный способ: f({x}, {y}) = {iter_result}, время выполнения: {iter_time:.6f} секунд")
+# Вычисление рекурсивным способом
+recursive_result = recursive_function(x, y)                                     # Вызов рекурсивной функции
+print(f"Результат рекурсивного вычисления: {recursive_result}")                 # Вывод результата рекурсивного вычисления
 
-        # Измерение времени для рекурсивного способа
-        start_time = time.time()
-        rec_result = recursive(x, y)
-        rec_time = time.time() - start_time
-
-        print(f"Рекурсивный способ: f({x}, {y}) = {rec_result}, время выполнения: {rec_time:.6f} секунд")
-
-    except Exception as e:
-        print("Пожалуйста, введите корректное целое число.")
+# Вывод количества вызовов функций
+print(f"Количество вызовов итеративной функции: {iter_count}")                  # Вывод числа вызовов итеративной функции
+print(f"Количество вызовов рекурсивной функции: {rec_count}")                   # Вывод числа вызовов рекурсивной функции
