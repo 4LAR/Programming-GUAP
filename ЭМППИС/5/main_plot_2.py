@@ -7,15 +7,15 @@ def fDeJong(x):
     return np.sum(x**2)
 
 # Параметры эволюционной стратегии
-population_size = 300          # Размер популяции
-max_generations = 300          # Максимальное количество поколений
+population_size = 600          # Размер популяции
+max_generations = 1000          # Максимальное количество поколений
 mutation_probability = 0.5     # Вероятность мутации
 mutation_sigma = 0.1           # Стандартное отклонение для мутации
 no_improvement_limit = 100     # Лимит поколений без улучшений для остановки
 
 # Диапазоны для оптимизации
 x_min, x_max = -5.12, 5.12
-dimensions = 2  # Размерность задачи
+dimensions = 5  # Размерность задачи
 
 # Инициализация начальной популяции
 initial_population = np.random.uniform(x_min, x_max, (population_size, dimensions))
@@ -66,6 +66,9 @@ for generation in range(max_generations):
             child = parent
         new_population.append(child)
 
+    # print(np.array(new_population))
+    # print()
+
     initial_population = np.array(new_population)
 
 # Окончание замера времени
@@ -78,15 +81,15 @@ x2 = np.linspace(x_min, x_max, 200)
 x1, x2 = np.meshgrid(x1, x2)
 
 # Вычисление значений функции для каждого элемента сетки
-z = x1**2 + x2**2  # Или np.sum(np.array([x1, x2])**2, axis=0) для общего вида
+z = x1**2 + x2**2
 
 fig = plt.figure(figsize=(12, 8))
 ax = fig.add_subplot(111, projection='3d')
 surf = ax.plot_surface(x1, x2, z, cmap='viridis', edgecolor='none')
-ax.set_title("Функция De Jong's (f1)", fontsize=16)
-ax.set_xlabel('x1', fontsize=14)
-ax.set_ylabel('x2', fontsize=14)
-ax.set_zlabel('f(x1, x2)', fontsize=14)
+ax.set_title("De Jong's function 1", fontsize=16, fontweight='bold')
+ax.set_xlabel('$x_1$', fontsize=14)
+ax.set_ylabel('$x_2$', fontsize=14)
+ax.set_zlabel('$f(x_1, x_2)$', fontsize=14)
 ax.view_init(elev=30, azim=240)
 
 # Отображение найденного экстремума
@@ -94,13 +97,12 @@ ax.scatter(best_solution[0], best_solution[1], best_fitness,
            color='red', s=100, label='Найденный минимум')
 ax.legend(loc='upper right')
 
-# Вывод результатов
-print(f'Лучшее найденное решение (ЭС): x = {best_solution}, f(x) = {best_fitness:.6f}')
-print(f'Глобальный минимум функции: f(x) = 0 при x = [0, 0]')
-print(f'Время выполнения программы: {execution_time:.2f} секунд')
-
-# print("-"*20)
-# import os
-# os.system("python3 main.py")
+# Вывод результатов в формате задания
+print("РЕЗУЛЬТАТЫ ОПТИМИЗАЦИИ:")
+print(f"Функция: De Jong's (f1)")
+print(f"Глобальный минимум функции: f(x) = 0 при x = [0, 0]")
+print(f"Лучшее найденное решение (ЭС): x = {best_solution}, f(x) = {best_fitness:.6f}")
+print(f"Количество поколений: {generation + 1}")
+print(f"Время выполнения программы: {execution_time:.2f} секунд")
 
 plt.show()

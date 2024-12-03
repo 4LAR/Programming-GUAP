@@ -95,7 +95,9 @@ def run_pso(n, visualize=False):
     return global_best_position, global_best_score, execution_time
 
 # Запуск для различных значений n
-results = {}
-for n in [2, 4, 6, 10]:
-    visualize = (n == 2)  # Визуализация только для n=2
-    results[n] = run_pso(n, visualize=visualize)
+# results = {}
+# for n in [2, 4, 6, 10]:
+#     visualize = (n == 2)  # Визуализация только для n=2
+#     results[n] = run_pso(n, visualize=visualize)
+
+run_pso(2, visualize=True)
