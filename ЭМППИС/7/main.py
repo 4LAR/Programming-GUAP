@@ -48,6 +48,7 @@ def genetic_algorithm(n, pop_size, mutation_prob, max_generations):
             best_solution = population[current_best_index]
 
         fitness_history.append(best_fitness)
+        print(f"best_fitness: {best_fitness}, best_solution: {best_solution}")
 
     return best_solution, best_fitness, fitness_history, population
 
@@ -89,10 +90,10 @@ def plot_results_3d(best_solution, population, fitness_history):
     plt.show()
 
 # Параметры
-n = 2  # Размерность задачи
+n = 5  # Размерность задачи
 pop_size = 50  # Размер популяции
 mutation_prob = 0.1  # Вероятность мутации
-max_generations = 100  # Количество поколений
+max_generations = 40  # Количество поколений
 
 # Запуск генетического алгоритма
 best_solution, best_fitness, fitness_history, final_population = genetic_algorithm(n, pop_size, mutation_prob, max_generations)

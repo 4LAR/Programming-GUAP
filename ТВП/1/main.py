@@ -17,7 +17,7 @@ def recursive_function(x, y):
     rec_count += 1                                                              # Увеличиваем счетчик вызовов рекурсивной функции
     if y == 0:                                                                  # Базовый случай: если y равно 0
         return x + 1
-    else:  # Рекурсивный случай
+    else:                                                                       # Рекурсивный случай
         return recursive_function(x, y - 1) - 1
 
 x = int(input("Введите значение x: "))                                          # Ввод значения x

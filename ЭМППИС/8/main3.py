@@ -3,8 +3,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import random
 
-import matplotlib.pyplot as plt
-
 # Загрузка данных
 data = pd.DataFrame({
     "Номер проекта": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18],
@@ -13,7 +11,7 @@ data = pd.DataFrame({
     "Ef": [115.8, 96.0, 79.0, 909.8, 39.6, 98.4, 18.9, 10.3, 28.5, 7.0, 9.0, 7.3, 5.0, 8.4, 98.7, 15.6, 23.9, 138.3]
 })
 
-# Разделение данных на обучающее и тестовое множества
+# Разделение данных
 train_data = data.iloc[:13]
 test_data = data.iloc[13:]
 
@@ -29,7 +27,7 @@ def generate_tree(depth=3):
     operation = random.choice(["+", "-", "*", "/"])
     return [operation, generate_tree(depth - 1), generate_tree(depth - 1)]
 
-# Оценка приспособленности дерева
+# Оценка дерева
 def evaluate_tree(tree, data_row):
     if isinstance(tree, (int, float)):
         return tree
@@ -50,7 +48,7 @@ def evaluate_tree(tree, data_row):
     except:
         return 1
 
-# Вычисление RMS ошибки
+# RMS ошибка
 def fitness(tree, data_subset):
     predictions = data_subset.apply(lambda row: evaluate_tree(tree, row), axis=1)
     error = np.sqrt(np.mean((predictions - data_subset["Ef"]) ** 2))
@@ -58,33 +56,20 @@ def fitness(tree, data_subset):
 
 # Кроссовер
 def crossover(tree1, tree2):
-    # Если оба дерева являются терминальными узлами, выбираем случайное
     if isinstance(tree1, (int, float, str)) or isinstance(tree2, (int, float, str)):
         return tree1 if random.random() < 0.5 else tree2
-
-    # Проверка на случай, если дерево1 или дерево2 не является списком
     if not isinstance(tree1, list) or not isinstance(tree2, list):
         return tree1 if random.random() < 0.5 else tree2
+    return [tree1[0] if random.random() < 0.5 else tree2[0],
+            crossover(tree1[1], tree2[1]),
+            crossover(tree1[2], tree2[2])]
 
-    # Рекурсивно выполняем кроссовер для дочерних узлов
-    return [
-        tree1[0] if random.random() < 0.5 else tree2[0],  # Оператор
-        crossover(tree1[1], tree2[1]),                   # Левое поддерево
-        crossover(tree1[2], tree2[2])                    # Правое поддерево
-    ]
-
-
-# Мутация (усечение или рост)
+# Мутация
 def mutate(tree, depth=3):
-    if isinstance(tree, (int, float, str)) or depth == 0:  # Проверяем терминальные узлы
-        if random.random() < mutation_rate:
-            return generate_tree(depth)  # Генерируем новое поддерево
-        return tree  # Без изменений
-
+    if isinstance(tree, (int, float, str)) or depth == 0:
+        return generate_tree(depth) if random.random() < mutation_rate else tree
     if random.random() < mutation_rate:
-        return generate_tree(depth)  # Полная замена узла
-
-    # Рекурсивно применяем мутацию к дочерним узлам
+        return generate_tree(depth)
     return [tree[0], mutate(tree[1], depth - 1), mutate(tree[2], depth - 1)]
 
 # Ранговая селекция
@@ -92,11 +77,12 @@ def rank_selection(population, fitness_values):
     sorted_population = [x for _, x in sorted(zip(fitness_values, population), key=lambda pair: pair[0])]
     return random.choices(sorted_population[-10:], k=1)[0]
 
-# Основной алгоритм
+# Генетический алгоритм
 def genetic_algorithm(train_data, test_data):
     population = [generate_tree() for _ in range(population_size)]
     best_tree = None
     best_fitness = -np.inf
+    fitness_history = []
 
     for gen in range(generations):
         fitness_values = [fitness(tree, train_data) for tree in population]
@@ -105,6 +91,7 @@ def genetic_algorithm(train_data, test_data):
             best_fitness = max(fitness_values)
             best_tree = population[np.argmax(fitness_values)]
 
+        fitness_history.append(-best_fitness)
         print(f"Поколение {gen + 1}: Лучшее значение приспособленности = {-best_fitness:.4f}")
 
         new_population = []
@@ -117,8 +104,32 @@ def genetic_algorithm(train_data, test_data):
 
         population = new_population
 
-    print(f"\nЛучшее дерево: {best_tree}")
-    print(f"Наилучшая ошибка RMS: {-best_fitness:.4f}")
+    # График обучения
+    plt.plot(range(1, generations + 1), fitness_history, label="RMS Error")
+    plt.xlabel("Поколение")
+    plt.ylabel("Ошибка RMS")
+    plt.title("Обучение генетического алгоритма")
+    plt.legend()
+
+    # Тестирование на тестовом множестве
+    test_error = -fitness(best_tree, test_data)
+    print(f"\nТестовая ошибка RMS: {test_error:.4f}")
+    print(f"Лучшее дерево: {best_tree}")
+
+    # Вывод коэффициентов a и b для модели COCOMO (примерный расчет)
+    # coeff_a, coeff_b = extract_coefficients(best_tree)
+    # print(f"Коэффициенты модели COCOMO: a = {coeff_a:.4f}, b = {coeff_b:.4f}")
+    # print(f"Модель: Ef = {coeff_a:.4f} * L^{coeff_b:.4f}")
+
+    plt.show()
+
+# Функция для извлечения коэффициентов a и b из дерева (примерная реализация)
+# def extract_coefficients(tree):
+#     # Пример: простая попытка выделить a и b на основе структуры дерева
+#     # Требует доработки в зависимости от типа дерева
+#     a = 1.0
+#     b = 1.0
+#     return a, b
 
 # Запуск алгоритма
 genetic_algorithm(train_data, test_data)
