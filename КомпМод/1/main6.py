@@ -1,4 +1,4 @@
-from sympy import symbols, Function, sqrt, diff, Eq, simplify, dsolve
+from sympy import symbols, Function, sqrt, diff, Eq, simplify, dsolve, solve
 
 # Определение переменных
 x = symbols('x')

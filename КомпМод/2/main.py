@@ -1,36 +1,46 @@
 import numpy as np
-import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
 
-# Параметры
-N = 10  # Замените на номер студента
-T1 = N
-T2 = N + 100
-lambda1 = (N + 8) / (N + 24)
-lambda2 = (N + 9) / (N + 25)
-
-# Генерация пуассоновского потока
-def generate_poisson_process(lam, T1, T2):
+def generate_paysson_process(lmbda, T):
+    T0 = 0
     events = []
-    t = 0
-    while t < T2:
-        inter_arrival_time = np.random.exponential(1/lam)
-        t += inter_arrival_time
-        if t < T2:
-            events.append(t)
+    while True:
+        xi = np.random.rand()
+        t_i = -np.log(xi) / lmbda
+
+        if len(events) == 0:
+            T_j = T0 + t_i
+        else:
+            T_j = events[-1] + t_i
+
+        if T_j > T:
+            break
+
+        events.append(T_j)
     return events
 
-# Генерация двух потоков
-events1 = generate_poisson_process(lambda1, T1, T2)
-events2 = generate_poisson_process(lambda2, T1, T2)
+# Исходные данные
+N = 17
+T1 = N
+T2 = N + 100
+lam1 = (N + 8) / (N + 24)  # Теоретическое значение λ1
+lam2 = (N + 9) / (N + 25)  # Теоретическое значение λ2
 
-# Объединение потоков
-combined_events = sorted(events1 + events2)
+T = T2 - T1
 
-# Графическая интерпретация
-plt.figure(figsize=(10, 6))
-plt.step(combined_events, np.arange(1, len(combined_events) + 1), where='post')
-plt.title('Пуассоновский поток событий')
-plt.xlabel('Время')
-plt.ylabel('Количество событий')
-plt.grid()
-plt.show()
+# Генерация пуассоновских потоков
+paysson_events1 = generate_paysson_process(lam1, T)
+paysson_events2 = generate_paysson_process(lam2, T)
+
+# Суммарный поток
+sum_events = np.sort(np.concatenate((paysson_events1, paysson_events2)))
+
+# Вывод последовательностей событий
+print("События первого пуассоновского процесса:")
+print(paysson_events1)
+
+print("\nСобытия второго пуассоновского процесса:")
+print(paysson_events2)
+
+print("\nСуммарный поток событий:")
+print(sum_events)
