@@ -5,18 +5,18 @@ A = ['1', '+', '-', '=']
 X = ['y', 'x']
 A1 = ['1']
 R = [
-    "(1) x-y+1= -> x-=y+1",
-    "(2) x-y+1= -> x-=y+1",
-    "(2) penis",
-    "(2) penis",
-    "(2) penis"
+    "(1)",
+    "(2)",
+    "(3)",
+    "(4)",
+    "(5)"
 ]
 
 rule_patterns = [
-    (r'(\d+)-(\d+)\+(\d+)=', r'\1-=\2+\3'),
-    (r'=1(\d+)-1', r'=\1'),
-    (r'(\d+)-=(\d+)\+(\d+)', r'\1-=\2\3'),
-    (r'(\d+)-=(\d+)', r'=\1-\2')
+    (r'(\d+)-(\d+)\+(\d+)=', r'\1-=\2\3'),
+    (r'(\d+)-=(\d+)', r'=\1-\2'),
+    (r'=1(\d+)-1(\d+)', r'=\1-\2'),
+    (r'=1(\d+)-1', r'=\1')
 ]
 
 # Функция для проверки строки на наличие символов, не входящих в алфавит
@@ -27,14 +27,13 @@ def check_alphabet(input_str, alphabet):
 
 # Функция для проверки строк на наличие переменных, не входящих в заданное множество
 def check_variables(input_str, variables):
-    found_vars = re.findall(r'[a-zA-Z]+\d*', input_str)  # Найти все переменные
+    found_vars = re.findall(r'[a-zA-Z]+\d-', input_str)  # Найти все переменные
     for var in found_vars:
         if var not in variables:
             raise ValueError(f"Найдена переменная, не входящая в заданное множество: {var}")
 
 # Функция для проверки формата аксиомы
 def check_axiom_format(axiom):
-    # Проверяем, соответствует ли аксиома формату число*число-число=
     pattern = r'^\d+\-\d++\d+=$'
     if not re.match(pattern, axiom):
         raise ValueError("Ошибка: Аксиома должна иметь формат число-число+число=.")
@@ -60,7 +59,7 @@ def apply_rules(start_str, rules):
             print(pattern, current_str, match)
             if match:
                 result_log.append(f"Исходная строка: {current_str}")
-                result_log.append(f"Применяемое правило: {R[i]}")
+                result_log.append(f"Применяемое правило: {i} {rule_patterns[i]}")
                 current_str = re.sub(pattern, replacement, current_str, count=1)
                 result_log.append(f"Результат применения: {current_str}\n")
                 applied = True

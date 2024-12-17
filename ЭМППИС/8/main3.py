@@ -16,10 +16,11 @@ data = pd.read_csv('data.csv')
 population_size = 300
 generations = 50
 mutation_rate = 0.3
-train_percentage = 0.2
+train_percentage = 0.5
 
 # Разделение данных на обучающее и тестовое множество на основе train_percentage
 train_size = int(len(data) * train_percentage)
+# train_size = 13
 train_data = data.iloc[:train_size]
 test_data = data.iloc[train_size:]
 
