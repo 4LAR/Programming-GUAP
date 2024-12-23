@@ -100,7 +100,7 @@ def genetic_algorithm(num_cities, population_size, generations, mutation_rate):
 # Параметры
 num_cities = len(cities)
 population_size = 500  # Размер популяции
-generations = 1000  # Количество поколений
+generations = 100  # Количество поколений
 mutation_rate = 0.05  # Вероятность мутации
 
 # Запуск генетического алгоритма

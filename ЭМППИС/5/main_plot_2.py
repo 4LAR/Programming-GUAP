@@ -15,7 +15,7 @@ no_improvement_limit = 100     # Лимит поколений без улучш
 
 # Диапазоны для оптимизации
 x_min, x_max = -5.12, 5.12
-dimensions = 5  # Размерность задачи
+dimensions = 2  # Размерность задачи
 
 # Инициализация начальной популяции
 initial_population = np.random.uniform(x_min, x_max, (population_size, dimensions))
